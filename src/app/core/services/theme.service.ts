@@ -11,8 +11,7 @@ export class ThemeService {
   constructor() {
     if (isPlatformBrowser(this.platformId)) {
       const saved = localStorage.getItem('rp-theme') as Theme | null;
-      const preferred = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-      this.theme.set(saved ?? preferred);
+      this.theme.set(saved ?? 'light');
       this.applyTheme(this.theme());
 
       effect(() => {
