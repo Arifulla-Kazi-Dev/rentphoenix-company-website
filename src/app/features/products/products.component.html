@@ -1,0 +1,116 @@
+<!-- PRODUCTS PAGE -->
+
+<section class="page-hero">
+  <div class="page-hero__grid"></div>
+  <div class="container">
+    <div class="page-hero__content anim-fade-up">
+      <div class="section-label"><span>Product</span></div>
+      <h1>RentPhoenix OS</h1>
+      <p class="body-lg" style="max-width: 540px; margin-top: 16px">
+        A rental management platform built to replace scattered records,
+        WhatsApp follow-ups, and paper agreements with a single coordinated system.
+      </p>
+      <div style="display:flex;gap:10px;margin-top:24px;flex-wrap:wrap">
+        <a routerLink="/contact" class="btn btn-primary btn-lg">
+          Request Demo
+          <lucide-icon [img]="ArrowRight" [size]="16" [strokeWidth]="2" />
+        </a>
+        <a routerLink="/contact" class="btn btn-secondary btn-lg">Get In Touch</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE PROBLEM -->
+<section class="section">
+  <div class="container">
+    <div class="problem-grid">
+      <div class="reveal-left">
+        <div class="section-label"><span>The Problem</span></div>
+        <h2>How rental coordination actually happens — and why it breaks.</h2>
+        <p class="body-md" style="margin-top: 16px">
+          Most landlords and property managers handle rental operations across
+          five or six disconnected places. The result is missed payments,
+          disputed records, and hours spent on coordination that should be automatic.
+        </p>
+      </div>
+      <div class="problem-list reveal-right">
+        @for (point of problemPoints; track point) {
+          <div class="problem-point">
+            <div class="problem-point__dot"></div>
+            <span class="body-sm">{{ point }}</span>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MODULES -->
+<section class="section" style="border-top: 1px solid var(--rp-border); background: var(--rp-bg-secondary)">
+  <div class="container">
+    <div class="section-label reveal"><span>What It Includes</span></div>
+    <h2 class="reveal" style="margin-bottom: 40px; max-width: 400px">One platform, all coordination in one place.</h2>
+
+    <div class="modules-grid">
+      @for (mod of modules; track mod.title; let i = $index) {
+        <div class="module-card reveal" [style.animation-delay]="(i * 0.07) + 's'">
+          <div class="module-card__icon">
+            <lucide-icon [img]="mod.icon" [size]="18" [strokeWidth]="1.75" />
+          </div>
+          <h3 class="module-card__title">{{ mod.title }}</h3>
+          <p class="module-card__desc body-sm">{{ mod.desc }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- STATUS -->
+<section class="section" style="border-top: 1px solid var(--rp-border)">
+  <div class="container">
+    <div class="status-grid reveal">
+      <div>
+        <div class="section-label"><span>Product Status</span></div>
+        <h2>Under active development.</h2>
+        <p class="body-md" style="margin-top:16px;max-width:480px">
+          RentPhoenix OS is in active development. We are building the core
+          platform with a focus on rental tracking, digital documents, and
+          communication coordination. If you're interested in early access
+          or have a property management problem you'd like to solve, reach out.
+        </p>
+        <div style="display:flex;gap:10px;margin-top:28px;flex-wrap:wrap">
+          <a routerLink="/contact" class="btn btn-primary">
+            Request Early Access
+            <lucide-icon [img]="ArrowRight" [size]="15" [strokeWidth]="2" />
+          </a>
+        </div>
+      </div>
+      <div class="status-card">
+        <div class="status-card__row">
+          <span class="status-card__label body-xs">Product</span>
+          <span class="status-card__val">RentPhoenix OS</span>
+        </div>
+        <div class="status-card__row">
+          <span class="status-card__label body-xs">Stack</span>
+          <span class="status-card__val">Angular · Firebase · Firestore</span>
+        </div>
+        <div class="status-card__row">
+          <span class="status-card__label body-xs">Type</span>
+          <span class="status-card__val">SaaS · Web + Mobile</span>
+        </div>
+        <div class="status-card__row">
+          <span class="status-card__label body-xs">Status</span>
+          <div style="display:flex;align-items:center;gap:8px">
+            <div style="width:7px;height:7px;border-radius:50%;background:var(--rp-blue);animation:pulse 2s ease-in-out infinite"></div>
+            <span class="status-card__val">In Development</span>
+          </div>
+        </div>
+        <div class="status-card__row">
+          <span class="status-card__label body-xs">Target</span>
+          <span class="status-card__val">Landlords · Property Managers</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

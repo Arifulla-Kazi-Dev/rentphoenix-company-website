@@ -1,0 +1,301 @@
+// ============================================================
+// ABOUT PAGE — V2
+// ============================================================
+
+// ── Hero ─────────────────────────────────────────────────────
+
+.page-hero {
+  position: relative;
+  padding: 140px 0 80px;
+  border-bottom: 1px solid var(--rp-border);
+  overflow: hidden;
+
+  &__grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--rp-border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--rp-border) 1px, transparent 1px);
+    background-size: 52px 52px;
+    mask-image: radial-gradient(ellipse 80% 100% at 50% 0%, black 50%, transparent 100%);
+    -webkit-mask-image: radial-gradient(ellipse 80% 100% at 50% 0%, black 50%, transparent 100%);
+    pointer-events: none;
+  }
+
+  &__content {
+    position: relative;
+    z-index: 1;
+
+    h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1.08;
+      margin-top: 12px;
+    }
+  }
+}
+
+// ── Story Section ─────────────────────────────────────────────
+
+.story-section {
+  &__label { margin-bottom: 32px; }
+
+  &__body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+
+    @media (max-width: 720px) { grid-template-columns: 1fr; gap: 32px; }
+  }
+}
+
+.story-block {
+  h2 {
+    font-size: clamp(1.375rem, 2.5vw, 1.75rem);
+    letter-spacing: -0.03em;
+    margin-bottom: 16px;
+  }
+
+  p { color: var(--rp-text-2); line-height: 1.7; }
+}
+
+// ── Vision & Mission ──────────────────────────────────────────
+
+.vm-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+
+  @media (max-width: 720px) { grid-template-columns: 1fr; }
+}
+
+.vm-card {
+  background: var(--rp-surface);
+  border: 1px solid var(--rp-border);
+  border-radius: var(--rp-r-xl);
+  padding: 32px;
+
+  &__badge {
+    display: inline-block;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--rp-purple);
+    background: var(--rp-purple-muted);
+    border: 1px solid var(--rp-purple-border);
+    border-radius: var(--rp-r-full);
+    padding: 4px 12px;
+    margin-bottom: 20px;
+  }
+
+  &__statement {
+    font-size: clamp(1.125rem, 2vw, 1.375rem);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    line-height: 1.35;
+    margin-bottom: 16px;
+  }
+
+  &__sub {
+    color: var(--rp-text-2);
+    line-height: 1.65;
+  }
+}
+
+// ── Values ───────────────────────────────────────────────────
+
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+
+  @media (max-width: 640px) { grid-template-columns: 1fr; }
+}
+
+.value-card {
+  background: var(--rp-surface);
+  border: 1px solid var(--rp-border);
+  border-radius: var(--rp-r-xl);
+  padding: 28px 24px;
+  transition: border-color var(--rp-t-base), box-shadow var(--rp-t-base);
+
+  &:hover {
+    border-color: var(--rp-purple-border);
+    box-shadow: var(--rp-shadow-sm);
+  }
+
+  &__num {
+    font-size: 0.6875rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    color: var(--rp-purple);
+    margin-bottom: 12px;
+  }
+
+  &__title {
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    margin-bottom: 10px;
+  }
+
+  &__desc {
+    color: var(--rp-text-2);
+    line-height: 1.65;
+  }
+}
+
+// ── Founder Full Section ──────────────────────────────────────
+
+.founder-full {
+  &__layout {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 56px;
+    align-items: start;
+    margin-top: 32px;
+
+    @media (max-width: 760px) {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+  }
+
+  &__aside {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+
+    @media (max-width: 760px) {
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+  }
+
+  &__avatar {
+    width: 64px; height: 64px;
+    border-radius: var(--rp-r-full);
+    background: var(--rp-purple);
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.125rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 6px;
+    flex-shrink: 0;
+  }
+
+  &__name {
+    font-size: 1.0625rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  &__role { color: var(--rp-text-2); margin-top: -4px; }
+
+  &__company { color: var(--rp-text-3); margin-top: -2px; }
+
+  &__creds {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 10px;
+    padding-top: 16px;
+    border-top: 1px solid var(--rp-border);
+    width: 100%;
+
+    @media (max-width: 760px) {
+      flex-direction: row;
+      flex-wrap: wrap;
+      border-top: none;
+      padding-top: 0;
+    }
+  }
+
+  &__linkedin {
+    margin-top: 12px;
+    font-size: 0.8125rem;
+    align-self: stretch;
+    justify-content: center;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  &__para {
+    color: var(--rp-text-2);
+    line-height: 1.7;
+  }
+}
+
+// ── Founder Message ───────────────────────────────────────────
+
+.founder-message {
+  margin-top: 12px;
+  padding: 28px;
+  background: var(--rp-bg);
+  border: 1px solid var(--rp-border);
+  border-left: 3px solid var(--rp-purple);
+  border-radius: 0 var(--rp-r-lg) var(--rp-r-lg) 0;
+
+  &__label {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--rp-purple);
+    margin-bottom: 14px;
+  }
+
+  &__quote {
+    font-size: 1.0625rem;
+    font-style: italic;
+    color: var(--rp-text-1);
+    line-height: 1.65;
+    margin-bottom: 20px;
+    quotes: none;
+  }
+
+  &__sig {
+    padding-top: 16px;
+    border-top: 1px solid var(--rp-border);
+  }
+
+  &__name {
+    font-size: 0.875rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  &__title { color: var(--rp-text-3); margin-top: 2px; }
+}
+
+// ── CTA row ───────────────────────────────────────────────────
+
+.about-cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+
+  h3 { font-size: 1.125rem; font-weight: 700; letter-spacing: -0.02em; }
+
+  &__actions { display: flex; gap: 10px; align-items: center; }
+}
+
+// ── Scroll reveal ─────────────────────────────────────────────
+
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity var(--rp-t-slow), transform var(--rp-t-slow);
+  &.visible { opacity: 1; transform: translateY(0); }
+}

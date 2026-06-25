@@ -1,0 +1,66 @@
+<footer class="footer">
+  <div class="container">
+
+    <div class="footer__top">
+
+      <!-- Brand -->
+      <div class="footer__brand">
+        <a routerLink="/" class="footer__logo" aria-label="RentPhoenix Technologies">
+          <svg viewBox="0 0 180 36" fill="none" xmlns="http://www.w3.org/2000/svg" class="footer__logo-svg" aria-hidden="true">
+            <text x="0" y="26" font-family="Inter, system-ui, sans-serif" font-size="21" font-weight="800" letter-spacing="-0.8" fill="currentColor">RENT PH</text>
+            <g transform="translate(90, 3)">
+              <path d="M11 2L20 9V21H2V9L11 2Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+              <rect x="7" y="13" width="8" height="8" rx="1" fill="none" stroke="currentColor" stroke-width="1.4"/>
+            </g>
+            <text x="113" y="26" font-family="Inter, system-ui, sans-serif" font-size="21" font-weight="800" letter-spacing="-0.8" fill="currentColor">ENIX</text>
+          </svg>
+          <span class="footer__logo-sub">Technologies</span>
+        </a>
+        <p class="footer__desc">
+          Building software with purpose — for businesses, communities,
+          and the digital systems that matter.
+        </p>
+        <div class="footer__credentials">
+          <span class="tag">CIBA Goa Incubated</span>
+          <span class="tag">Startup India</span>
+        </div>
+        <div class="footer__socials">
+          <a href="https://www.linkedin.com/in/arifulla-kazi-b73743243"
+             target="_blank" rel="noopener noreferrer"
+             class="footer__social" aria-label="LinkedIn">
+            <lucide-icon [img]="LinkedinIcon" [size]="16" [strokeWidth]="2" />
+          </a>
+          <a href="mailto:support@rentphoenixos.in"
+             class="footer__social" aria-label="Email">
+            <lucide-icon [img]="MailIcon" [size]="16" [strokeWidth]="2" />
+          </a>
+        </div>
+      </div>
+
+      <!-- Nav columns -->
+      <div class="footer__nav">
+        @for (col of nav; track col.title) {
+          <div class="footer__col">
+            <h4 class="footer__col-title">{{ col.title }}</h4>
+            @for (link of col.links; track link.label) {
+              <a [routerLink]="link.path" class="footer__link">{{ link.label }}</a>
+            }
+          </div>
+        }
+      </div>
+
+    </div>
+
+    <hr class="divider" />
+
+    <div class="footer__bottom">
+      <p class="footer__copy">
+        &copy; {{ year }} RentPhoenix Technologies Private Limited. All rights reserved.
+      </p>
+      <p class="footer__cin">
+        Goa, India &nbsp;&middot;&nbsp; DPIIT Recognized
+      </p>
+    </div>
+
+  </div>
+</footer>

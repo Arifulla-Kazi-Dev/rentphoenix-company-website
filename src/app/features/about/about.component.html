@@ -1,0 +1,183 @@
+<!-- ============================================================
+     ABOUT — RentPhoenix Technologies V2
+     Company-first, no resume, no portfolio vibes
+     ============================================================ -->
+
+<!-- ── HERO ── -->
+<section class="page-hero">
+  <div class="page-hero__grid"></div>
+  <div class="container">
+    <div class="page-hero__content anim-fade-up">
+      <div class="section-label"><span>About RentPhoenix</span></div>
+      <h1>We are RentPhoenix<br>Technologies.</h1>
+      <p class="body-lg" style="max-width:560px;margin-top:16px">
+        A technology company from Goa building enterprise software,
+        government platforms, and digital products for organizations
+        that need real solutions — not templates.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ── COMPANY STORY ── -->
+<section class="section">
+  <div class="container story-section">
+    <div class="story-section__label reveal">
+      <div class="section-label"><span>Company Story</span></div>
+    </div>
+    <div class="story-section__body">
+      <div class="story-block reveal">
+        <h2>How we started.</h2>
+        <p class="body-lg" style="margin-top:16px">
+          RentPhoenix Technologies began with a clear and specific observation:
+          rental property management is genuinely hard, and no existing software
+          made it meaningfully easier. Landlords kept records in spreadsheets.
+          Tenants communicated over WhatsApp. Agreements lived in physical files.
+          The coordination gap was obvious.
+        </p>
+        <p class="body-lg" style="margin-top:16px">
+          We built RentPhoenix OS to solve it — a rental management platform
+          that consolidates tenants, agreements, payments, and maintenance into
+          one system. That product became the foundation of a company.
+        </p>
+      </div>
+      <div class="story-block reveal" style="animation-delay:0.08s">
+        <h2>Where we are going.</h2>
+        <p class="body-lg" style="margin-top:16px">
+          The company has expanded beyond a single product into a software studio
+          that takes on enterprise software, government technology, and automation
+          projects for organizations across India. We are incubated at CIBA Goa
+          and recognized under DPIIT Startup India.
+        </p>
+        <p class="body-lg" style="margin-top:16px">
+          Our focus is building software that genuinely solves coordination
+          problems — for businesses, for government, for organizations that
+          need something real.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── VISION & MISSION ── -->
+<section class="section vm-section" style="border-top:1px solid var(--rp-border);background:var(--rp-bg-secondary)">
+  <div class="container">
+    <div class="vm-grid">
+      <div class="vm-card reveal">
+        <div class="vm-card__badge">Vision</div>
+        <h2 class="vm-card__statement">
+          A world where coordination problems don't limit what organizations can achieve.
+        </h2>
+        <p class="body-md vm-card__sub">
+          We believe that poor software — fragmented systems, manual workarounds,
+          data locked in spreadsheets — is the primary reason good organizations
+          operate below their potential. That is what we are here to change.
+        </p>
+      </div>
+      <div class="vm-card reveal" style="animation-delay:0.08s">
+        <div class="vm-card__badge">Mission</div>
+        <h2 class="vm-card__statement">
+          Build enterprise-grade software that replaces inefficiency with clarity, coordination, and capability.
+        </h2>
+        <p class="body-md vm-card__sub">
+          For businesses and governments alike. Without overclaiming what
+          technology can do, and without underselling what good software
+          enables.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── VALUES ── -->
+<section class="section" style="border-top:1px solid var(--rp-border)">
+  <div class="container">
+    <div class="section-label reveal"><span>Our Values</span></div>
+    <h2 class="reveal" style="margin-bottom:40px;max-width:440px">
+      The principles behind every decision we make.
+    </h2>
+    <div class="values-grid">
+      @for (val of values; track val.title; let i = $index) {
+        <div class="value-card reveal" [style.animation-delay]="(i * 0.07) + 's'">
+          <div class="value-card__num">{{ ('0' + (i + 1)).slice(-2) }}</div>
+          <h3 class="value-card__title">{{ val.title }}</h3>
+          <p class="value-card__desc body-sm">{{ val.desc }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ── FOUNDER ── -->
+<section class="section founder-full" style="border-top:1px solid var(--rp-border);background:var(--rp-bg-secondary)">
+  <div class="container">
+    <div class="section-label reveal"><span>Meet the Founder</span></div>
+
+    <div class="founder-full__layout">
+
+      <!-- Avatar & credentials -->
+      <div class="founder-full__aside reveal">
+        <div class="founder-full__avatar">AK</div>
+        <h3 class="founder-full__name">Arifulla Kazi</h3>
+        <div class="body-sm founder-full__role">Founder &amp; Director</div>
+        <div class="body-xs founder-full__company">RentPhoenix Technologies Private Limited</div>
+        <div class="founder-full__creds">
+          <span class="tag">CIBA Goa Incubated</span>
+          <span class="tag">Startup India</span>
+          <span class="tag">DPIIT Recognized</span>
+        </div>
+        <a
+          href="https://www.linkedin.com/in/arifulla-kazi-b73743243"
+          target="_blank"
+          rel="noopener"
+          class="btn btn-secondary founder-full__linkedin"
+        >
+          <lucide-icon [img]="Linkedin" [size]="14" [strokeWidth]="2" />
+          LinkedIn Profile
+          <lucide-icon [img]="ExternalLink" [size]="12" [strokeWidth]="2" />
+        </a>
+      </div>
+
+      <!-- Bio content -->
+      <div class="founder-full__content reveal" style="animation-delay:0.1s">
+        @for (para of founderBio; track $index) {
+          <p class="body-lg founder-full__para">{{ para }}</p>
+        }
+
+        <!-- Founder's message -->
+        <div class="founder-message">
+          <div class="founder-message__label">Founder's Message</div>
+          <blockquote class="founder-message__quote">
+            "{{ founderMessage }}"
+          </blockquote>
+          <div class="founder-message__sig">
+            <div class="founder-message__name">Arifulla Kazi</div>
+            <div class="body-xs founder-message__title">Founder &amp; Director, RentPhoenix Technologies</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section class="section-sm" style="border-top:1px solid var(--rp-border)">
+  <div class="container">
+    <div class="about-cta reveal">
+      <div>
+        <h3>Ready to work together?</h3>
+        <p class="body-sm" style="color:var(--rp-text-3);margin-top:6px">
+          Tell us about your project and we will respond with honest feedback.
+        </p>
+      </div>
+      <div class="about-cta__actions">
+        <a routerLink="/contact" class="btn btn-primary">
+          Contact Us
+          <lucide-icon [img]="ArrowRight" [size]="14" [strokeWidth]="2" />
+        </a>
+        <a routerLink="/portfolio" class="btn btn-secondary">View Portfolio</a>
+      </div>
+    </div>
+  </div>
+</section>

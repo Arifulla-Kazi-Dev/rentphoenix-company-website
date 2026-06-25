@@ -1,0 +1,81 @@
+<!-- SERVICES PAGE -->
+
+<section class="page-hero">
+  <div class="page-hero__grid"></div>
+  <div class="container">
+    <div class="page-hero__content anim-fade-up">
+      <div class="section-label"><span>Services</span></div>
+      <h1>Six areas of practice,<br>one standard of quality.</h1>
+      <p class="body-lg" style="max-width:520px;margin-top:16px">
+        We build what needs to be built — no bloated frameworks, no template
+        assumptions. Practical software engineered to the requirement.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICE LIST -->
+<section class="section">
+  <div class="container">
+    <div class="svc-list">
+      @for (svc of services; track svc.title; let i = $index) {
+        <div class="svc-item reveal" [style.animation-delay]="(i * 0.06) + 's'">
+          <div class="svc-item__head">
+            <div class="svc-item__icon">
+              <lucide-icon [img]="svc.icon" [size]="22" [strokeWidth]="1.75" />
+            </div>
+            <div>
+              <h2 class="svc-item__title">{{ svc.title }}</h2>
+              <p class="svc-item__short eyebrow">{{ svc.short }}</p>
+            </div>
+          </div>
+          <p class="svc-item__desc body-md">{{ svc.desc }}</p>
+          <ul class="svc-item__caps">
+            @for (cap of svc.capabilities; track cap) {
+              <li class="svc-item__cap">
+                <lucide-icon [img]="CheckCircle2" [size]="14" [strokeWidth]="2" class="svc-item__cap-icon" />
+                <span class="body-sm">{{ cap }}</span>
+              </li>
+            }
+          </ul>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="section" style="border-top: 1px solid var(--rp-border); background: var(--rp-bg-secondary)">
+  <div class="container">
+    <div class="section-label reveal"><span>How We Work</span></div>
+    <h2 class="reveal" style="margin-bottom: 48px; max-width: 400px">A process that reduces risk and respects your time.</h2>
+
+    <div class="process-list">
+      @for (p of process; track p.step; let i = $index) {
+        <div class="process-item reveal" [style.animation-delay]="(i * 0.08) + 's'">
+          <div class="process-item__step mono">{{ p.step }}</div>
+          <div class="process-item__content">
+            <h3>{{ p.title }}</h3>
+            <p class="body-sm">{{ p.desc }}</p>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section-sm" style="border-top: 1px solid var(--rp-border)">
+  <div class="container">
+    <div class="cta-inline reveal">
+      <div>
+        <h2>Ready to start building?</h2>
+        <p class="body-md" style="margin-top: 8px">Tell us what you need and we'll tell you honestly what we can do.</p>
+      </div>
+      <a routerLink="/contact" class="btn btn-primary btn-lg">
+        Contact Us
+        <lucide-icon [img]="ArrowRight" [size]="16" [strokeWidth]="2" />
+      </a>
+    </div>
+  </div>
+</section>

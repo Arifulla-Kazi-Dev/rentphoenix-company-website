@@ -1,0 +1,131 @@
+// ============================================================
+// RENTPHOENIX TECHNOLOGIES — BRAND DESIGN SYSTEM V2
+// Warm, Premium, Enterprise-Ready
+// Primary: Deep Purple · Accent: Sky Blue · Base: Warm Cream
+// ============================================================
+
+:root {
+  // === PRIMARY: Deep Royal Purple ===
+  --rp-purple:        #7C3AED;   // Violet-600
+  --rp-purple-dark:   #6D28D9;   // Violet-700 (hover)
+  --rp-purple-light:  #8B5CF6;   // Violet-500
+  --rp-purple-xlight: #A78BFA;   // Violet-400 (decorative)
+  --rp-purple-muted:  rgba(124, 58, 237, 0.07);
+  --rp-purple-border: rgba(124, 58, 237, 0.22);
+
+  // === ACCENT: Sky Blue ===
+  --rp-sky:           #0EA5E9;   // Sky-500
+  --rp-sky-dark:      #0284C7;   // Sky-600
+  --rp-sky-muted:     rgba(14, 165, 233, 0.07);
+  --rp-sky-border:    rgba(14, 165, 233, 0.20);
+
+  // === Backward-compat aliases — all existing --rp-blue refs → purple ===
+  --rp-blue:        var(--rp-purple);
+  --rp-blue-hover:  var(--rp-purple-dark);
+  --rp-blue-muted:  var(--rp-purple-muted);
+  --rp-blue-border: var(--rp-purple-border);
+
+  // === BACKGROUNDS: Warm Cream & Beige ===
+  --rp-bg:             #FDFBF7;  // Warm cream page background
+  --rp-bg-secondary:   #F2EBE0;  // Rich beige section bg
+  --rp-bg-warm:        #EAE0CE;  // Deep beige for contrast sections
+  --rp-surface:        #FFFFFF;  // Cards and surfaces
+  --rp-surface-raised: #FAFAF7;  // Slightly off-white
+
+  // === BORDERS: warm-tinted ===
+  --rp-border:        rgba(120, 90, 46, 0.10);
+  --rp-border-strong: rgba(100, 72, 32, 0.18);
+
+  // === TEXT: warm hierarchy ===
+  --rp-text-1: #180E06;   // Near-black, warm
+  --rp-text-2: #453624;   // Dark warm gray
+  --rp-text-3: #9C8B74;   // Medium warm gray
+  --rp-text-4: #C4B49E;   // Light warm gray
+
+  // === SYSTEM ===
+  --rp-success: #16A34A;
+  --rp-warning: #D97706;
+  --rp-danger:  #DC2626;
+  --rp-error:   #DC2626;
+
+  // === SHADOWS ===
+  --rp-shadow-xs:     0 1px 2px rgba(0, 0, 0, 0.04);
+  --rp-shadow-sm:     0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --rp-shadow-md:     0 4px 16px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.04);
+  --rp-shadow-lg:     0 10px 36px rgba(0, 0, 0, 0.09), 0 4px 10px rgba(0, 0, 0, 0.04);
+  --rp-shadow-purple: 0 8px 28px rgba(124, 58, 237, 0.18);
+  --rp-shadow-inset:  inset 0 1px 0 rgba(255, 255, 255, 0.08);
+
+  // === RADIUS ===
+  --rp-r-xs:   4px;
+  --rp-r-sm:   6px;
+  --rp-r-md:   10px;
+  --rp-r-lg:   14px;
+  --rp-r-xl:   20px;
+  --rp-r-2xl:  28px;
+  --rp-r-full: 9999px;
+
+  // === LAYOUT ===
+  --rp-nav-h:  68px;
+
+  // === SPACING (8pt base) ===
+  --rp-s1:   8px;
+  --rp-s2:  16px;
+  --rp-s3:  24px;
+  --rp-s4:  32px;
+  --rp-s5:  40px;
+  --rp-s6:  48px;
+  --rp-s8:  64px;
+  --rp-s10: 80px;
+  --rp-s12: 96px;
+  --rp-s16: 128px;
+
+  // === TYPOGRAPHY ===
+  --rp-font: 'Inter', system-ui, -apple-system, sans-serif;
+
+  // === TRANSITIONS ===
+  --rp-ease:     cubic-bezier(0.4, 0, 0.2, 1);
+  --rp-ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --rp-t-fast:   140ms cubic-bezier(0.4, 0, 0.2, 1);
+  --rp-t-base:   240ms cubic-bezier(0.4, 0, 0.2, 1);
+  --rp-t-slow:   400ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  // === Z-INDEX ===
+  --rp-z-nav:     1000;
+  --rp-z-overlay: 1100;
+  --rp-z-modal:   2000;
+}
+
+// ============================================================
+// DARK MODE — Warm Charcoal, not cold black
+// ============================================================
+[data-theme='dark'] {
+  --rp-bg:             #0C0A08;  // Dark warm near-black
+  --rp-bg-secondary:   #151210;  // Dark warm charcoal
+  --rp-bg-warm:        #1E1A15;  // Deeper dark
+  --rp-surface:        #1E1A16;  // Dark warm surface
+  --rp-surface-raised: #252019;  // Slightly lighter surface
+
+  --rp-border:        rgba(245, 230, 200, 0.08);
+  --rp-border-strong: rgba(245, 230, 200, 0.14);
+
+  --rp-text-1: #F0E8D8;  // Warm cream white
+  --rp-text-2: #B4A48C;  // Warm sand
+  --rp-text-3: #685B46;  // Warm dark gray
+  --rp-text-4: #46392B;  // Darker warm gray
+
+  --rp-shadow-xs:     0 1px 2px rgba(0, 0, 0, 0.20);
+  --rp-shadow-sm:     0 1px 3px rgba(0, 0, 0, 0.30);
+  --rp-shadow-md:     0 4px 16px rgba(0, 0, 0, 0.38);
+  --rp-shadow-lg:     0 10px 36px rgba(0, 0, 0, 0.48);
+  --rp-shadow-purple: 0 8px 28px rgba(124, 58, 237, 0.28);
+
+  --rp-purple-muted:  rgba(124, 58, 237, 0.13);
+  --rp-purple-border: rgba(139, 92, 246, 0.30);
+  --rp-sky-muted:     rgba(14, 165, 233, 0.10);
+  --rp-sky-border:    rgba(56, 189, 248, 0.26);
+
+  // Compat aliases (dark)
+  --rp-blue-muted:  var(--rp-purple-muted);
+  --rp-blue-border: var(--rp-purple-border);
+}

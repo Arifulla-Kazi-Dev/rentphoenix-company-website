@@ -1,0 +1,262 @@
+.page-hero {
+  position: relative; padding: 140px 0 72px; border-bottom: 1px solid var(--rp-border); overflow: hidden;
+  &__grid {
+    position: absolute; inset: 0;
+    background-image: linear-gradient(var(--rp-border) 1px, transparent 1px), linear-gradient(90deg, var(--rp-border) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse 70% 80% at 60% 50%, black 20%, transparent 70%);
+    opacity: 0.5;
+  }
+  .container { position: relative; }
+}
+
+// ── Job Cards ──────────────────────────────────────────────
+
+.jobs-list {
+  border: 1px solid var(--rp-border);
+  border-radius: var(--rp-r-xl);
+  overflow: hidden;
+}
+
+.job-card {
+  background: var(--rp-surface);
+  border-bottom: 1px solid var(--rp-border);
+
+  &:last-child { border-bottom: none; }
+
+  &--open {
+    background: var(--rp-bg-secondary);
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 24px 28px;
+    cursor: pointer;
+    transition: background 0.15s ease;
+
+    &:hover { background: var(--rp-bg-secondary); }
+
+    @media (max-width: 640px) { flex-wrap: wrap; gap: 16px; padding: 20px; }
+  }
+
+  &__icon {
+    width: 44px; height: 44px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--rp-surface);
+    border: 1px solid var(--rp-border);
+    border-radius: var(--rp-r-lg);
+    color: var(--rp-primary);
+  }
+
+  &__info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--rp-text-1);
+    margin-bottom: 8px;
+  }
+
+  &__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  &__toggle {
+    flex-shrink: 0;
+    pointer-events: none;
+    @media (max-width: 640px) { display: none; }
+  }
+
+  &__details {
+    padding: 0 28px 28px;
+    border-top: 1px solid var(--rp-border);
+    @media (max-width: 640px) { padding: 0 20px 24px; }
+  }
+
+  &__apply {
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid var(--rp-border);
+  }
+}
+
+.job-detail-cols {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  padding-top: 28px;
+
+  @media (max-width: 768px) { grid-template-columns: 1fr; gap: 24px; }
+}
+
+.job-detail-section {
+  &__title {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    color: var(--rp-text-3);
+    margin-bottom: 12px;
+  }
+}
+
+.job-detail-list {
+  list-style: none;
+  padding: 0; margin: 0;
+  display: flex; flex-direction: column; gap: 8px;
+
+  li {
+    font-size: 0.875rem;
+    color: var(--rp-text-2);
+    line-height: 1.55;
+    padding-left: 14px;
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 8px;
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: var(--rp-primary);
+    }
+  }
+}
+
+.job-detail-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.values-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px;
+  background: var(--rp-border); border: 1px solid var(--rp-border);
+  border-radius: var(--rp-r-xl); overflow: hidden;
+  @media (max-width: 640px) { grid-template-columns: 1fr; }
+}
+
+.value-card {
+  background: var(--rp-surface); padding: 28px 28px;
+  &__title { font-size: 0.9375rem; font-weight: 700; color: var(--rp-text-1); margin-bottom: 8px; }
+  &__desc { color: var(--rp-text-3); line-height: 1.65; }
+}
+
+.contact-row {
+  display: flex; align-items: center; justify-content: space-between; gap: 40px;
+  @media (max-width: 640px) { flex-direction: column; align-items: flex-start; gap: 20px; }
+}
+
+// ── Application Modal ───────────────────────────────────────
+
+.modal-backdrop {
+  position: fixed; inset: 0; z-index: 900;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(3px);
+  display: flex; align-items: center; justify-content: center;
+  padding: 24px;
+}
+
+.modal {
+  position: relative;
+  background: var(--rp-surface);
+  border: 1px solid var(--rp-border);
+  border-radius: var(--rp-r-xl);
+  padding: 32px;
+  width: 100%; max-width: 480px;
+  max-height: 90vh; overflow-y: auto;
+  box-shadow: var(--rp-shadow-lg);
+
+  @media (max-width: 480px) { padding: 24px; border-radius: var(--rp-r-lg); }
+}
+
+.modal__close {
+  position: absolute; top: 16px; right: 16px;
+  width: 32px; height: 32px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--rp-surface);
+  border: 1px solid var(--rp-border);
+  border-radius: var(--rp-r-md);
+  color: var(--rp-text-3); cursor: pointer;
+  transition: all 0.15s ease;
+  &:hover { background: var(--rp-bg-secondary); color: var(--rp-text-1); }
+}
+
+.modal__header { margin-bottom: 24px; padding-right: 40px; }
+.modal__title  { font-size: 1.0625rem; font-weight: 700; color: var(--rp-text-1); line-height: 1.35; }
+
+.modal__form { display: flex; flex-direction: column; gap: 18px; }
+
+.modal__success {
+  padding: 16px 0 8px;
+  display: flex; flex-direction: column; align-items: center;
+  text-align: center; gap: 12px;
+  h3 { font-weight: 700; color: var(--rp-text-1); }
+  p  { color: var(--rp-text-2); }
+}
+
+.modal__success-icon {
+  width: 56px; height: 56px;
+  display: flex; align-items: center; justify-content: center;
+  background: color-mix(in srgb, var(--rp-green, #22c55e) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--rp-green, #22c55e) 30%, transparent);
+  border-radius: 50%;
+  color: var(--rp-green, #22c55e);
+  margin-bottom: 4px;
+}
+
+// ── Modal Form Fields ───────────────────────────────────────
+
+.m-field {
+  display: flex; flex-direction: column; gap: 6px;
+
+  &__label {
+    font-size: 0.8125rem; font-weight: 600;
+    color: var(--rp-text-2);
+  }
+
+  &__input {
+    width: 100%;
+    padding: 10px 14px;
+    font-size: 0.9375rem;
+    background: var(--rp-bg-secondary);
+    border: 1px solid var(--rp-border);
+    border-radius: var(--rp-r-md);
+    color: var(--rp-text-1);
+    outline: none;
+    transition: border-color 0.15s ease;
+    font-family: inherit;
+
+    &::placeholder { color: var(--rp-text-4, var(--rp-text-3)); }
+    &:focus { border-color: var(--rp-primary); }
+
+    &--error { border-color: var(--rp-danger, #ef4444); }
+  }
+
+  &__error {
+    color: var(--rp-danger, #ef4444);
+    font-size: 0.75rem;
+  }
+}
+
+// ── Input with icon ─────────────────────────────────────────
+
+.m-field__input-wrap {
+  position: relative;
+}
+
+.m-field__icon {
+  position: absolute; left: 12px; top: 50%; transform: translateY(-50%);
+  color: var(--rp-text-3); pointer-events: none;
+}
+
+.m-field__input--icon {
+  padding-left: 36px;
+}

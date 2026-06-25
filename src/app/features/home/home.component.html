@@ -1,0 +1,319 @@
+<!-- ============================================================
+     HOME — RentPhoenix Technologies V2
+     Company-First, Premium, Enterprise
+     ============================================================ -->
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero__grid-bg" aria-hidden="true"></div>
+  <div class="container hero__inner">
+
+    <!-- Left: Text -->
+    <div class="hero__text anim-fade-up">
+      <div class="section-label"><span>Enterprise Software Studio</span></div>
+      <h1 class="hero__headline">
+        Enterprise Software.<br>
+        Built With Purpose.
+      </h1>
+      <p class="body-lg hero__sub">
+        Custom digital products, automation platforms, and enterprise solutions
+        designed for businesses and government organizations — built with
+        technical depth and long-term thinking.
+      </p>
+      <div class="hero__actions">
+        <a routerLink="/services" class="btn btn-primary btn-lg">
+          Explore Services
+          <lucide-icon [img]="ArrowRight" [size]="16" [strokeWidth]="2" />
+        </a>
+        <a routerLink="/products" class="btn btn-secondary btn-lg">
+          View Products
+        </a>
+      </div>
+
+      <!-- Recognition -->
+      <div class="hero__recognition">
+        <span class="hero__rec-label body-xs">Recognized by</span>
+        <div class="hero__rec-badges">
+          <span class="tag">CIBA Goa</span>
+          <span class="tag">Startup India</span>
+          <span class="tag">DPIIT Recognized</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: Company identity card -->
+    <div class="hero__visual anim-fade-up" style="animation-delay:0.12s">
+      <div class="identity-card">
+        <div class="identity-card__top">
+          <div class="identity-card__status">
+            <div class="identity-card__dot"></div>
+            <span class="body-xs">Enterprise Software Studio</span>
+          </div>
+          <div class="identity-card__name">RentPhoenix Technologies</div>
+          <div class="identity-card__sub body-xs">Private Limited · Goa, India</div>
+        </div>
+        <div class="identity-card__divider"></div>
+        <ul class="identity-card__services">
+          @for (cap of capabilities; track cap) {
+            <li class="identity-card__svc">
+              <div class="identity-card__bullet"></div>
+              <span class="body-sm">{{ cap }}</span>
+            </li>
+          }
+        </ul>
+        <div class="identity-card__divider"></div>
+        <div class="identity-card__foot">
+          <span class="tag">CIBA Incubated</span>
+          <span class="tag">Startup India</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── SERVICES — What We Build ── -->
+<section class="section" style="border-top: 1px solid var(--rp-border)">
+  <div class="container">
+    <div class="section-intro reveal">
+      <div class="section-label"><span>What We Build</span></div>
+      <h2>Six practice areas.<br>One standard of quality.</h2>
+      <p class="body-lg section-intro__sub">
+        From custom software to government platforms, every service
+        is delivered with the same level of technical rigor.
+      </p>
+    </div>
+
+    <div class="services-grid">
+      @for (svc of services; track svc.title; let i = $index) {
+        <div class="svc-card reveal" [style.animation-delay]="(i * 0.06) + 's'">
+          <div class="svc-card__icon">
+            <lucide-icon [img]="svc.icon" [size]="20" [strokeWidth]="1.75" />
+          </div>
+          <h3 class="svc-card__title">{{ svc.title }}</h3>
+          <p class="svc-card__desc body-sm">{{ svc.desc }}</p>
+        </div>
+      }
+    </div>
+
+    <div class="services-cta reveal" style="margin-top:40px;text-align:center">
+      <a routerLink="/services" class="btn btn-secondary">
+        View All Services
+        <lucide-icon [img]="ArrowRight" [size]="14" [strokeWidth]="2" />
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── PRODUCT SPOTLIGHT ── -->
+<section class="product-section section">
+  <div class="container product-section__inner">
+
+    <div class="product-section__text reveal">
+      <div class="section-label"><span>Flagship Product</span></div>
+      <h2>RentPhoenix OS</h2>
+      <p class="body-lg" style="margin-top:16px;margin-bottom:28px">
+        A rental management platform built to replace the coordination chaos
+        of spreadsheets, WhatsApp threads, and paper records.
+      </p>
+      <ul class="product-features">
+        @for (feat of ['Tenant onboarding & agreement management', 'Rent tracking & payment records', 'Property portfolio coordination', 'Maintenance request workflows', 'Digital documentation system']; track feat) {
+          <li class="product-feature">
+            <lucide-icon [img]="CheckCircle2" [size]="15" [strokeWidth]="2" class="product-feature__check" />
+            <span class="body-sm">{{ feat }}</span>
+          </li>
+        }
+      </ul>
+      <a routerLink="/products" class="btn btn-primary" style="margin-top:28px">
+        Explore RentPhoenix OS
+        <lucide-icon [img]="ArrowRight" [size]="14" [strokeWidth]="2" />
+      </a>
+    </div>
+
+    <div class="product-section__visual reveal" style="animation-delay:0.1s">
+      <div class="product-card">
+        <div class="product-card__header">
+          <div class="product-card__label">Product</div>
+          <h3 class="product-card__name">RentPhoenix OS</h3>
+        </div>
+        <dl class="product-card__meta">
+          <div class="product-card__meta-row">
+            <dt>Type</dt>
+            <dd>Rental Management Platform</dd>
+          </div>
+          <div class="product-card__meta-row">
+            <dt>Sector</dt>
+            <dd>Real Estate & Property</dd>
+          </div>
+          <div class="product-card__meta-row">
+            <dt>Stack</dt>
+            <dd>Angular · Firebase · Node.js</dd>
+          </div>
+          <div class="product-card__meta-row">
+            <dt>Status</dt>
+            <dd><span class="status-dot"></span>In Active Development</dd>
+          </div>
+          <div class="product-card__meta-row">
+            <dt>Model</dt>
+            <dd>SaaS Platform</dd>
+          </div>
+        </dl>
+        <div class="product-card__footer">
+          Built by RentPhoenix Technologies
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── INDUSTRIES ── -->
+<section class="section" style="border-top: 1px solid var(--rp-border); background: var(--rp-bg-secondary)">
+  <div class="container">
+    <div class="section-intro reveal">
+      <div class="section-label"><span>Industries We Serve</span></div>
+      <h2>Built for organizations<br>that need real solutions.</h2>
+    </div>
+
+    <div class="industries-grid">
+      @for (ind of industries; track ind.title; let i = $index) {
+        <div class="industry-card reveal" [style.animation-delay]="(i * 0.07) + 's'">
+          <div class="industry-card__icon">
+            <lucide-icon [img]="ind.icon" [size]="20" [strokeWidth]="1.75" />
+          </div>
+          <h3 class="industry-card__title">{{ ind.title }}</h3>
+          <p class="industry-card__desc body-sm">{{ ind.desc }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ── WHY RENTPHOENIX ── -->
+<section class="section" style="border-top: 1px solid var(--rp-border)">
+  <div class="container">
+    <div class="section-intro reveal">
+      <div class="section-label"><span>Why RentPhoenix</span></div>
+      <h2>What makes the<br>difference.</h2>
+      <p class="body-lg section-intro__sub">
+        Not promises. The actual principles behind how we work and
+        what you can hold us accountable to.
+      </p>
+    </div>
+
+    <div class="differentiators">
+      @for (d of differentiators; track d.title; let i = $index) {
+        <div class="diff-item reveal" [style.animation-delay]="(i * 0.07) + 's'">
+          <div class="diff-item__num">{{ d.num }}</div>
+          <div class="diff-item__body">
+            <h3 class="diff-item__title">{{ d.title }}</h3>
+            <p class="diff-item__desc body-sm">{{ d.desc }}</p>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ── PROCESS ── -->
+<section class="section" style="border-top:1px solid var(--rp-border);background:var(--rp-bg-secondary)">
+  <div class="container">
+    <div class="section-intro reveal">
+      <div class="section-label"><span>How We Work</span></div>
+      <h2>A clear process<br>from first call to delivery.</h2>
+    </div>
+
+    <div class="process-steps">
+      @for (step of processSteps; track step.num; let i = $index) {
+        <div class="process-step reveal" [style.animation-delay]="(i * 0.07) + 's'">
+          <div class="process-step__num">{{ step.num }}</div>
+          <div class="process-step__body">
+            <h3 class="process-step__title">{{ step.title }}</h3>
+            <p class="process-step__desc body-sm">{{ step.desc }}</p>
+          </div>
+          @if (i < processSteps.length - 1) {
+            <div class="process-step__connector" aria-hidden="true"></div>
+          }
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ── FOUNDER ── -->
+<section class="section" style="border-top:1px solid var(--rp-border)">
+  <div class="container founder-section">
+
+    <div class="founder-section__left reveal">
+      <div class="section-label"><span>Meet the Founder</span></div>
+      <h2>Building technology<br>with a clear purpose.</h2>
+      <p class="body-lg founder-section__quote">
+        "RentPhoenix exists because real problems don't get solved by
+        generic software. Every system we build starts with understanding
+        the problem first — then designing the right solution."
+      </p>
+      <div class="founder-section__identity">
+        <div class="founder-avatar">AK</div>
+        <div>
+          <div class="founder-name">Arifulla Kazi</div>
+          <div class="body-xs founder-title">Founder & Director, RentPhoenix Technologies</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="founder-section__right reveal" style="animation-delay:0.1s">
+      <div class="founder-bio-card">
+        <div class="founder-bio-card__header">
+          Background & Context
+        </div>
+        <p class="body-sm">
+          Founded RentPhoenix Technologies to solve a coordination problem
+          observed firsthand — the friction in rental property management
+          that no existing software addressed cleanly.
+        </p>
+        <p class="body-sm" style="margin-top:12px">
+          BE in Electronics and Communication Engineering, Agnel Institute
+          of Technology &amp; Design, Goa (2019–2023). Prior experience as
+          Network Engineer, United Telecoms Limited.
+        </p>
+        <div class="founder-bio-card__creds">
+          <span class="tag">CIBA Goa Incubated</span>
+          <span class="tag">Startup India</span>
+          <span class="tag">DPIIT Recognized</span>
+        </div>
+        <a
+          href="https://www.linkedin.com/in/arifulla-kazi-b73743243"
+          target="_blank"
+          rel="noopener"
+          class="founder-bio-card__linkedin"
+        >
+          View LinkedIn Profile
+          <lucide-icon [img]="ArrowRight" [size]="13" [strokeWidth]="2" />
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section class="cta-section section">
+  <div class="container cta-section__inner reveal">
+    <div class="section-label"><span>Get Started</span></div>
+    <h2>Ready to build<br>something that works?</h2>
+    <p class="body-lg cta-section__sub">
+      Tell us about your project. We will review it carefully and
+      respond with honest feedback on what we can build, how, and
+      when.
+    </p>
+    <div class="cta-section__actions">
+      <a routerLink="/contact" class="btn btn-primary btn-lg">
+        Start the Conversation
+        <lucide-icon [img]="ArrowRight" [size]="16" [strokeWidth]="2" />
+      </a>
+      <a routerLink="/portfolio" class="btn btn-secondary btn-lg">
+        See Our Work
+      </a>
+    </div>
+  </div>
+</section>

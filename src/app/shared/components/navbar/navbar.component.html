@@ -1,0 +1,372 @@
+<!--
+  NAVBAR — Mega Menu Edition
+  The entire <header> wraps both the bar and the panel.
+  (mouseleave) on <header> = zero hover-gap: mouse travels from trigger → panel
+  without ever leaving the header boundary.
+-->
+
+<header
+  class="navbar"
+  [class.navbar--elevated]="isScrolled()"
+  (mouseleave)="scheduleClose()"
+>
+
+  <!-- ── Top bar ── -->
+  <div class="navbar__bar">
+    <div class="container navbar__inner">
+
+      <!-- Logo -->
+      <a routerLink="/" class="navbar__logo" (click)="closeAll()" aria-label="RentPhoenix Technologies — Home">
+        <svg class="navbar__logo-svg" viewBox="0 0 222 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <text x="0" y="26" font-family="Inter,system-ui,sans-serif" font-size="22" font-weight="800" letter-spacing="-1" fill="currentColor">RENT</text>
+          <text x="64" y="26" font-family="Inter,system-ui,sans-serif" font-size="22" font-weight="800" letter-spacing="-1" fill="currentColor">PH</text>
+          <g transform="translate(97,0)">
+            <path d="M10 1L21 9V29H-1V9L10 1Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+            <rect x="5.5" y="17" width="9" height="12" rx="1.2" fill="none" stroke="currentColor" stroke-width="1.6"/>
+            <circle cx="10" cy="12" r="2.2" fill="currentColor" opacity="0.55"/>
+          </g>
+          <text x="122" y="26" font-family="Inter,system-ui,sans-serif" font-size="22" font-weight="800" letter-spacing="-1" fill="currentColor">ENIX</text>
+        </svg>
+        <span class="navbar__logo-tag">Technologies</span>
+      </a>
+
+      <!-- Desktop nav triggers -->
+      <nav class="navbar__nav" aria-label="Main navigation">
+        @for (item of navItems; track item.id) {
+          <button
+            class="nav-trigger"
+            [class.nav-trigger--active]="activePanel() === item.id"
+            (mouseenter)="openPanel(item.id)"
+            (click)="togglePanel(item.id)"
+            [attr.aria-expanded]="activePanel() === item.id"
+            [attr.aria-haspopup]="true"
+          >
+            {{ item.label }}
+            <lucide-icon
+              [img]="ChevronIcon"
+              [size]="13"
+              [strokeWidth]="2.5"
+              class="nav-trigger__chevron"
+            />
+          </button>
+        }
+        <a routerLink="/contact" class="nav-link" routerLinkActive="nav-link--active" (click)="closeAll()">
+          Contact
+        </a>
+      </nav>
+
+      <!-- Right actions -->
+      <div class="navbar__actions">
+        <button
+          class="icon-btn"
+          (click)="toggleTheme()"
+          [attr.aria-label]="isDark() ? 'Switch to light mode' : 'Switch to dark mode'"
+        >
+          @if (isDark()) {
+            <lucide-icon [img]="SunIcon" [size]="16" [strokeWidth]="2" />
+          } @else {
+            <lucide-icon [img]="MoonIcon" [size]="16" [strokeWidth]="2" />
+          }
+        </button>
+        <a routerLink="/contact" class="btn btn-primary btn-sm navbar__cta" (click)="closeAll()">
+          Get Demo
+        </a>
+        <button
+          class="icon-btn navbar__hamburger"
+          (click)="toggleMobile()"
+          [attr.aria-expanded]="mobileOpen()"
+          aria-label="Open navigation menu"
+        >
+          @if (mobileOpen()) {
+            <lucide-icon [img]="XIcon" [size]="20" [strokeWidth]="2" />
+          } @else {
+            <lucide-icon [img]="MenuIcon" [size]="20" [strokeWidth]="2" />
+          }
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── Mega Panel ──
+       Inside <header> so mouse movement from bar → panel never fires mouseleave on header.
+  -->
+  @if (activePanel()) {
+    <div
+      class="navbar__mega"
+      (mouseenter)="cancelClose()"
+      role="region"
+      [attr.aria-label]="activePanel() + ' panel'"
+    >
+      <div class="container navbar__mega-inner">
+
+        <!-- PRODUCTS -->
+        @if (activePanel() === 'products') {
+          <div class="panel panel-products">
+            <div class="panel-products__featured">
+              <div class="panel-label eyebrow">Flagship Product</div>
+              <div class="panel-products__icon">
+                <lucide-icon [img]="PackageIcon" [size]="22" [strokeWidth]="1.5" />
+              </div>
+              <h3>RentPhoenix OS</h3>
+              <p class="body-sm">
+                A rental management platform replacing scattered spreadsheets,
+                WhatsApp records, and paper agreements with one coordinated system.
+              </p>
+              <a routerLink="/products" class="panel-cta" (click)="closeAll()">
+                Explore Product
+                <lucide-icon [img]="ArrowIcon" [size]="14" [strokeWidth]="2" />
+              </a>
+            </div>
+
+            <div class="panel-products__divider"></div>
+
+            <div class="panel-products__roadmap">
+              <div class="panel-label eyebrow">Product Roadmap</div>
+              <h4>More products in development.</h4>
+              <p class="body-sm">
+                Our product portfolio is expanding. Current work focuses on
+                government technology and enterprise automation alongside
+                RentPhoenix OS.
+              </p>
+              <a routerLink="/contact" class="panel-cta panel-cta--muted" (click)="closeAll()">
+                Discuss Your Needs
+                <lucide-icon [img]="ArrowIcon" [size]="14" [strokeWidth]="2" />
+              </a>
+            </div>
+          </div>
+        }
+
+        <!-- SERVICES -->
+        @if (activePanel() === 'services') {
+          <div class="panel panel-services">
+            <div class="panel-header">
+              <div class="panel-label eyebrow">What We Build</div>
+              <h3 class="panel-header__title">Six practice areas, one standard of quality.</h3>
+            </div>
+            <div class="panel-svc-grid">
+              @for (svc of servicesLinks; track svc.label) {
+                <a [routerLink]="svc.path" class="panel-svc-card" (click)="closeAll()">
+                  <div class="panel-svc-card__icon">
+                    <lucide-icon [img]="svc.icon" [size]="17" [strokeWidth]="1.75" />
+                  </div>
+                  <div class="panel-svc-card__text">
+                    <div class="panel-svc-card__label">{{ svc.label }}</div>
+                    <div class="panel-svc-card__desc body-xs">{{ svc.desc }}</div>
+                  </div>
+                  <lucide-icon [img]="ArrowIcon" [size]="12" [strokeWidth]="2" class="panel-svc-card__arrow" />
+                </a>
+              }
+            </div>
+            <div class="panel-footer">
+              <a routerLink="/services" class="panel-footer-link" (click)="closeAll()">
+                View all services
+                <lucide-icon [img]="ArrowIcon" [size]="13" [strokeWidth]="2" />
+              </a>
+            </div>
+          </div>
+        }
+
+        <!-- SOLUTIONS -->
+        @if (activePanel() === 'solutions') {
+          <div class="panel panel-solutions">
+            <div class="panel-solutions__gov">
+              <div class="panel-label eyebrow">Government Technology</div>
+              <h3>Secure digital infrastructure for public sector organizations.</h3>
+              <ul class="panel-solutions__list">
+                @for (item of govLinks; track item) {
+                  <li class="panel-solutions__item">
+                    <lucide-icon [img]="ArrowIcon" [size]="12" [strokeWidth]="2.5" class="panel-solutions__item-arrow" />
+                    <span class="body-sm">{{ item }}</span>
+                  </li>
+                }
+              </ul>
+              <a routerLink="/government" class="panel-cta" (click)="closeAll()">
+                Government Solutions
+                <lucide-icon [img]="ArrowIcon" [size]="14" [strokeWidth]="2" />
+              </a>
+            </div>
+
+            <div class="panel-solutions__divider"></div>
+
+            <div class="panel-solutions__industries">
+              <div class="panel-label eyebrow">Industries We Serve</div>
+              <ul class="panel-solutions__list panel-solutions__list--plain">
+                @for (item of industryLinks; track item) {
+                  <li class="panel-solutions__item panel-solutions__item--plain">
+                    <div class="panel-solutions__dot"></div>
+                    <span class="body-sm">{{ item }}</span>
+                  </li>
+                }
+              </ul>
+            </div>
+          </div>
+        }
+
+        <!-- COMPANY -->
+        @if (activePanel() === 'company') {
+          <div class="panel panel-company">
+            <div class="panel-company__links">
+              @for (link of companyLinks; track link.label) {
+                <a [routerLink]="link.path" class="panel-co-card" (click)="closeAll()">
+                  <div class="panel-co-card__icon">
+                    <lucide-icon [img]="link.icon" [size]="17" [strokeWidth]="1.75" />
+                  </div>
+                  <div class="panel-co-card__text">
+                    <div class="panel-co-card__label">{{ link.label }}</div>
+                    <div class="panel-co-card__desc body-xs">{{ link.desc }}</div>
+                  </div>
+                  <lucide-icon [img]="ArrowIcon" [size]="12" [strokeWidth]="2" class="panel-co-card__arrow" />
+                </a>
+              }
+            </div>
+            <div class="panel-company__strip">
+              <span class="body-xs">RentPhoenix Technologies Private Limited</span>
+              <div class="panel-company__badges">
+                <span class="tag">Goa, India</span>
+                <span class="tag">CIBA Incubated</span>
+                <span class="tag">Startup India</span>
+              </div>
+            </div>
+          </div>
+        }
+
+      </div>
+    </div>
+  }
+
+</header>
+
+<!-- Backdrop (outside header, covers page content) -->
+@if (activePanel()) {
+  <div class="navbar__backdrop" (click)="closePanel()" aria-hidden="true"></div>
+}
+
+<!-- ── Mobile Slide-over ── -->
+<div
+  class="mobile-nav"
+  [class.mobile-nav--open]="mobileOpen()"
+  role="dialog"
+  aria-label="Navigation menu"
+  aria-modal="true"
+>
+  <div class="mobile-nav__head">
+    <a routerLink="/" class="navbar__logo" (click)="closeAll()">
+      <svg class="navbar__logo-svg" viewBox="0 0 222 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <text x="0" y="26" font-family="Inter,system-ui,sans-serif" font-size="22" font-weight="800" letter-spacing="-1" fill="currentColor">RENT</text>
+        <text x="64" y="26" font-family="Inter,system-ui,sans-serif" font-size="22" font-weight="800" letter-spacing="-1" fill="currentColor">PH</text>
+        <g transform="translate(97,0)">
+          <path d="M10 1L21 9V29H-1V9L10 1Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+          <rect x="5.5" y="17" width="9" height="12" rx="1.2" fill="none" stroke="currentColor" stroke-width="1.6"/>
+          <circle cx="10" cy="12" r="2.2" fill="currentColor" opacity="0.55"/>
+        </g>
+        <text x="122" y="26" font-family="Inter,system-ui,sans-serif" font-size="22" font-weight="800" letter-spacing="-1" fill="currentColor">ENIX</text>
+      </svg>
+      <span class="navbar__logo-tag">Technologies</span>
+    </a>
+    <button class="icon-btn" (click)="closeMobile()" aria-label="Close menu">
+      <lucide-icon [img]="XIcon" [size]="20" [strokeWidth]="2" />
+    </button>
+  </div>
+
+  <div class="mobile-nav__body">
+    <!-- Products -->
+    <div class="mobile-item">
+      <button class="mobile-trigger" (click)="toggleMobileExpand('products')">
+        Products
+        <lucide-icon [img]="ChevronIcon" [size]="14" [strokeWidth]="2.5" [class.rotated]="mobileExpanded() === 'products'" />
+      </button>
+      @if (mobileExpanded() === 'products') {
+        <div class="mobile-submenu">
+          <a routerLink="/products" class="mobile-sub-link" (click)="closeAll()">
+            <span>RentPhoenix OS</span>
+            <span class="body-xs">Rental Management Platform</span>
+          </a>
+        </div>
+      }
+    </div>
+
+    <!-- Services -->
+    <div class="mobile-item">
+      <button class="mobile-trigger" (click)="toggleMobileExpand('services')">
+        Services
+        <lucide-icon [img]="ChevronIcon" [size]="14" [strokeWidth]="2.5" [class.rotated]="mobileExpanded() === 'services'" />
+      </button>
+      @if (mobileExpanded() === 'services') {
+        <div class="mobile-submenu">
+          @for (svc of servicesLinks; track svc.label) {
+            <a [routerLink]="svc.path" class="mobile-sub-link" (click)="closeAll()">
+              <span>{{ svc.label }}</span>
+              <span class="body-xs">{{ svc.desc }}</span>
+            </a>
+          }
+        </div>
+      }
+    </div>
+
+    <!-- Solutions -->
+    <div class="mobile-item">
+      <button class="mobile-trigger" (click)="toggleMobileExpand('solutions')">
+        Solutions
+        <lucide-icon [img]="ChevronIcon" [size]="14" [strokeWidth]="2.5" [class.rotated]="mobileExpanded() === 'solutions'" />
+      </button>
+      @if (mobileExpanded() === 'solutions') {
+        <div class="mobile-submenu">
+          <a routerLink="/government" class="mobile-sub-link" (click)="closeAll()">
+            <span>Government Technology</span>
+            <span class="body-xs">Secure public sector software</span>
+          </a>
+        </div>
+      }
+    </div>
+
+    <!-- Company -->
+    <div class="mobile-item">
+      <button class="mobile-trigger" (click)="toggleMobileExpand('company')">
+        Company
+        <lucide-icon [img]="ChevronIcon" [size]="14" [strokeWidth]="2.5" [class.rotated]="mobileExpanded() === 'company'" />
+      </button>
+      @if (mobileExpanded() === 'company') {
+        <div class="mobile-submenu">
+          @for (link of companyLinks; track link.label) {
+            <a [routerLink]="link.path" class="mobile-sub-link" (click)="closeAll()">
+              <span>{{ link.label }}</span>
+              <span class="body-xs">{{ link.desc }}</span>
+            </a>
+          }
+        </div>
+      }
+    </div>
+
+    <a routerLink="/contact" class="mobile-link" (click)="closeAll()">Contact</a>
+
+    <div class="mobile-theme">
+      <button class="mobile-theme-btn" (click)="toggleTheme()">
+        @if (isDark()) {
+          <lucide-icon [img]="SunIcon" [size]="15" [strokeWidth]="2" />
+          <span>Switch to Light Mode</span>
+        } @else {
+          <lucide-icon [img]="MoonIcon" [size]="15" [strokeWidth]="2" />
+          <span>Switch to Dark Mode</span>
+        }
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-nav__foot">
+    <a routerLink="/contact" class="btn btn-primary" style="width:100%;justify-content:center" (click)="closeAll()">
+      Get a Demo
+      <lucide-icon [img]="ArrowIcon" [size]="15" [strokeWidth]="2" />
+    </a>
+    <a routerLink="/contact" class="btn btn-secondary" style="width:100%;justify-content:center" (click)="closeAll()">
+      Contact Us
+    </a>
+  </div>
+</div>
+
+<div
+  class="mobile-backdrop"
+  [class.mobile-backdrop--open]="mobileOpen()"
+  (click)="closeMobile()"
+  aria-hidden="true"
+></div>

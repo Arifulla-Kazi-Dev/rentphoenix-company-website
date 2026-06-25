@@ -1,0 +1,226 @@
+<!-- CAREERS PAGE -->
+
+<section class="page-hero">
+  <div class="page-hero__grid"></div>
+  <div class="container">
+    <div class="page-hero__content anim-fade-up">
+      <div class="section-label"><span>Careers</span></div>
+      <h1>Join us in building<br>something real.</h1>
+      <p class="body-lg" style="max-width:520px;margin-top:16px">
+        Work directly with the founder. Gain hands-on startup experience.
+        Contribute to solving problems that matter.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- OPEN ROLES -->
+<section class="section">
+  <div class="container">
+    <div class="section-label reveal"><span>Open Positions</span></div>
+    <h2 class="reveal" style="margin-bottom:8px;max-width:480px">3 open internship roles.</h2>
+    <p class="body-lg reveal" style="color:var(--rp-text-2);margin-bottom:40px;max-width:560px">
+      Early-stage startup experience. Directly mentored by the founder.
+      Real work, real learning, real impact.
+    </p>
+
+    <div class="jobs-list">
+      @for (role of roles; track role.title; let i = $index) {
+        <div class="job-card reveal" [class.job-card--open]="expandedRole() === i"
+             [style.animation-delay]="(i * 0.07) + 's'">
+
+          <!-- Header -->
+          <div class="job-card__header" (click)="toggleRole(i)">
+            <div class="job-card__icon">
+              <lucide-icon [img]="role.icon" [size]="20" [strokeWidth]="1.75" />
+            </div>
+            <div class="job-card__info">
+              <h3 class="job-card__title">{{ role.title }}</h3>
+              <div class="job-card__meta">
+                <span class="tag">{{ role.location }}</span>
+                <span class="tag">{{ role.duration }}</span>
+                <span class="tag">{{ role.type }}</span>
+                <span class="tag">{{ role.experience }}</span>
+              </div>
+            </div>
+            <button class="btn btn-secondary job-card__toggle" type="button">
+              {{ expandedRole() === i ? 'Hide Details' : 'View Details' }}
+              <lucide-icon [img]="expandedRole() === i ? ChevronUp : ChevronDown" [size]="14" [strokeWidth]="2" />
+            </button>
+          </div>
+
+          <!-- Expanded details -->
+          @if (expandedRole() === i) {
+            <div class="job-card__details">
+              <div class="job-detail-cols">
+
+                <div class="job-detail-section">
+                  <h4 class="job-detail-section__title">What You'll Do</h4>
+                  <ul class="job-detail-list">
+                    @for (item of role.whatYoullDo; track item) {
+                      <li>{{ item }}</li>
+                    }
+                  </ul>
+                </div>
+
+                <div class="job-detail-section">
+                  <h4 class="job-detail-section__title">What You'll Learn</h4>
+                  <div class="job-detail-tags">
+                    @for (skill of role.whatYoullLearn; track skill) {
+                      <span class="tag">{{ skill }}</span>
+                    }
+                  </div>
+                </div>
+
+                <div class="job-detail-section">
+                  <h4 class="job-detail-section__title">Benefits</h4>
+                  <ul class="job-detail-list">
+                    @for (benefit of role.benefits; track benefit) {
+                      <li>{{ benefit }}</li>
+                    }
+                  </ul>
+                </div>
+
+              </div>
+              <div class="job-card__apply">
+                <button class="btn btn-primary" type="button" (click)="openApplication($event, role.title)">
+                  Apply Now
+                  <lucide-icon [img]="ArrowRight" [size]="14" [strokeWidth]="2" />
+                </button>
+              </div>
+            </div>
+          }
+
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section class="section" style="border-top:1px solid var(--rp-border);background:var(--rp-bg-secondary)">
+  <div class="container">
+    <div class="section-label reveal"><span>How We Work</span></div>
+    <h2 class="reveal" style="margin-bottom:40px;max-width:400px">The principles behind every hiring decision we make.</h2>
+    <div class="values-grid">
+      @for (val of values; track val.title; let i = $index) {
+        <div class="value-card reveal" [style.animation-delay]="(i * 0.07) + 's'">
+          <h3 class="value-card__title">{{ val.title }}</h3>
+          <p class="value-card__desc body-sm">{{ val.desc }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT CTA -->
+<section class="section-sm" style="border-top:1px solid var(--rp-border)">
+  <div class="container">
+    <div class="contact-row reveal">
+      <div>
+        <h3>Questions about working with us?</h3>
+        <p class="body-sm" style="color:var(--rp-text-3);margin-top:6px">Send a brief email. No CV required to start a conversation.</p>
+      </div>
+      <a href="mailto:support&#64;rentphoenixos.in" class="btn btn-primary">
+        <lucide-icon [img]="Mail" [size]="15" [strokeWidth]="2" />
+        support&#64;rentphoenixos.in
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── APPLICATION MODAL ── -->
+@if (applyingFor() !== null) {
+  <div class="modal-backdrop" (click)="closeApplication()">
+    <div class="modal" (click)="$event.stopPropagation()" role="dialog" aria-modal="true">
+
+      <!-- Close -->
+      <button class="modal__close" type="button" (click)="closeApplication()" aria-label="Close">
+        <lucide-icon [img]="X" [size]="16" [strokeWidth]="2" />
+      </button>
+
+      @if (!applicationSubmitted()) {
+
+        <div class="modal__header">
+          <div>
+            <p class="body-xs" style="color:var(--rp-text-3);margin-bottom:6px">Applying for</p>
+            <h3 class="modal__title">{{ applyingFor() }}</h3>
+            <span class="tag" style="margin-top:8px;display:inline-block">Mapusa, Goa / Remote · Internship</span>
+          </div>
+        </div>
+
+        <form class="modal__form" [formGroup]="applicationForm" (ngSubmit)="submitApplication()" novalidate>
+
+          <div class="m-field">
+            <label class="m-field__label" for="app-name">Full Name</label>
+            <input
+              id="app-name" type="text" class="m-field__input"
+              formControlName="name" placeholder="Your full name"
+              [class.m-field__input--error]="af['name'].touched && af['name'].invalid"
+            />
+            @if (af['name'].touched && af['name'].invalid) {
+              <span class="m-field__error body-xs">Please enter your name</span>
+            }
+          </div>
+
+          <div class="m-field">
+            <label class="m-field__label" for="app-email">Email Address</label>
+            <input
+              id="app-email" type="email" class="m-field__input"
+              formControlName="email" placeholder="you@example.com"
+              [class.m-field__input--error]="af['email'].touched && af['email'].invalid"
+            />
+            @if (af['email'].touched && af['email'].invalid) {
+              <span class="m-field__error body-xs">Please enter a valid email</span>
+            }
+          </div>
+
+          <div class="m-field">
+            <label class="m-field__label" for="app-resume">Resume Link <span style="font-weight:400;color:var(--rp-text-3)">(optional)</span></label>
+            <div class="m-field__input-wrap">
+              <lucide-icon [img]="Link" [size]="15" [strokeWidth]="2" class="m-field__icon" />
+              <input
+                id="app-resume" type="url" class="m-field__input m-field__input--icon"
+                formControlName="resumeLink"
+                placeholder="Google Drive, LinkedIn, or portfolio link"
+              />
+            </div>
+            <p class="body-xs" style="color:var(--rp-text-3);margin-top:4px">
+              No link? Email your resume to
+              <a href="mailto:support&#64;rentphoenixos.in" style="color:var(--rp-primary)">support&#64;rentphoenixos.in</a>
+              after submitting.
+            </p>
+          </div>
+
+          @if (applicationError()) {
+            <p class="m-field__error body-xs" style="text-align:center">
+              Something went wrong. Please try again or email us at support&#64;rentphoenixos.in
+            </p>
+          }
+
+          <button type="submit" class="btn btn-primary btn-lg" style="width:100%" [disabled]="applicationSending()">
+            <lucide-icon [img]="ArrowRight" [size]="15" [strokeWidth]="2" />
+            {{ applicationSending() ? 'Submitting…' : 'Submit Application' }}
+          </button>
+
+        </form>
+
+      } @else {
+
+        <div class="modal__success">
+          <div class="modal__success-icon">
+            <lucide-icon [img]="CheckCircle" [size]="28" [strokeWidth]="1.5" />
+          </div>
+          <h3>Application received.</h3>
+          <p class="body-md">
+            We've got your application for <strong>{{ applyingFor() }}</strong>.
+            We'll review it and get back to you at <strong>{{ af['email'].value }}</strong>.
+          </p>
+          <button class="btn btn-secondary" type="button" (click)="closeApplication()">Close</button>
+        </div>
+
+      }
+
+    </div>
+  </div>
+}

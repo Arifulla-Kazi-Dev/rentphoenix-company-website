@@ -1,0 +1,119 @@
+.footer {
+  background: var(--rp-bg-secondary);
+  border-top: 1px solid var(--rp-border);
+  padding: 60px 0 0;
+
+  &__top {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 64px;
+    padding-bottom: 48px;
+
+    @media (max-width: 860px) { grid-template-columns: 1fr; gap: 40px; }
+  }
+
+  &__brand { display: flex; flex-direction: column; gap: 16px; }
+
+  &__logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--rp-text-1);
+  }
+
+  &__logo-svg {
+    height: 24px;
+    width: auto;
+    color: var(--rp-text-1);
+  }
+
+  &__logo-sub {
+    font-size: 0.625rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--rp-text-3);
+    font-weight: 500;
+    border-left: 1px solid var(--rp-border-strong);
+    padding-left: 8px;
+  }
+
+  &__desc {
+    font-size: 0.875rem;
+    line-height: 1.65;
+    color: var(--rp-text-3);
+    max-width: 280px;
+  }
+
+  &__credentials { display: flex; gap: 8px; flex-wrap: wrap; }
+
+  &__socials {
+    display: flex;
+    gap: 8px;
+  }
+
+  &__social {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: var(--rp-r-md);
+    border: 1px solid var(--rp-border-strong);
+    color: var(--rp-text-3);
+    transition: color var(--rp-t-fast), border-color var(--rp-t-fast), background var(--rp-t-fast);
+
+    &:hover {
+      color: var(--rp-text-1);
+      border-color: var(--rp-border-strong);
+      background: var(--rp-surface);
+    }
+  }
+
+  &__nav {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+
+    @media (max-width: 560px) { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  &__col { display: flex; flex-direction: column; gap: 10px; }
+
+  &__col-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--rp-text-1);
+    margin-bottom: 4px;
+  }
+
+  &__link {
+    font-size: 0.875rem;
+    color: var(--rp-text-3);
+    transition: color var(--rp-t-fast);
+    width: fit-content;
+
+    &:hover { color: var(--rp-text-1); }
+  }
+
+  &__bottom {
+    padding: 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  &__copy {
+    font-size: 0.8125rem;
+    color: var(--rp-text-3);
+  }
+
+  &__cin {
+    font-size: 0.75rem;
+    color: var(--rp-text-3);
+    letter-spacing: 0.02em;
+  }
+}

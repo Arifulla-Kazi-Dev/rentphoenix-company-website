@@ -1,0 +1,155 @@
+<!-- CONTACT PAGE -->
+
+<section class="page-hero">
+  <div class="page-hero__grid"></div>
+  <div class="container">
+    <div class="page-hero__content anim-fade-up">
+      <div class="section-label"><span>Contact</span></div>
+      <h1>Let's build something<br>worth building.</h1>
+      <p class="body-lg" style="max-width:480px;margin-top:16px">
+        Tell us about your project. We'll respond with an honest assessment,
+        not a sales pitch.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="contact-grid">
+
+      <!-- FORM -->
+      <div class="reveal-left">
+        @if (!submitted()) {
+          <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="contact-form" novalidate>
+            <div class="form-row">
+              <div class="field">
+                <label class="field-label" for="name">Name</label>
+                <input
+                  id="name" type="text" class="field-input"
+                  formControlName="name" placeholder="Your name"
+                  [class.field-input--error]="f['name'].touched && f['name'].invalid"
+                />
+                @if (f['name'].touched && f['name'].invalid) {
+                  <span class="field-error body-xs">Please enter your name</span>
+                }
+              </div>
+              <div class="field">
+                <label class="field-label" for="email">Email</label>
+                <input
+                  id="email" type="email" class="field-input"
+                  formControlName="email" placeholder="you@company.com"
+                  [class.field-input--error]="f['email'].touched && f['email'].invalid"
+                />
+                @if (f['email'].touched && f['email'].invalid) {
+                  <span class="field-error body-xs">Please enter a valid email</span>
+                }
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="field-label" for="organization">Organization (optional)</label>
+              <input
+                id="organization" type="text" class="field-input"
+                formControlName="organization" placeholder="Company or department"
+              />
+            </div>
+
+            <div class="field">
+              <label class="field-label" for="type">Inquiry type</label>
+              <select
+                id="type" class="field-input"
+                formControlName="type"
+                [class.field-input--error]="f['type'].touched && f['type'].invalid"
+              >
+                <option value="" disabled>Select one</option>
+                @for (t of inquiryTypes; track t) {
+                  <option [value]="t">{{ t }}</option>
+                }
+              </select>
+              @if (f['type'].touched && f['type'].invalid) {
+                <span class="field-error body-xs">Please select an inquiry type</span>
+              }
+            </div>
+
+            <div class="field">
+              <label class="field-label" for="message">Message</label>
+              <textarea
+                id="message" class="field-input field-textarea"
+                formControlName="message"
+                placeholder="Describe the project, challenge, or question. The more context, the better our response."
+                rows="5"
+                [class.field-input--error]="f['message'].touched && f['message'].invalid"
+              ></textarea>
+              @if (f['message'].touched && f['message'].invalid) {
+                <span class="field-error body-xs">Please write a message (at least 20 characters)</span>
+              }
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg" style="width:100%" [disabled]="sending()">
+              <lucide-icon [img]="Send" [size]="15" [strokeWidth]="2" />
+              {{ sending() ? 'Sending…' : 'Send Message' }}
+            </button>
+            @if (sendError()) {
+              <p class="field-error body-xs" style="margin-top:8px;text-align:center">
+                Something went wrong. Please try again or email us directly at support&#64;rentphoenixos.in
+              </p>
+            }
+          </form>
+        } @else {
+          <div class="submitted-state">
+            <div class="submitted-state__icon">
+              <lucide-icon [img]="Send" [size]="22" [strokeWidth]="1.75" />
+            </div>
+            <h3>Message received.</h3>
+            <p class="body-md">
+              We'll review your message and respond at
+              <strong>{{ f['email'].value }}</strong>.
+              We typically reply within 1–2 business days.
+            </p>
+          </div>
+        }
+      </div>
+
+      <!-- SIDEBAR -->
+      <div class="contact-sidebar reveal-right">
+        <div class="sidebar-section">
+          <h4 class="sidebar-section__title">Direct contact</h4>
+          <div class="contact-links">
+            @for (link of contactLinks; track link.label) {
+              <a [href]="link.href" target="_blank" rel="noopener noreferrer" class="contact-link">
+                <div class="contact-link__icon">
+                  <lucide-icon [img]="link.icon" [size]="16" [strokeWidth]="1.75" />
+                </div>
+                <div>
+                  <div class="contact-link__label body-xs">{{ link.label }}</div>
+                  <div class="contact-link__value">{{ link.value }}</div>
+                </div>
+              </a>
+            }
+          </div>
+        </div>
+
+        <div class="sidebar-section">
+          <h4 class="sidebar-section__title">Location</h4>
+          <p class="body-sm">Goa, India</p>
+          <p class="body-sm" style="color:var(--rp-text-3);margin-top:4px">Remote-friendly for all project work.</p>
+        </div>
+
+        <div class="sidebar-section">
+          <h4 class="sidebar-section__title">Response time</h4>
+          <p class="body-sm">We reply within 1–2 business days.</p>
+        </div>
+
+        <div class="sidebar-section">
+          <h4 class="sidebar-section__title">Recognized by</h4>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
+            <span class="tag">DPIIT · Startup India</span>
+            <span class="tag">CIBA Goa Incubated</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

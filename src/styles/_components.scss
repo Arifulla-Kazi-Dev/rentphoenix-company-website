@@ -1,0 +1,247 @@
+// ============================================================
+// GLOBAL COMPONENT STYLES — V2
+// Purple-first brand, warm surfaces
+// ============================================================
+
+// --- Layout ---
+
+.container {
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 var(--rp-s3);
+
+  @media (min-width: 1380px) { max-width: 1240px; }
+}
+
+.section {
+  padding: var(--rp-s16) 0;
+  @media (max-width: 768px) { padding: var(--rp-s10) 0; }
+}
+
+.section-sm {
+  padding: var(--rp-s10) 0;
+  @media (max-width: 768px) { padding: var(--rp-s6) 0; }
+}
+
+// --- Section label (purple pill) ---
+
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 16px;
+
+  span {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--rp-purple);
+    background: var(--rp-purple-muted);
+    border: 1px solid var(--rp-purple-border);
+    border-radius: var(--rp-r-full);
+    padding: 4px 12px;
+    display: inline-block;
+  }
+}
+
+// --- Divider ---
+
+hr.divider {
+  border: none;
+  border-top: 1px solid var(--rp-border);
+  margin: 0;
+}
+
+// --- Buttons ---
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 18px;
+  border-radius: var(--rp-r-md);
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all var(--rp-t-fast);
+  text-decoration: none;
+  white-space: nowrap;
+  font-family: var(--rp-font);
+  letter-spacing: -0.01em;
+
+  &:active { transform: scale(0.98); }
+
+  // Primary — Purple
+  &-primary {
+    background: var(--rp-purple);
+    color: #FFFFFF;
+    border-color: var(--rp-purple);
+    box-shadow: 0 1px 2px rgba(109, 40, 217, 0.22), var(--rp-shadow-inset);
+
+    &:hover {
+      background: var(--rp-purple-dark);
+      border-color: var(--rp-purple-dark);
+      box-shadow: var(--rp-shadow-purple), var(--rp-shadow-inset);
+      transform: translateY(-1px);
+    }
+  }
+
+  // Secondary — outline with warm surface
+  &-secondary {
+    background: var(--rp-surface);
+    color: var(--rp-text-1);
+    border-color: var(--rp-border-strong);
+    box-shadow: var(--rp-shadow-xs);
+
+    &:hover {
+      border-color: var(--rp-border-strong);
+      background: var(--rp-bg);
+      transform: translateY(-1px);
+      box-shadow: var(--rp-shadow-sm);
+    }
+  }
+
+  // Ghost — transparent
+  &-ghost {
+    background: transparent;
+    color: var(--rp-text-2);
+    border-color: transparent;
+
+    &:hover {
+      color: var(--rp-text-1);
+      background: var(--rp-bg-secondary);
+    }
+  }
+
+  // Accent — sky blue
+  &-accent {
+    background: var(--rp-sky);
+    color: #FFFFFF;
+    border-color: var(--rp-sky);
+
+    &:hover {
+      background: var(--rp-sky-dark);
+      border-color: var(--rp-sky-dark);
+      transform: translateY(-1px);
+    }
+  }
+
+  // Sizes
+  &-lg {
+    padding: 12px 24px;
+    font-size: 0.9375rem;
+    border-radius: var(--rp-r-lg);
+  }
+
+  &-sm {
+    padding: 6px 14px;
+    font-size: 0.8125rem;
+    border-radius: var(--rp-r-sm);
+  }
+}
+
+// --- Tag / chip ---
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: var(--rp-r-full);
+  font-size: 0.75rem;
+  font-weight: 500;
+  border: 1px solid var(--rp-border-strong);
+  color: var(--rp-text-2);
+  background: var(--rp-surface);
+}
+
+.tag-purple {
+  @extend .tag;
+  border-color: var(--rp-purple-border);
+  color: var(--rp-purple);
+  background: var(--rp-purple-muted);
+}
+
+// Backward compat alias
+.tag-blue { @extend .tag-purple; }
+
+// --- Card ---
+
+.card {
+  background: var(--rp-surface);
+  border: 1px solid var(--rp-border);
+  border-radius: var(--rp-r-xl);
+  padding: var(--rp-s4);
+  transition: border-color var(--rp-t-base), box-shadow var(--rp-t-base);
+
+  &:hover {
+    border-color: var(--rp-border-strong);
+    box-shadow: var(--rp-shadow-sm);
+  }
+}
+
+// --- Form fields ---
+
+.field-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--rp-text-1);
+  margin-bottom: 6px;
+}
+
+.field-input {
+  width: 100%;
+  padding: 10px 14px;
+  background: var(--rp-surface);
+  border: 1px solid var(--rp-border-strong);
+  border-radius: var(--rp-r-md);
+  font-size: 0.9375rem;
+  color: var(--rp-text-1);
+  font-family: var(--rp-font);
+  outline: none;
+  transition: border-color var(--rp-t-fast), box-shadow var(--rp-t-fast);
+
+  &::placeholder { color: var(--rp-text-4, var(--rp-text-3)); }
+
+  &:focus {
+    border-color: var(--rp-purple);
+    box-shadow: 0 0 0 3px var(--rp-purple-muted);
+  }
+
+  &--error {
+    border-color: var(--rp-error) !important;
+    &:focus { box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.08); }
+  }
+}
+
+textarea.field-input { resize: vertical; min-height: 120px; }
+select.field-input { cursor: pointer; }
+
+.field-error {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--rp-error);
+  margin-top: 4px;
+}
+
+// --- Scrollbar ---
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--rp-border-strong); border-radius: 3px; }
+
+// --- Selection ---
+::selection {
+  background: var(--rp-purple-muted);
+  color: var(--rp-purple);
+}
+
+// --- Focus ---
+:focus-visible {
+  outline: 2px solid var(--rp-purple);
+  outline-offset: 2px;
+  border-radius: 3px;
+}

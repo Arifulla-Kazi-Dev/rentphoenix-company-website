@@ -1,0 +1,82 @@
+<!-- GOVERNMENT SOLUTIONS PAGE -->
+
+<section class="page-hero">
+  <div class="page-hero__grid"></div>
+  <div class="container">
+    <div class="page-hero__content anim-fade-up">
+      <div class="section-label"><span>Government Solutions</span></div>
+      <h1>Digital infrastructure<br>built for public service.</h1>
+      <p class="body-lg" style="max-width:520px;margin-top:16px">
+        Software for government departments, civic organizations, and public
+        institutions — secure, compliant, and built for real operational use.
+      </p>
+      <div style="margin-top:24px">
+        <a routerLink="/contact" class="btn btn-primary btn-lg">
+          Discuss a Project
+          <lucide-icon [img]="ArrowRight" [size]="16" [strokeWidth]="2" />
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUTIONS -->
+<section class="section">
+  <div class="container">
+    <div class="section-label reveal"><span>What We Build</span></div>
+    <h2 class="reveal" style="margin-bottom:40px;max-width:440px">Systems for departments that need reliability over novelty.</h2>
+
+    <div class="solutions-grid">
+      @for (sol of solutions; track sol.title; let i = $index) {
+        <div class="solution-card reveal" [style.animation-delay]="(i * 0.07) + 's'">
+          <div class="solution-card__icon">
+            <lucide-icon [img]="sol.icon" [size]="20" [strokeWidth]="1.75" />
+          </div>
+          <h3 class="solution-card__title">{{ sol.title }}</h3>
+          <p class="solution-card__desc body-sm">{{ sol.desc }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- PRINCIPLES -->
+<section class="section" style="border-top:1px solid var(--rp-border);background:var(--rp-bg-secondary)">
+  <div class="container">
+    <div class="principles-grid">
+      <div class="reveal-left">
+        <div class="section-label"><span>Our Standards</span></div>
+        <h2>Built-in accountability, not bolted on.</h2>
+        <p class="body-md" style="margin-top:16px">
+          Government software needs to outlast projects, survive team changes, and
+          be inspectable by people who didn't build it. We design for that from
+          the beginning — not as a late-stage compliance exercise.
+        </p>
+      </div>
+      <div class="principles-list reveal-right">
+        @for (p of principles; track p) {
+          <div class="principle-item">
+            <lucide-icon [img]="CheckCircle2" [size]="15" [strokeWidth]="2" class="principle-item__icon" />
+            <span class="body-sm">{{ p }}</span>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section-sm" style="border-top:1px solid var(--rp-border)">
+  <div class="container">
+    <div class="cta-inline reveal">
+      <div>
+        <h2>Working in government or civic tech?</h2>
+        <p class="body-md" style="margin-top:8px">Tell us about the department's challenge and we'll advise on what's possible.</p>
+      </div>
+      <a routerLink="/contact" class="btn btn-primary btn-lg">
+        Get In Touch
+        <lucide-icon [img]="ArrowRight" [size]="16" [strokeWidth]="2" />
+      </a>
+    </div>
+  </div>
+</section>
