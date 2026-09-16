@@ -24,43 +24,36 @@ export class PortfolioComponent implements OnInit, AfterViewInit {
     {
       title: 'Expense Tracker',
       desc: 'A personal finance management application for tracking income and expenses across categories. Includes filtering, summary views, and CSV export.',
-      tags: ['Angular', 'TypeScript', 'Firebase'],
       category: 'Web App',
     },
     {
       title: 'Gamified Learning Platform',
       desc: 'An educational platform with gamification mechanics — points, streaks, and progress tracking to increase engagement in learning modules.',
-      tags: ['Angular', 'Firebase', 'Firestore'],
       category: 'Platform',
     },
     {
       title: 'Smart Traffic Light System',
       desc: 'An IoT-adjacent simulation system for intelligent traffic signal management using sensor data to optimize signal timing.',
-      tags: ['JavaScript', 'Simulation', 'IoT Concepts'],
       category: 'Systems',
     },
     {
       title: 'Learning Dashboard',
       desc: 'A student-facing dashboard for tracking course completion, assignment progress, and learning analytics.',
-      tags: ['Angular', 'TypeScript', 'Charts'],
       category: 'Dashboard',
     },
     {
       title: 'Amazon Clone',
       desc: 'A front-end recreation of the Amazon shopping experience with product listings, cart functionality, and authentication.',
-      tags: ['JavaScript', 'HTML', 'CSS'],
       category: 'UI Clone',
     },
     {
       title: 'Recipe Finder',
       desc: 'A web application that fetches and displays recipes from an external API, with filtering by ingredients and cuisine type.',
-      tags: ['JavaScript', 'REST API', 'CSS'],
       category: 'Web App',
     },
     {
       title: 'RentPhoenix OS',
       desc: 'The flagship product — a rental management platform replacing scattered landlord-tenant coordination with a single organized system.',
-      tags: ['Angular', 'Firebase', 'Firestore', 'Cloud Functions'],
       category: 'SaaS Product',
       flagship: true,
     },

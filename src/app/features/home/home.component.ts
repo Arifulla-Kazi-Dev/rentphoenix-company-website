@@ -5,7 +5,7 @@ import {
   LucideAngularModule,
   ArrowRight, Code2, Globe, Smartphone, Zap, BarChart3, Landmark,
   Building2, Briefcase, TrendingUp, Home as HouseIcon,
-  CheckCircle2, ChevronRight
+  CheckCircle2, ChevronRight, Play, Apple
 } from 'lucide-angular';
 import { SeoService } from '../../core/services/seo.service';
 
@@ -24,6 +24,12 @@ export class HomeComponent implements OnInit, AfterViewInit {
   readonly ArrowRight = ArrowRight;
   readonly CheckCircle2 = CheckCircle2;
   readonly ChevronRight = ChevronRight;
+  readonly Globe = Globe;
+  readonly Play = Play;
+  readonly Apple = Apple;
+
+  readonly webAppUrl = 'https://www.rentphoenixos.in/listing';
+  readonly playStoreUrl = 'https://play.google.com/store/apps/details?id=in.rentphoenixos.www.twa&pcampaignid=web_share';
 
   readonly services = [
     { icon: Code2,      title: 'Custom Software Development', desc: 'Purpose-built systems engineered to your exact requirements — not adapted from templates.' },

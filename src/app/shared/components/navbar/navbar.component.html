@@ -181,7 +181,7 @@
                   </li>
                 }
               </ul>
-              <a routerLink="/government" class="panel-cta" (click)="closeAll()">
+              <a routerLink="/government-solutions" class="panel-cta" (click)="closeAll()">
                 Government Solutions
                 <lucide-icon [img]="ArrowIcon" [size]="14" [strokeWidth]="2" />
               </a>
@@ -312,7 +312,7 @@
       </button>
       @if (mobileExpanded() === 'solutions') {
         <div class="mobile-submenu">
-          <a routerLink="/government" class="mobile-sub-link" (click)="closeAll()">
+          <a routerLink="/government-solutions" class="mobile-sub-link" (click)="closeAll()">
             <span>Government Technology</span>
             <span class="body-xs">Secure public sector software</span>
           </a>

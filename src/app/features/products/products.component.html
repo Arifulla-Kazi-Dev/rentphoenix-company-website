@@ -1,21 +1,51 @@
-<!-- PRODUCTS PAGE -->
+<!-- PRODUCTS PAGE — RentPhoenix OS -->
 
 <section class="page-hero">
   <div class="page-hero__grid"></div>
-  <div class="container">
+  <div class="container page-hero__inner">
     <div class="page-hero__content anim-fade-up">
-      <div class="section-label"><span>Product</span></div>
-      <h1>RentPhoenix OS</h1>
-      <p class="body-lg" style="max-width: 540px; margin-top: 16px">
-        A rental management platform built to replace scattered records,
-        WhatsApp follow-ups, and paper agreements with a single coordinated system.
+      <div class="section-label"><span>Flagship Product · Live in Production</span></div>
+      <h1>Stop Managing Rent<br>on <span class="highlight-accent">WhatsApp.</span></h1>
+      <p class="body-lg" style="max-width: 480px; margin-top: 16px">
+        RentPhoenix OS replaces scattered spreadsheets, WhatsApp follow-ups, and paper
+        agreements with one coordinated platform your landlords and tenants both use.
       </p>
       <div style="display:flex;gap:10px;margin-top:24px;flex-wrap:wrap">
-        <a routerLink="/contact" class="btn btn-primary btn-lg">
-          Request Demo
-          <lucide-icon [img]="ArrowRight" [size]="16" [strokeWidth]="2" />
+        <a [href]="appUrl" target="_blank" rel="noopener" class="btn btn-primary btn-lg">
+          Try RentPhoenix OS
+          <lucide-icon [img]="ExternalLink" [size]="15" [strokeWidth]="2" />
         </a>
-        <a routerLink="/contact" class="btn btn-secondary btn-lg">Get In Touch</a>
+        <a routerLink="/contact" class="btn btn-secondary btn-lg">Talk to Us</a>
+      </div>
+      <div style="display:flex;gap:8px;margin-top:28px;flex-wrap:wrap">
+        <span class="tag-purple">Live in Production</span>
+        <span class="tag">Free for Tenants</span>
+        <span class="tag">DPIIT Recognized</span>
+      </div>
+    </div>
+
+    <div class="page-hero__visual anim-fade-up" style="animation-delay:0.12s">
+      <div class="hero-mock">
+        <div class="hero-mock__bar">
+          <div class="hero-mock__dots">
+            <span></span><span></span><span></span>
+          </div>
+          <div class="hero-mock__url mono">rentphoenixos.in/dashboard</div>
+        </div>
+        <div class="hero-mock__body">
+          <div class="hero-mock__chip hero-mock__chip--1">
+            <div class="status-dot"></div>
+            <span class="body-xs">Rent Received — ₹18,000</span>
+          </div>
+          <div class="hero-mock__chip hero-mock__chip--2">
+            <div class="status-dot"></div>
+            <span class="body-xs">WhatsApp Reminder Sent</span>
+          </div>
+          <div class="hero-mock__chip hero-mock__chip--3">
+            <div class="status-dot"></div>
+            <span class="body-xs">Agreement — Active</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -24,24 +54,32 @@
 <!-- THE PROBLEM -->
 <section class="section">
   <div class="container">
-    <div class="problem-grid">
-      <div class="reveal-left">
-        <div class="section-label"><span>The Problem</span></div>
-        <h2>How rental coordination actually happens — and why it breaks.</h2>
-        <p class="body-md" style="margin-top: 16px">
-          Most landlords and property managers handle rental operations across
-          five or six disconnected places. The result is missed payments,
-          disputed records, and hours spent on coordination that should be automatic.
-        </p>
-      </div>
-      <div class="problem-list reveal-right">
-        @for (point of problemPoints; track point) {
-          <div class="problem-point">
-            <div class="problem-point__dot"></div>
-            <span class="body-sm">{{ point }}</span>
-          </div>
-        }
-      </div>
+    <div class="section-intro reveal">
+      <div class="section-label"><span>The Problem</span></div>
+      <h2>Managing rent in India<br>is still broken.</h2>
+      <p class="body-lg section-intro__sub">
+        Most landlords run on WhatsApp groups, Excel sheets, and memory. The system
+        isn't built for them — so most of them end up with no system at all.
+      </p>
+    </div>
+
+    <div class="problem-cards">
+      @for (p of problems; track p.title; let i = $index) {
+        <div class="problem-card reveal" [style.animation-delay]="(i * 0.07) + 's'">
+          <div class="problem-card__icon">{{ p.icon }}</div>
+          <h3 class="problem-card__title">{{ p.title }}</h3>
+          <p class="problem-card__desc body-sm">{{ p.desc }}</p>
+        </div>
+      }
+    </div>
+
+    <div class="solution-banner reveal">
+      <div class="section-label"><span>The Fix</span></div>
+      <h3>One platform. Every answer.</h3>
+      <p class="body-md" style="margin-top:8px;max-width:520px">
+        A shared dashboard for landlords and tenants — track rent, store documents,
+        manage maintenance, and stay in sync. Built for how Indian property actually works.
+      </p>
     </div>
   </div>
 </section>
@@ -50,13 +88,18 @@
 <section class="section" style="border-top: 1px solid var(--rp-border); background: var(--rp-bg-secondary)">
   <div class="container">
     <div class="section-label reveal"><span>What It Includes</span></div>
-    <h2 class="reveal" style="margin-bottom: 40px; max-width: 400px">One platform, all coordination in one place.</h2>
+    <h2 class="reveal" style="margin-bottom: 40px; max-width: 460px">One platform, every piece of rental coordination.</h2>
 
     <div class="modules-grid">
       @for (mod of modules; track mod.title; let i = $index) {
-        <div class="module-card reveal" [style.animation-delay]="(i * 0.07) + 's'">
-          <div class="module-card__icon">
-            <lucide-icon [img]="mod.icon" [size]="18" [strokeWidth]="1.75" />
+        <div class="module-card reveal" [style.animation-delay]="(i * 0.06) + 's'">
+          <div class="module-card__head">
+            <div class="module-card__icon">
+              <lucide-icon [img]="mod.icon" [size]="18" [strokeWidth]="1.75" />
+            </div>
+            @if (mod.badge) {
+              <span class="tag-purple module-card__badge">{{ mod.badge }}</span>
+            }
           </div>
           <h3 class="module-card__title">{{ mod.title }}</h3>
           <p class="module-card__desc body-sm">{{ mod.desc }}</p>
@@ -66,24 +109,132 @@
   </div>
 </section>
 
-<!-- STATUS -->
+<!-- HOW IT WORKS -->
 <section class="section" style="border-top: 1px solid var(--rp-border)">
+  <div class="container">
+    <div class="section-intro reveal">
+      <div class="section-label"><span>How It Works</span></div>
+      <h2>Three things that<br>change everything.</h2>
+      <p class="body-lg section-intro__sub">
+        Built around how Indian landlords and tenants actually manage property.
+      </p>
+    </div>
+
+    <div class="how-rows">
+      @for (step of howItWorks; track step.num; let i = $index) {
+        <div class="how-row reveal" [class.how-row--reverse]="i % 2 === 1">
+          <div class="how-row__text">
+            <div class="how-row__num">{{ step.num }}</div>
+            <h3>{{ step.title }}</h3>
+            <p class="body-md" style="margin:12px 0 20px">{{ step.desc }}</p>
+            <ul class="product-features">
+              @for (b of step.bullets; track b) {
+                <li class="product-feature">
+                  <lucide-icon [img]="CheckCircle2" [size]="15" [strokeWidth]="2" class="product-feature__check" />
+                  <span class="body-sm">{{ b }}</span>
+                </li>
+              }
+            </ul>
+          </div>
+          <div class="how-row__visual">
+            <div class="how-mock">
+              @for (chip of step.chips; track chip) {
+                <div class="how-mock__chip">
+                  <div class="status-dot"></div>
+                  <span class="body-sm">{{ chip }}</span>
+                </div>
+              }
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- PLATFORM -->
+<section class="section" style="border-top: 1px solid var(--rp-border); background: var(--rp-bg-secondary)">
+  <div class="container">
+    <div class="section-intro reveal">
+      <div class="section-label"><span>Everywhere You Work</span></div>
+      <h2>One platform,<br>every device.</h2>
+    </div>
+
+    <div class="platform-grid">
+      @for (p of platforms; track p.title; let i = $index) {
+        <div class="platform-card reveal" [style.animation-delay]="(i * 0.08) + 's'">
+          <div class="platform-card__icon">
+            <lucide-icon [img]="p.icon" [size]="22" [strokeWidth]="1.75" />
+          </div>
+          <h3 class="platform-card__title">{{ p.title }}</h3>
+          <p class="platform-card__desc body-sm">{{ p.desc }}</p>
+          @if (p.store) {
+            @if (p.store.href) {
+              <a [href]="p.store.href" target="_blank" rel="noopener" class="store-badge">
+                <lucide-icon [img]="p.store.icon" [size]="20" [strokeWidth]="1.75" class="store-badge__icon" />
+                <span class="store-badge__text">
+                  <span class="store-badge__line1">{{ p.store.line1 }}</span>
+                  <span class="store-badge__line2">{{ p.store.line2 }}</span>
+                </span>
+              </a>
+            } @else {
+              <span class="store-badge store-badge--disabled" aria-disabled="true">
+                <lucide-icon [img]="p.store.icon" [size]="20" [strokeWidth]="1.75" class="store-badge__icon" />
+                <span class="store-badge__text">
+                  <span class="store-badge__line1">{{ p.store.line1 }}</span>
+                  <span class="store-badge__line2">{{ p.store.line2 }}</span>
+                </span>
+              </span>
+            }
+          }
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- TRUST -->
+<section class="section" style="border-top: 1px solid var(--rp-border)">
+  <div class="container">
+    <div class="section-intro reveal">
+      <div class="section-label"><span>Built for Trust</span></div>
+      <h2>Secure, private,<br>and reliable by default.</h2>
+    </div>
+
+    <div class="trust-grid">
+      @for (t of trustPoints; track t.title; let i = $index) {
+        <div class="trust-item reveal" [style.animation-delay]="(i * 0.06) + 's'">
+          <div class="trust-item__icon">
+            <lucide-icon [img]="t.icon" [size]="18" [strokeWidth]="1.75" />
+          </div>
+          <div>
+            <h3 class="trust-item__title">{{ t.title }}</h3>
+            <p class="trust-item__desc body-sm">{{ t.desc }}</p>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- STATUS -->
+<section class="section" style="border-top: 1px solid var(--rp-border); background: var(--rp-bg-secondary)">
   <div class="container">
     <div class="status-grid reveal">
       <div>
         <div class="section-label"><span>Product Status</span></div>
-        <h2>Under active development.</h2>
+        <h2>Live, and built<br>on real usage.</h2>
         <p class="body-md" style="margin-top:16px;max-width:480px">
-          RentPhoenix OS is in active development. We are building the core
-          platform with a focus on rental tracking, digital documents, and
-          communication coordination. If you're interested in early access
-          or have a property management problem you'd like to solve, reach out.
+          RentPhoenix OS is live in production today, with automated WhatsApp rent
+          reminders already running for real landlords and tenants. We're actively
+          expanding the platform — if you want to see it on your own portfolio, reach out.
         </p>
         <div style="display:flex;gap:10px;margin-top:28px;flex-wrap:wrap">
-          <a routerLink="/contact" class="btn btn-primary">
-            Request Early Access
-            <lucide-icon [img]="ArrowRight" [size]="15" [strokeWidth]="2" />
+          <a [href]="appUrl" target="_blank" rel="noopener" class="btn btn-primary">
+            Try RentPhoenix OS
+            <lucide-icon [img]="ExternalLink" [size]="14" [strokeWidth]="2" />
           </a>
+          <a routerLink="/contact" class="btn btn-secondary">Talk to Us</a>
         </div>
       </div>
       <div class="status-card">
@@ -93,24 +244,50 @@
         </div>
         <div class="status-card__row">
           <span class="status-card__label body-xs">Stack</span>
-          <span class="status-card__val">Angular · Firebase · Firestore</span>
+          <span class="status-card__val">Angular · Flutter · Firebase</span>
         </div>
         <div class="status-card__row">
           <span class="status-card__label body-xs">Type</span>
-          <span class="status-card__val">SaaS · Web + Mobile</span>
+          <span class="status-card__val">Web App · Android App</span>
         </div>
         <div class="status-card__row">
           <span class="status-card__label body-xs">Status</span>
           <div style="display:flex;align-items:center;gap:8px">
-            <div style="width:7px;height:7px;border-radius:50%;background:var(--rp-blue);animation:pulse 2s ease-in-out infinite"></div>
-            <span class="status-card__val">In Development</span>
+            <div class="status-dot status-dot--live"></div>
+            <span class="status-card__val">Live — In Production</span>
           </div>
         </div>
         <div class="status-card__row">
           <span class="status-card__label body-xs">Target</span>
           <span class="status-card__val">Landlords · Property Managers</span>
         </div>
+        <div class="status-card__row">
+          <span class="status-card__label body-xs">Try It</span>
+          <a [href]="appUrl" target="_blank" rel="noopener" class="status-card__val status-card__link">
+            rentphoenixos.in
+            <lucide-icon [img]="ExternalLink" [size]="12" [strokeWidth]="2" />
+          </a>
+        </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING CTA -->
+<section class="cta-section section" style="border-top: 1px solid var(--rp-border)">
+  <div class="container cta-section__inner reveal">
+    <div class="section-label"><span>See It In Action</span></div>
+    <h2>Ready to try the<br>platform yourself?</h2>
+    <p class="body-lg" style="margin:16px 0 32px;max-width:480px">
+      Explore RentPhoenix OS directly, or talk to us about bringing it to your
+      properties.
+    </p>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <a [href]="appUrl" target="_blank" rel="noopener" class="btn btn-primary btn-lg">
+        Try RentPhoenix OS
+        <lucide-icon [img]="ExternalLink" [size]="16" [strokeWidth]="2" />
+      </a>
+      <a routerLink="/contact" class="btn btn-secondary btn-lg">Talk to Us</a>
     </div>
   </div>
 </section>

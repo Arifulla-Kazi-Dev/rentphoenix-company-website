@@ -117,7 +117,7 @@
         of spreadsheets, WhatsApp threads, and paper records.
       </p>
       <ul class="product-features">
-        @for (feat of ['Tenant onboarding & agreement management', 'Rent tracking & payment records', 'Property portfolio coordination', 'Maintenance request workflows', 'Digital documentation system']; track feat) {
+        @for (feat of ['Real-time rent tracking, synced instantly', 'Automated WhatsApp rent reminders', 'OCR-based digital agreement scanner', 'Tenant & property management dashboard', 'Secure, offline-ready document locker']; track feat) {
           <li class="product-feature">
             <lucide-icon [img]="CheckCircle2" [size]="15" [strokeWidth]="2" class="product-feature__check" />
             <span class="body-sm">{{ feat }}</span>
@@ -128,6 +128,30 @@
         Explore RentPhoenix OS
         <lucide-icon [img]="ArrowRight" [size]="14" [strokeWidth]="2" />
       </a>
+
+      <div class="product-platforms">
+        <a [href]="webAppUrl" target="_blank" rel="noopener" class="store-badge">
+          <lucide-icon [img]="Globe" [size]="18" [strokeWidth]="1.75" class="store-badge__icon" />
+          <span class="store-badge__text">
+            <span class="store-badge__line1">Open The</span>
+            <span class="store-badge__line2">Web App</span>
+          </span>
+        </a>
+        <a [href]="playStoreUrl" target="_blank" rel="noopener" class="store-badge">
+          <lucide-icon [img]="Play" [size]="18" [strokeWidth]="1.75" class="store-badge__icon" />
+          <span class="store-badge__text">
+            <span class="store-badge__line1">Get It On</span>
+            <span class="store-badge__line2">Google Play</span>
+          </span>
+        </a>
+        <span class="store-badge store-badge--disabled" aria-disabled="true">
+          <lucide-icon [img]="Apple" [size]="18" [strokeWidth]="1.75" class="store-badge__icon" />
+          <span class="store-badge__text">
+            <span class="store-badge__line1">Coming Soon</span>
+            <span class="store-badge__line2">iOS — Building</span>
+          </span>
+        </span>
+      </div>
     </div>
 
     <div class="product-section__visual reveal" style="animation-delay:0.1s">
@@ -147,11 +171,11 @@
           </div>
           <div class="product-card__meta-row">
             <dt>Stack</dt>
-            <dd>Angular · Firebase · Node.js</dd>
+            <dd>Angular · Flutter · Firebase</dd>
           </div>
           <div class="product-card__meta-row">
             <dt>Status</dt>
-            <dd><span class="status-dot"></span>In Active Development</dd>
+            <dd><span class="status-dot"></span>Live — In Production</dd>
           </div>
           <div class="product-card__meta-row">
             <dt>Model</dt>

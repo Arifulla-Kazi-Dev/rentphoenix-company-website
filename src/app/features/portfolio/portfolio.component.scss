@@ -2,10 +2,10 @@
   position: relative; padding: 140px 0 72px; border-bottom: 1px solid var(--rp-border); overflow: hidden;
   &__grid {
     position: absolute; inset: 0;
-    background-image: linear-gradient(var(--rp-border) 1px, transparent 1px), linear-gradient(90deg, var(--rp-border) 1px, transparent 1px);
-    background-size: 56px 56px;
-    mask-image: radial-gradient(ellipse 60% 70% at 50% 0%, black 10%, transparent 70%);
-    opacity: 0.5;
+    background:
+      radial-gradient(600px circle at 50% 10%, var(--rp-purple-muted), transparent 65%),
+      radial-gradient(420px circle at 85% 55%, color-mix(in srgb, var(--rp-warning) 8%, transparent), transparent 65%);
+    pointer-events: none;
   }
   .container { position: relative; }
 }
@@ -92,8 +92,6 @@
   }
 
   &__desc { flex: 1; color: var(--rp-text-3); line-height: 1.6; font-size: 0.8125rem; }
-
-  &__tags { display: flex; gap: 6px; flex-wrap: wrap; }
 }
 
 // Portfolio link

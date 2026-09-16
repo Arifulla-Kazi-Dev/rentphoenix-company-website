@@ -13,12 +13,9 @@
   &__grid {
     position: absolute;
     inset: 0;
-    background-image:
-      linear-gradient(var(--rp-border) 1px, transparent 1px),
-      linear-gradient(90deg, var(--rp-border) 1px, transparent 1px);
-    background-size: 52px 52px;
-    mask-image: radial-gradient(ellipse 80% 100% at 50% 0%, black 50%, transparent 100%);
-    -webkit-mask-image: radial-gradient(ellipse 80% 100% at 50% 0%, black 50%, transparent 100%);
+    background:
+      radial-gradient(600px circle at 75% 20%, var(--rp-purple-muted), transparent 65%),
+      radial-gradient(440px circle at 15% 70%, color-mix(in srgb, var(--rp-warning) 8%, transparent), transparent 65%);
     pointer-events: none;
   }
 

@@ -34,18 +34,13 @@
   <div class="container">
     <div class="projects-grid">
       @for (project of filteredProjects; track project.title; let i = $index) {
-        <div class="project-card reveal" [class.project-card--flagship]="project.flagship" [style.animation-delay]="(i * 0.06) + 's'">
+        <div class="project-card anim-fade-up" [class.project-card--flagship]="project.flagship" [style.animation-delay]="(i * 0.06) + 's'">
           @if (project.flagship) {
             <div class="project-card__badge">Flagship Product</div>
           }
           <div class="project-card__category eyebrow">{{ project.category }}</div>
           <h3 class="project-card__title">{{ project.title }}</h3>
           <p class="project-card__desc body-sm">{{ project.desc }}</p>
-          <div class="project-card__tags">
-            @for (tag of project.tags; track tag) {
-              <span class="tag">{{ tag }}</span>
-            }
-          </div>
         </div>
       }
     </div>
@@ -57,8 +52,8 @@
   <div class="container">
     <div class="portfolio-link-row reveal">
       <div>
-        <h3>See the full portfolio on Vercel</h3>
-        <p class="body-sm" style="color:var(--rp-text-3);margin-top:6px">The personal portfolio shows all projects with descriptions, screenshots, and tech details.</p>
+        <h3>See the full portfolio</h3>
+        <p class="body-sm" style="color:var(--rp-text-3);margin-top:6px">Arifulla Kazi's personal project portfolio — individual work outside RentPhoenix Technologies, whose own portfolio is this website.</p>
       </div>
       <a
         href="https://arifullakaziportfolio-git-main-arifulla-kazis-projects.vercel.app/"

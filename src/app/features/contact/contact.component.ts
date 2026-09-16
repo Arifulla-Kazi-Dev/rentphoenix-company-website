@@ -54,8 +54,8 @@ export class ContactComponent implements OnInit, AfterViewInit {
     {
       icon: Linkedin,
       label: 'LinkedIn',
-      value: 'arifulla-kazi-b73743243',
-      href: 'https://www.linkedin.com/in/arifulla-kazi-b73743243'
+      value: 'rent-phoenix',
+      href: 'https://www.linkedin.com/company/rent-phoenix/'
     },
   ];
 
