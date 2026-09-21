@@ -7,12 +7,13 @@ import {
   WifiOff, Globe, Smartphone, Play, Apple
 } from 'lucide-angular';
 import { SeoService } from '../../core/services/seo.service';
+import { ProductSwitcherComponent } from '../../shared/components/product-switcher/product-switcher.component';
 
 @Component({
   selector: 'app-products',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule, RouterLink, LucideAngularModule],
+  imports: [CommonModule, RouterLink, LucideAngularModule, ProductSwitcherComponent],
   templateUrl: './products.component.html',
   styleUrl: './products.component.scss'
 })

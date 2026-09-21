@@ -3,8 +3,8 @@
   &__grid {
     position: absolute; inset: 0;
     background:
-      radial-gradient(560px circle at 18% 40%, var(--rp-purple-muted), transparent 65%),
-      radial-gradient(480px circle at 82% 60%, color-mix(in srgb, var(--rp-warning) 10%, transparent), transparent 65%);
+      radial-gradient(560px circle at 18% 40%, rgba(124, 58, 237, 0.35), transparent 65%),
+      radial-gradient(480px circle at 82% 60%, rgba(99, 102, 241, 0.28), transparent 65%);
     pointer-events: none;
   }
   .container { position: relative; }
@@ -20,14 +20,41 @@
     display: flex; justify-content: center; position: relative; z-index: 1;
     @media (max-width: 900px) { display: none; }
   }
-}
 
-// Hero headline accent — one deliberate nod to the product's own saffron brand tone
-.highlight-accent {
-  background: linear-gradient(90deg, var(--rp-purple), var(--rp-warning));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  // CO-Founder's own "ink panel" identity — deliberately dark regardless of site theme
+  &--dark {
+    background: linear-gradient(150deg, #2a1d57 0%, #161427 55%, #0c0b16 100%);
+    border-bottom-color: rgba(167, 139, 250, 0.18);
+
+    h1, h2, h3 { color: #f3f0ff; }
+    p, .body-lg, .body-md { color: rgba(237, 233, 254, 0.72); }
+
+    .section-label span {
+      color: #c4b5fd;
+      background: rgba(124, 58, 237, 0.22);
+      border-color: rgba(167, 139, 250, 0.35);
+    }
+
+    .tag {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(167, 139, 250, 0.22);
+      color: rgba(237, 233, 254, 0.85);
+    }
+
+    .tag-purple {
+      background: rgba(124, 58, 237, 0.28);
+      border-color: rgba(167, 139, 250, 0.4);
+      color: #e9e2ff;
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(167, 139, 250, 0.28);
+      color: #f3f0ff;
+
+      &:hover { background: rgba(255, 255, 255, 0.1); }
+    }
+  }
 }
 
 // Hero mock — abstract "browser chrome" visual, no fake screenshots
@@ -35,7 +62,7 @@
   background: var(--rp-surface);
   border: 1px solid var(--rp-border);
   border-radius: var(--rp-r-xl);
-  box-shadow: var(--rp-shadow-lg);
+  box-shadow: 0 24px 64px rgba(12, 11, 22, 0.45);
   width: 100%;
   max-width: 400px;
   overflow: hidden;
@@ -69,7 +96,7 @@
     display: flex; flex-direction: column; gap: 14px;
     background:
       radial-gradient(circle at 20% 20%, var(--rp-purple-muted), transparent 55%),
-      radial-gradient(circle at 80% 70%, var(--rp-sky-muted), transparent 50%);
+      radial-gradient(circle at 80% 70%, rgba(99, 102, 241, 0.08), transparent 50%);
   }
 
   &__chip {
@@ -94,7 +121,7 @@
   &--live { animation: pulse 2s ease-in-out infinite; }
 }
 
-// Section intro (shared pattern with home page, re-declared here — view encapsulation)
+// Section intro
 .section-intro {
   max-width: 560px;
   margin-bottom: 48px;
@@ -159,8 +186,6 @@
     flex-shrink: 0;
   }
 
-  &__badge { font-size: 0.625rem; padding: 3px 9px; flex-shrink: 0; }
-
   &__title { font-size: 0.9rem; font-weight: 700; color: var(--rp-text-1); }
   &__desc { color: var(--rp-text-3); line-height: 1.6; font-size: 0.8125rem; }
 }
@@ -205,68 +230,6 @@
     border: 1px solid var(--rp-border);
     border-radius: var(--rp-r-md);
     padding: 12px 16px;
-  }
-}
-
-// Platform
-.platform-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
-  @media (max-width: 860px) { grid-template-columns: 1fr; }
-}
-
-.platform-card {
-  background: var(--rp-surface);
-  border: 1px solid var(--rp-border);
-  border-radius: var(--rp-r-xl);
-  padding: 28px 24px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  transition: border-color var(--rp-t-base), box-shadow var(--rp-t-base), transform var(--rp-t-base);
-
-  &:hover { border-color: var(--rp-purple-border); box-shadow: var(--rp-shadow-sm); transform: translateY(-2px); }
-
-  &__icon {
-    width: 42px; height: 42px;
-    display: flex; align-items: center; justify-content: center;
-    background: var(--rp-purple-muted);
-    border: 1px solid var(--rp-purple-border);
-    border-radius: var(--rp-r-md);
-    color: var(--rp-purple);
-    margin-bottom: 16px;
-  }
-
-  &__title { font-size: 1rem; font-weight: 700; letter-spacing: -0.015em; margin-bottom: 8px; }
-  &__desc { color: var(--rp-text-2); line-height: 1.6; margin-bottom: 20px; }
-}
-
-// Store badges — app-store-style buttons
-.store-badge {
-  display: inline-flex; align-items: center; gap: 10px;
-  padding: 9px 16px;
-  border-radius: var(--rp-r-md);
-  border: 1px solid transparent;
-  background: var(--rp-text-1);
-  color: var(--rp-bg);
-  text-decoration: none;
-  margin-top: auto;
-  transition: transform var(--rp-t-fast), box-shadow var(--rp-t-fast);
-
-  &:hover { transform: translateY(-1px); box-shadow: var(--rp-shadow-md); }
-
-  &__icon { flex-shrink: 0; }
-
-  &__text { display: flex; flex-direction: column; line-height: 1.3; }
-  &__line1 { font-size: 0.5625rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.7; }
-  &__line2 { font-size: 0.8125rem; font-weight: 700; }
-
-  &--disabled {
-    background: var(--rp-bg-secondary);
-    color: var(--rp-text-3);
-    border-color: var(--rp-border-strong);
-    cursor: not-allowed;
-
-    &:hover { transform: none; box-shadow: none; }
   }
 }
 
@@ -317,7 +280,7 @@
   &:hover { color: var(--rp-purple-dark); }
 }
 
-// CTA (page-scoped, matches home page's cta-section pattern)
+// CTA
 .cta-section {
   background: var(--rp-bg-secondary);
   &__inner {

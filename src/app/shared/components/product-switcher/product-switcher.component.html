@@ -1,0 +1,18 @@
+<div class="switcher-bar">
+  <div class="container switcher-bar__inner">
+    <div class="switcher">
+      <lucide-icon [img]="SwitchIcon" [size]="13" [strokeWidth]="2" class="switcher__icon" />
+      <a
+        routerLink="/products"
+        routerLinkActive="switcher__tab--active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="switcher__tab"
+      >RentPhoenix OS</a>
+      <a
+        routerLink="/products/co-founder"
+        routerLinkActive="switcher__tab--active"
+        class="switcher__tab"
+      >CO-Founder</a>
+    </div>
+  </div>
+</div>

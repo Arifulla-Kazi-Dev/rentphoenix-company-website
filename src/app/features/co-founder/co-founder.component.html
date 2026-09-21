@@ -1,28 +1,29 @@
-<!-- PRODUCTS PAGE — RentPhoenix OS -->
+<!-- CO-FOUNDER PAGE -->
 
 <app-product-switcher />
 
-<section class="page-hero">
+<section class="page-hero page-hero--dark">
   <div class="page-hero__grid"></div>
   <div class="container page-hero__inner">
     <div class="page-hero__content anim-fade-up">
-      <div class="section-label"><span>Flagship Product · Live in Production</span></div>
-      <h1>Stop Managing Rent<br>on <span class="highlight-accent">WhatsApp.</span></h1>
+      <div class="section-label"><span>Flagship Product · Live</span></div>
+      <h1>Know Your Runway.<br>Every Single Day.</h1>
       <p class="body-lg" style="max-width: 480px; margin-top: 16px">
-        RentPhoenix OS replaces scattered spreadsheets, WhatsApp follow-ups, and paper
-        agreements with one coordinated platform your landlords and tenants both use.
+        CO-Founder brings funding, expenses, salaries, compliance, and team
+        access into one ledger — so you always know where the company's
+        money stands.
       </p>
       <div style="display:flex;gap:10px;margin-top:24px;flex-wrap:wrap">
         <a [href]="appUrl" target="_blank" rel="noopener" class="btn btn-primary btn-lg">
-          Try RentPhoenix OS
+          Try CO-Founder
           <lucide-icon [img]="ExternalLink" [size]="15" [strokeWidth]="2" />
         </a>
         <a routerLink="/contact" class="btn btn-secondary btn-lg">Talk to Us</a>
       </div>
       <div style="display:flex;gap:8px;margin-top:28px;flex-wrap:wrap">
         <span class="tag-purple">Live in Production</span>
-        <span class="tag">Free for Tenants</span>
-        <span class="tag">DPIIT Recognized</span>
+        <span class="tag">Multi-Tenant · Role-Based Access</span>
+        <span class="tag">Built for Indian Startups</span>
       </div>
     </div>
 
@@ -32,20 +33,20 @@
           <div class="hero-mock__dots">
             <span></span><span></span><span></span>
           </div>
-          <div class="hero-mock__url mono">rentphoenixos.in/dashboard</div>
+          <div class="hero-mock__url mono">co-founder.app/dashboard</div>
         </div>
         <div class="hero-mock__body">
-          <div class="hero-mock__chip hero-mock__chip--1">
+          <div class="hero-mock__chip">
             <div class="status-dot"></div>
-            <span class="body-xs">Rent Received — ₹18,000</span>
+            <span class="body-xs">Runway — 8.4 months</span>
           </div>
           <div class="hero-mock__chip hero-mock__chip--2">
             <div class="status-dot"></div>
-            <span class="body-xs">WhatsApp Reminder Sent</span>
+            <span class="body-xs">Compliance — Up to date</span>
           </div>
           <div class="hero-mock__chip hero-mock__chip--3">
             <div class="status-dot"></div>
-            <span class="body-xs">Agreement — Active</span>
+            <span class="body-xs">3 team members active</span>
           </div>
         </div>
       </div>
@@ -58,10 +59,10 @@
   <div class="container">
     <div class="section-intro reveal">
       <div class="section-label"><span>The Problem</span></div>
-      <h2>Managing rent in India<br>is still broken.</h2>
+      <h2>Founders run finance<br>on memory and spreadsheets.</h2>
       <p class="body-lg section-intro__sub">
-        Most landlords run on WhatsApp groups, Excel sheets, and memory. The system
-        isn't built for them — so most of them end up with no system at all.
+        Funding, spend, salaries, and compliance deadlines scattered across
+        tools that were never built to talk to each other.
       </p>
     </div>
 
@@ -77,10 +78,10 @@
 
     <div class="solution-banner reveal">
       <div class="section-label"><span>The Fix</span></div>
-      <h3>One platform. Every answer.</h3>
+      <h3>One ledger. Every answer.</h3>
       <p class="body-md" style="margin-top:8px;max-width:520px">
-        A shared dashboard for landlords and tenants — track rent, store documents,
-        manage maintenance, and stay in sync. Built for how Indian property actually works.
+        Funding, expenses, salaries, compliance, and team access — in one
+        place, with runway calculated live instead of estimated by hand.
       </p>
     </div>
   </div>
@@ -90,18 +91,15 @@
 <section class="section" style="border-top: 1px solid var(--rp-border); background: var(--rp-bg-secondary)">
   <div class="container">
     <div class="section-label reveal"><span>What It Includes</span></div>
-    <h2 class="reveal" style="margin-bottom: 40px; max-width: 460px">One platform, every piece of rental coordination.</h2>
+    <h2 class="reveal" style="margin-bottom: 40px; max-width: 480px">Ten modules, one company finance OS.</h2>
 
     <div class="modules-grid">
       @for (mod of modules; track mod.title; let i = $index) {
-        <div class="module-card reveal" [style.animation-delay]="(i * 0.06) + 's'">
+        <div class="module-card reveal" [style.animation-delay]="(i * 0.05) + 's'">
           <div class="module-card__head">
             <div class="module-card__icon">
               <lucide-icon [img]="mod.icon" [size]="18" [strokeWidth]="1.75" />
             </div>
-            @if (mod.badge) {
-              <span class="tag-purple module-card__badge">{{ mod.badge }}</span>
-            }
           </div>
           <h3 class="module-card__title">{{ mod.title }}</h3>
           <p class="module-card__desc body-sm">{{ mod.desc }}</p>
@@ -116,9 +114,9 @@
   <div class="container">
     <div class="section-intro reveal">
       <div class="section-label"><span>How It Works</span></div>
-      <h2>Three things that<br>change everything.</h2>
+      <h2>From scattered records<br>to one clear ledger.</h2>
       <p class="body-lg section-intro__sub">
-        Built around how Indian landlords and tenants actually manage property.
+        Built around how founders actually run company finances day to day.
       </p>
     </div>
 
@@ -154,53 +152,12 @@
   </div>
 </section>
 
-<!-- PLATFORM -->
+<!-- TRUST -->
 <section class="section" style="border-top: 1px solid var(--rp-border); background: var(--rp-bg-secondary)">
   <div class="container">
     <div class="section-intro reveal">
-      <div class="section-label"><span>Everywhere You Work</span></div>
-      <h2>One platform,<br>every device.</h2>
-    </div>
-
-    <div class="platform-grid">
-      @for (p of platforms; track p.title; let i = $index) {
-        <div class="platform-card reveal" [style.animation-delay]="(i * 0.08) + 's'">
-          <div class="platform-card__icon">
-            <lucide-icon [img]="p.icon" [size]="22" [strokeWidth]="1.75" />
-          </div>
-          <h3 class="platform-card__title">{{ p.title }}</h3>
-          <p class="platform-card__desc body-sm">{{ p.desc }}</p>
-          @if (p.store) {
-            @if (p.store.href) {
-              <a [href]="p.store.href" target="_blank" rel="noopener" class="store-badge">
-                <lucide-icon [img]="p.store.icon" [size]="20" [strokeWidth]="1.75" class="store-badge__icon" />
-                <span class="store-badge__text">
-                  <span class="store-badge__line1">{{ p.store.line1 }}</span>
-                  <span class="store-badge__line2">{{ p.store.line2 }}</span>
-                </span>
-              </a>
-            } @else {
-              <span class="store-badge store-badge--disabled" aria-disabled="true">
-                <lucide-icon [img]="p.store.icon" [size]="20" [strokeWidth]="1.75" class="store-badge__icon" />
-                <span class="store-badge__text">
-                  <span class="store-badge__line1">{{ p.store.line1 }}</span>
-                  <span class="store-badge__line2">{{ p.store.line2 }}</span>
-                </span>
-              </span>
-            }
-          }
-        </div>
-      }
-    </div>
-  </div>
-</section>
-
-<!-- TRUST -->
-<section class="section" style="border-top: 1px solid var(--rp-border)">
-  <div class="container">
-    <div class="section-intro reveal">
       <div class="section-label"><span>Built for Trust</span></div>
-      <h2>Secure, private,<br>and reliable by default.</h2>
+      <h2>Access control that's<br>actually enforced.</h2>
     </div>
 
     <div class="trust-grid">
@@ -220,20 +177,19 @@
 </section>
 
 <!-- STATUS -->
-<section class="section" style="border-top: 1px solid var(--rp-border); background: var(--rp-bg-secondary)">
+<section class="section" style="border-top: 1px solid var(--rp-border)">
   <div class="container">
     <div class="status-grid reveal">
       <div>
         <div class="section-label"><span>Product Status</span></div>
-        <h2>Live, and built<br>on real usage.</h2>
+        <h2>Live, and running<br>real company finances.</h2>
         <p class="body-md" style="margin-top:16px;max-width:480px">
-          RentPhoenix OS is live in production today, with automated WhatsApp rent
-          reminders already running for real landlords and tenants. We're actively
-          expanding the platform — if you want to see it on your own portfolio, reach out.
+          CO-Founder is live in production today. We're actively expanding
+          it — if you want to see it on your own startup's finances, reach out.
         </p>
         <div style="display:flex;gap:10px;margin-top:28px;flex-wrap:wrap">
           <a [href]="appUrl" target="_blank" rel="noopener" class="btn btn-primary">
-            Try RentPhoenix OS
+            Try CO-Founder
             <lucide-icon [img]="ExternalLink" [size]="14" [strokeWidth]="2" />
           </a>
           <a routerLink="/contact" class="btn btn-secondary">Talk to Us</a>
@@ -242,15 +198,15 @@
       <div class="status-card">
         <div class="status-card__row">
           <span class="status-card__label body-xs">Product</span>
-          <span class="status-card__val">RentPhoenix OS</span>
+          <span class="status-card__val">CO-Founder</span>
         </div>
         <div class="status-card__row">
           <span class="status-card__label body-xs">Stack</span>
-          <span class="status-card__val">Angular · Flutter · Firebase</span>
+          <span class="status-card__val">Angular · Firebase · Tailwind</span>
         </div>
         <div class="status-card__row">
           <span class="status-card__label body-xs">Type</span>
-          <span class="status-card__val">Web App · Android App</span>
+          <span class="status-card__val">Multi-Tenant Web App</span>
         </div>
         <div class="status-card__row">
           <span class="status-card__label body-xs">Status</span>
@@ -261,12 +217,12 @@
         </div>
         <div class="status-card__row">
           <span class="status-card__label body-xs">Target</span>
-          <span class="status-card__val">Landlords · Property Managers</span>
+          <span class="status-card__val">Startup Founders & Their Teams</span>
         </div>
         <div class="status-card__row">
           <span class="status-card__label body-xs">Try It</span>
           <a [href]="appUrl" target="_blank" rel="noopener" class="status-card__val status-card__link">
-            rentphoenixos.in
+            View Live App
             <lucide-icon [img]="ExternalLink" [size]="12" [strokeWidth]="2" />
           </a>
         </div>
@@ -279,14 +235,14 @@
 <section class="cta-section section" style="border-top: 1px solid var(--rp-border)">
   <div class="container cta-section__inner reveal">
     <div class="section-label"><span>See It In Action</span></div>
-    <h2>Ready to try the<br>platform yourself?</h2>
+    <h2>Ready to run your<br>startup's finances clearly?</h2>
     <p class="body-lg" style="margin:16px 0 32px;max-width:480px">
-      Explore RentPhoenix OS directly, or talk to us about bringing it to your
-      properties.
+      Explore CO-Founder directly, or talk to us about bringing it to your
+      startup.
     </p>
     <div style="display:flex;gap:12px;flex-wrap:wrap">
       <a [href]="appUrl" target="_blank" rel="noopener" class="btn btn-primary btn-lg">
-        Try RentPhoenix OS
+        Try CO-Founder
         <lucide-icon [img]="ExternalLink" [size]="16" [strokeWidth]="2" />
       </a>
       <a routerLink="/contact" class="btn btn-secondary btn-lg">Talk to Us</a>

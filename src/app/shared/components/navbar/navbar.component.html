@@ -121,16 +121,18 @@
 
             <div class="panel-products__divider"></div>
 
-            <div class="panel-products__roadmap">
-              <div class="panel-label eyebrow">Product Roadmap</div>
-              <h4>More products in development.</h4>
+            <div class="panel-products__featured">
+              <div class="panel-label eyebrow">Flagship Product</div>
+              <div class="panel-products__icon">
+                <lucide-icon [img]="WalletIcon" [size]="22" [strokeWidth]="1.5" />
+              </div>
+              <h3>CO-Founder</h3>
               <p class="body-sm">
-                Our product portfolio is expanding. Current work focuses on
-                government technology and enterprise automation alongside
-                RentPhoenix OS.
+                A multi-tenant finance OS for startup founders — funding,
+                expenses, salaries, compliance, and runway in one ledger.
               </p>
-              <a routerLink="/contact" class="panel-cta panel-cta--muted" (click)="closeAll()">
-                Discuss Your Needs
+              <a routerLink="/products/co-founder" class="panel-cta" (click)="closeAll()">
+                Explore Product
                 <lucide-icon [img]="ArrowIcon" [size]="14" [strokeWidth]="2" />
               </a>
             </div>
@@ -281,6 +283,10 @@
           <a routerLink="/products" class="mobile-sub-link" (click)="closeAll()">
             <span>RentPhoenix OS</span>
             <span class="body-xs">Rental Management Platform</span>
+          </a>
+          <a routerLink="/products/co-founder" class="mobile-sub-link" (click)="closeAll()">
+            <span>CO-Founder</span>
+            <span class="body-xs">Founder Finance OS</span>
           </a>
         </div>
       }

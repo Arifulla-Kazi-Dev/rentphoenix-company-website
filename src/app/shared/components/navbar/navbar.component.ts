@@ -7,7 +7,7 @@ import {
   LucideAngularModule,
   Menu, X, Sun, Moon, ChevronDown, ArrowRight,
   Code2, Globe, Smartphone, Zap, BarChart3, Shield,
-  Package, Building2, Briefcase, Users
+  Package, Building2, Briefcase, Users, Wallet
 } from 'lucide-angular';
 import { ThemeService } from '../../../core/services/theme.service';
 
@@ -37,6 +37,7 @@ export class NavbarComponent {
   readonly ChevronIcon = ChevronDown;
   readonly ArrowIcon = ArrowRight;
   readonly PackageIcon = Package;
+  readonly WalletIcon = Wallet;
 
   // State
   isScrolled = signal(false);

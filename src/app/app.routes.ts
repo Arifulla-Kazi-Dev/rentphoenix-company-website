@@ -18,6 +18,10 @@ export const routes: Routes = [
     loadComponent: () => import('./features/products/products.component').then(m => m.ProductsComponent)
   },
   {
+    path: 'products/co-founder',
+    loadComponent: () => import('./features/co-founder/co-founder.component').then(m => m.CoFounderComponent)
+  },
+  {
     path: 'government-solutions',
     loadComponent: () => import('./features/government/government.component').then(m => m.GovernmentComponent)
   },

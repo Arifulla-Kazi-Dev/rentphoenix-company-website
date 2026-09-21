@@ -57,6 +57,12 @@ export class PortfolioComponent implements OnInit, AfterViewInit {
       category: 'SaaS Product',
       flagship: true,
     },
+    {
+      title: 'CO-Founder',
+      desc: 'A multi-tenant finance OS for startup founders — funding, expenses, salaries, compliance, and runway tracking with role-based team access.',
+      category: 'SaaS Product',
+      flagship: true,
+    },
   ];
 
   readonly categories = ['All', 'Web App', 'Platform', 'Dashboard', 'SaaS Product', 'Systems', 'UI Clone'];
