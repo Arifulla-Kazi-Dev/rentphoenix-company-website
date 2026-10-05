@@ -1,0 +1,87 @@
+<div class="bcard">
+  <div class="bcard__intro">
+    <div class="section-label"><span>Founder's Card</span></div>
+    <h2>Take our card.</h2>
+    <p class="body-md bcard__copy">
+      The same card our founder hands out in person. Flip it for the details,
+      or save it straight to your phone's contacts.
+    </p>
+  </div>
+
+  <div class="bcard__stage">
+    <div class="bcard__scene">
+      <div #tilt class="bcard__tilt">
+        <button
+          type="button"
+          class="bcard__flipper"
+          [class.is-flipped]="flipped()"
+          (click)="flip()"
+          [attr.aria-pressed]="flipped()"
+          [attr.aria-label]="flipped()
+            ? 'Business card, back side: Arifulla Kazi, Founder and Director. Press to show the front.'
+            : 'Business card, front side: RentPhoenix Technologies. Press to flip and see contact details.'"
+        >
+          <span class="bcard__face bcard__face--front">
+            <img
+              src="card/card-front.webp"
+              srcset="card/card-front-640.webp 640w, card/card-front.webp 1050w"
+              sizes="(min-width: 1024px) 520px, 90vw"
+              width="1050"
+              height="600"
+              alt=""
+              loading="lazy"
+              decoding="async"
+            />
+            <span class="bcard__glare" aria-hidden="true"></span>
+          </span>
+          <span class="bcard__face bcard__face--back">
+            <img
+              src="card/card-back.webp"
+              srcset="card/card-back-640.webp 640w, card/card-back.webp 1050w"
+              sizes="(min-width: 1024px) 520px, 90vw"
+              width="1050"
+              height="600"
+              alt=""
+              loading="lazy"
+              decoding="async"
+            />
+            <span class="bcard__glare" aria-hidden="true"></span>
+          </span>
+        </button>
+      </div>
+      <span class="bcard__shadow" aria-hidden="true"></span>
+    </div>
+
+    <p class="bcard__hint body-xs" aria-hidden="true">
+      <lucide-icon [img]="RefreshCw" [size]="13" [strokeWidth]="2" />
+      {{ flipped() ? 'Tap to see the front' : 'Tap the card to flip it' }}
+    </p>
+  </div>
+
+  <div class="bcard__contact">
+    <div class="bcard__actions">
+      <a class="btn btn-primary" href="card/arifulla-kazi.vcf" download="Arifulla-Kazi.vcf">
+        <lucide-icon [img]="UserPlus" [size]="16" [strokeWidth]="2" />
+        Save contact
+      </a>
+      <a class="btn btn-secondary" [href]="'tel:' + phone">
+        <lucide-icon [img]="Phone" [size]="16" [strokeWidth]="2" />
+        Call
+      </a>
+      <a class="btn btn-secondary" [href]="'mailto:' + email">
+        <lucide-icon [img]="Mail" [size]="16" [strokeWidth]="2" />
+        Email
+      </a>
+      <a class="btn btn-secondary" [href]="website" target="_blank" rel="noopener noreferrer">
+        <lucide-icon [img]="Globe" [size]="16" [strokeWidth]="2" />
+        Website
+      </a>
+    </div>
+
+    <dl class="bcard__details">
+      <div><dt>Founder</dt><dd>Arifulla Kazi</dd></div>
+      <div><dt>Phone</dt><dd><a [href]="'tel:' + phone">{{ phoneLabel }}</a></dd></div>
+      <div><dt>Email</dt><dd><a [href]="'mailto:' + email">{{ email }}</a></dd></div>
+    </dl>
+  </div>
+</div>

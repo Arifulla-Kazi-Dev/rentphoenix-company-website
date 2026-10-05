@@ -4,12 +4,13 @@ import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angula
 import { HttpClient } from '@angular/common/http';
 import { LucideAngularModule, Mail, Linkedin, ArrowRight, Send } from 'lucide-angular';
 import { SeoService } from '../../core/services/seo.service';
+import { BusinessCardComponent } from '../../shared/components/business-card/business-card.component';
 
 @Component({
   selector: 'app-contact',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule, ReactiveFormsModule, LucideAngularModule],
+  imports: [CommonModule, ReactiveFormsModule, LucideAngularModule, BusinessCardComponent],
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.scss'
 })
