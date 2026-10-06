@@ -1,0 +1,248 @@
+<div class="rpx" #root>
+<!-- ================= HERO ================= -->
+<header class="hero">
+  <div class="orbs" aria-hidden="true"><div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div></div>
+  <div class="wrap">
+    <div class="hero-in">
+      <div>
+        <div class="lens" role="group" aria-label="Show the page for"><span>I'm a</span><button type="button" data-lens="landlord" aria-pressed="true">Landlord</button><button type="button" data-lens="tenant" aria-pressed="false">Tenant</button></div>
+        <div class="chips" aria-label="Where it runs">
+          <span class="chip"><span class="dot"></span>Android</span>
+          <span class="chip"><span class="dot"></span>Web</span>
+          <span class="chip soon"><span class="dot"></span>iOS soon</span>
+          <span class="chip plan"><span class="dot"></span>Windows · Mac planned</span>
+        </div>
+        <h1 class="swap" data-lx="h1">One shared space for <span class="grad">landlord and tenant.</span></h1>
+        <p class="lead swap" data-lx="lead">Rent records, bills, repairs, documents, agreements and chat in one app. When one of you updates something, the other sees it on their phone straight away. No more screenshots lost in WhatsApp.</p>
+        <div class="ctas">
+          <a class="x-btn x-btn-p" target="_blank" rel="noopener" data-primary-cta>Get it on Google Play</a>
+          <button type="button" class="x-btn x-btn-g" data-goto="try">See how it works ↓</button>
+        </div>
+        <p class="hero-note swap" data-lx="note">Free for tenants · ₹599 per property per year for landlords · 30-day free trial</p>
+      </div>
+
+      <div class="pair" aria-label="Animated example of landlord and tenant staying in sync, sample data">
+        <div class="pcard">
+          <div class="pcard-h"><span class="who l">RK</span><div><b>Rakesh · Landlord</b><small>Flat 2B, Mapusa</small></div><span class="sync" data-hs="l">Synced</span></div>
+          <div class="feed" data-hf="l"></div>
+        </div>
+        <div class="wire" aria-hidden="true"><span class="pk" data-pk></span></div>
+        <div class="pcard">
+          <div class="pcard-h"><span class="who t">PS</span><div><b>Priya · Tenant</b><small>Flat 2B, Mapusa</small></div><span class="sync" data-hs="t">Synced</span></div>
+          <div class="feed" data-hf="t"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="facts swap" data-lx="facts">
+      <div class="fact"><b>Both of you see the same thing</b><span>One record per tenancy instead of two versions of the truth.</span></div>
+      <div class="fact"><b>Rent goes straight to you</b><span>Tenants pay your UPI ID or in cash. RentPhoenix never holds money.</span></div>
+      <div class="fact"><b>You stay in control</b><span>Nothing is marked paid or verified until you confirm it.</span></div>
+      <div class="fact"><b>Works on weak networks</b><span>Your data is saved on the phone and syncs when you're back online.</span></div>
+    </div>
+  </div>
+</header>
+
+<!-- ================= BEFORE / AFTER ================= -->
+<section class="sec" id="before" aria-labelledby="b-h" style="padding-top:72px">
+  <div class="wrap">
+    <div class="sec-head c">
+      <span class="x-eyebrow">Before vs after</span>
+      <h2 id="b-h">Tap a card to see the difference</h2>
+      <p>The things that go wrong with rentals today, and what they look like in one shared app.</p>
+    </div>
+    <div class="flips" data-flips></div>
+    <div class="flip-ctl"><button type="button" class="x-btn x-btn-g" data-flipall>Flip all cards</button></div>
+  </div>
+</section>
+
+<!-- ================= SIMULATOR ================= -->
+<section class="band" id="try" aria-labelledby="try-h">
+  <div class="orbs" aria-hidden="true"><div class="orb o2" style="opacity:.18"></div></div>
+  <div class="wrap" style="position:relative;z-index:1">
+    <div class="sec-head c">
+      <span class="x-eyebrow">Try it yourself</span>
+      <h2 id="try-h">Tap the glowing button. Watch the other phone update.</h2>
+      <p>Pick something a landlord and tenant deal with. You play both sides. These are sample screens from the real app flow.</p>
+    </div>
+
+    <div class="scn-tabs" role="tablist" aria-label="Choose a situation" data-tabs></div>
+    <div class="net"><button type="button" class="net-btn" data-net aria-pressed="true"><span class="sw"></span><span data-net-l>Priya's internet: On</span></button></div>
+
+    <div class="mswitch"><div class="seg" role="group" aria-label="Which phone to show">
+      <button type="button" data-ms="l" aria-pressed="true">Landlord<span class="badge" hidden data-badge="l"></span></button>
+      <button type="button" data-ms="t" aria-pressed="false">Tenant<span class="badge" hidden data-badge="t"></span></button>
+    </div></div>
+    <div class="mtoast"><span data-mtoast></span></div>
+
+    <div class="sim">
+      <div class="side show" data-side="l">
+        <div class="side-l"><span class="who l">RK</span>Landlord's phone</div>
+        <div class="phone" data-phone="l"><div class="scr"><div class="notch"></div><div class="sbar"><span>9:41</span><span>5G ▮▮▮</span></div>
+          <div class="abar"><span class="who l">RK</span><div><b>Rakesh</b><small>Landlord</small></div><span class="sync" style="margin-left:auto" data-sync="l">Synced</span></div>
+          <div class="body" data-screen="l"></div>
+          <div class="tbar"><span data-tb="home"><i>⌂</i>Home</span><span data-tb="money"><i>₹</i>Payments</span><span data-tb="issues"><i>🔧</i>Issues</span><span data-tb="chat"><i>💬</i>Chat</span></div>
+        </div></div>
+      </div>
+      <div class="chan" aria-hidden="true">
+        <div class="cloud" data-cloud><span class="ring">⇄</span><b>Synced</b>in real time</div>
+        <span class="packet" data-packet></span>
+      </div>
+      <div class="side" data-side="t">
+        <div class="side-l"><span class="who t">PS</span>Tenant's phone</div>
+        <div class="phone" data-phone="t"><div class="scr"><div class="notch"></div><div class="sbar"><span>9:41</span><span data-tsig>4G ▮▮▯</span></div>
+          <div class="abar"><span class="who t">PS</span><div><b>Priya</b><small>Tenant · Flat 2B</small></div><span class="sync" style="margin-left:auto" data-sync="t">Synced</span></div>
+          <div class="body" data-screen="t"></div>
+          <div class="tbar"><span data-tb="home"><i>⌂</i>Home</span><span data-tb="money"><i>₹</i>Payments</span><span data-tb="issues"><i>🔧</i>Issues</span><span data-tb="chat"><i>💬</i>Chat</span></div>
+        </div></div>
+      </div>
+    </div>
+
+    <div class="cap" aria-live="polite">
+      <div class="dots" data-dots></div>
+      <p data-cap></p>
+      <button type="button" class="replay" data-replay hidden>↺ Play again</button>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SETUP ================= -->
+<section class="sec" id="setup" aria-labelledby="s-h">
+  <div class="wrap setup">
+    <div>
+      <div class="sec-head" style="margin-bottom:24px">
+        <span class="x-eyebrow">Getting started</span>
+        <h2 id="s-h">Three steps and you're connected</h2>
+        <p>Try it: tap the button on the card to go through setup.</p>
+      </div>
+      <div class="ssteps" data-ssteps></div>
+    </div>
+    <div class="sprev" aria-live="polite">
+      <div class="sprog"><i data-sprog></i></div>
+      <div data-sprev style="display:grid;gap:12px"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= JOURNEY ================= -->
+<section class="sec" id="journey" aria-labelledby="j-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="x-eyebrow">Everything in one place</span>
+      <h2 id="j-h">From the first visit to the day they move out</h2>
+      <p>Pick a stage to see what's there for each of you. <b style="color:var(--violet)">L</b> is what the landlord does, <b style="color:var(--amber)">T</b> is what the tenant does.</p>
+    </div>
+    <div class="stages" role="tablist" aria-label="Stages of a tenancy" data-stages><span class="prog" data-prog></span></div>
+    <div class="panel" role="tabpanel" data-stagepanel></div>
+  </div>
+</section>
+
+<!-- ================= AGREEMENTS ================= -->
+<section class="sec" id="agreements" aria-labelledby="a-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="x-eyebrow">Rental agreements</span>
+      <h2 id="a-h">Three ways to get your agreement into the app</h2>
+      <p>Start from scratch, scan the paper one you already signed, or use a ready-made template. You check every field before the PDF is made.</p>
+    </div>
+    <div class="agr">
+      <div class="modes" role="tablist" aria-label="Agreement options" data-modes></div>
+      <div class="stagebox" data-agr>
+        <div class="doc" data-doc><span class="scan"></span><i class="h"></i><i></i><i class="s"></i><i></i><i class="m"></i><i></i><i class="s"></i><i></i><i></i><i class="m"></i><i class="s"></i><i></i><i></i><i class="s"></i></div>
+        <div class="ext" data-ext></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BILL SPLIT ================= -->
+<section class="sec" id="split" aria-labelledby="sp-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="x-eyebrow">Try it</span>
+      <h2 id="sp-h">Split a utility bill</h2>
+      <p>Decide who pays what, and see exactly what your tenant will see.</p>
+    </div>
+    <div class="split">
+      <div class="sbox">
+        <div><span class="lbl">Bill type</span><div class="btypes" role="group" aria-label="Bill type" data-btypes></div></div>
+        <div><label for="bamt">Total bill</label><div class="amt"><span>₹</span><input id="bamt" type="number" inputmode="numeric" min="0" step="50" value="2400"></div></div>
+        <div><span class="lbl">Who pays?</span><div class="smode" role="group" aria-label="Who pays">
+          <button type="button" data-sm="full" aria-pressed="false">Tenant pays all</button>
+          <button type="button" data-sm="split" aria-pressed="true">Split with landlord</button></div></div>
+        <div data-shareblk><label for="bshare">Tenant's share <b style="color:var(--violet)" data-bpct>60%</b></label><input id="bshare" type="range" min="0" max="100" step="5" value="60"></div>
+        <div><div class="sharebar"><i data-sbt style="background:var(--amber)"></i><i data-sbl style="background:var(--violet)"></i></div>
+          <div class="row" style="font-size:14px;margin-top:8px"><span><b style="color:var(--amber)">Tenant</b> <span data-btx></span></span><span><b style="color:var(--violet)">Landlord</b> <span data-blx></span></span></div></div>
+      </div>
+      <div class="spv"><div class="phone"><div class="scr"><div class="notch"></div><div class="sbar"><span>9:41</span><span>4G ▮▮▯</span></div>
+        <div class="abar"><span class="who t">PS</span><div><b>Priya</b><small>What your tenant sees</small></div></div>
+        <div class="body" data-spscreen></div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DASHBOARD ================= -->
+<section class="sec" aria-labelledby="d-h">
+  <div class="wrap dash">
+    <div>
+      <div class="sec-head" style="margin-bottom:24px">
+        <span class="x-eyebrow">For landlords</span>
+        <h2 id="d-h">All your properties on one screen</h2>
+        <p>See who has paid, what's still pending and which tenants need a follow-up, for every property.</p>
+      </div>
+      <div class="dash-points">
+        <div class="dp"><span class="ic">₹</span><div><b>Cash, partial and advance</b><span>Record payments the way they actually happen. Advance payments carry over to the next month.</span></div></div>
+        <div class="dp"><span class="ic">🧾</span><div><b>Receipts in one place</b><span>Every receipt a tenant sends waits for your approval, so nothing is counted twice.</span></div></div>
+        <div class="dp"><span class="ic">📶</span><div><b>Works offline</b><span>Open your numbers without signal. Changes sync when you reconnect.</span></div></div>
+      </div>
+    </div>
+    <div class="board" aria-label="Example landlord overview, sample data">
+      <div class="board-h"><b>October overview</b>
+        <div class="sel" role="group" aria-label="Property" data-props></div>
+      </div>
+      <div class="tiles">
+        <div class="tile"><small>Received</small><b data-k="rec">—</b></div>
+        <div class="tile"><small>Still pending</small><b data-k="pen">—</b></div>
+        <div class="tile"><small>Advance held</small><b data-k="adv">—</b></div>
+        <div class="tile"><small>Occupied</small><b data-k="occ">—</b></div>
+      </div>
+      <div><div class="row" style="font-size:13px;color:var(--muted);margin-bottom:6px"><span>Collected this month</span><span data-k="pct">—</span></div><div class="meter"><i data-meter style="width:0"></i></div></div>
+      <div class="tlist" data-tlist></div>
+      <div class="sample">Sample data</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PRIVACY ================= -->
+<section class="sec" id="privacy" aria-labelledby="pv-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="x-eyebrow">Privacy</span>
+      <h2 id="pv-h">Who can see what?</h2>
+      <p>Tap anything you'd share in the app to see exactly who can see it.</p>
+    </div>
+    <div class="priv">
+      <div class="pitems" role="tablist" aria-label="Your information" data-pitems></div>
+      <div class="pview" role="tabpanel" data-pview></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WHY ================= -->
+<section class="sec" aria-labelledby="w-h">
+  <div class="wrap">
+    <div class="sec-head c">
+      <span class="x-eyebrow">Built for how India rents</span>
+      <h2 id="w-h">Made for the way you already work</h2>
+    </div>
+    <div class="why">
+      <div><span class="ic">📲</span><b>UPI, straight to you</b><p>Add your UPI ID or QR once. Tenants tap Pay and their own UPI app opens. The money never passes through us.</p></div>
+      <div><span class="ic">🤝</span><b>Free for tenants</b><p>Tenants join through your invite link at no cost, so getting them on board is easy.</p></div>
+      <div><span class="ic">🧾</span><b>Receipts tenants can use</b><p>Approved receipts stay in the tenant's receipt vault, ready when they need proof of rent.</p></div>
+      <div><span class="ic">🔒</span><b>A closed circle</b><p>Only you and your tenant see your tenancy. Brokers browsing listings can't reach your number.</p></div>
+      <div><span class="ic">💬</span><b>WhatsApp, only when you want it</b><p>Send invites on WhatsApp. Rent alerts are off by default, and you choose which tenants get them.</p></div>
+      <div><span class="ic">🇮🇳</span><b>Made in Goa</b><p>A DPIIT-recognised startup, incubated at CIBA Goa.</p></div>
+    </div>
+  </div>
+</section>
+</div>

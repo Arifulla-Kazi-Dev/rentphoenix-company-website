@@ -243,5 +243,6 @@ select.field-input { cursor: pointer; }
 :focus-visible {
   outline: 2px solid var(--rp-purple);
   outline-offset: 2px;
-  border-radius: 3px;
+  // no border-radius here: the outline already follows each element's own shape,
+  // and forcing one squared off rounded buttons when they were focused
 }
