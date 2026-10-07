@@ -497,6 +497,127 @@ showProp('all');
 
 $$('[data-goto]').forEach(b=>b.addEventListener('click',()=>{ const t=root.querySelector('#'+b.dataset.goto); if(t) t.scrollIntoView({behavior:RM?'auto':'smooth',block:'start'}); }));
 
+/* ---------- WHATSAPP REMINDERS ---------- */
+// Mirrors the server: reminders/reminderRules.ts (daily 09:00 IST job) and reminders/paymentNotifications.ts.
+// Template names and parameters are the real ones; the sentences are drafts of the Meta-approved bodies.
+const WA_TPL = {
+  tenant_reminder: p => `Hi ${p[0]}, this is a reminder that your rent of ₹${p[3]} is due on the ${p[1]}, ${p[2]} days from today. Please pay on time.`,
+  landlord_rent_alert: p => `Hello ${p[0]}, the rent of ₹${p[3]} from ${p[1]} for ${p[2]} ${p[4]}.`,
+  payment_confirmed: p => `Hi ${p[0]}, your rent payment of ₹${p[1]} was confirmed on ${p[2]}. Your next rent is due on ${p[3]}. Thank you!`,
+  landlord_payment_received: p => `Hello ${p[0]}, ${p[1]} has paid ₹${p[3]} for ${p[2]} on ${p[4]}.`
+};
+const WR = { day: 5, on: true, scn: 'ontime', cursor: -8, playing: false, side: 't', shown: new Set() };
+const WR_RENT = '14000', WR_T = 'Priya', WR_L = 'Rakesh', WR_P = 'Flat 2B';
+const MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'], WKD = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+const sfx = d => (d >= 11 && d <= 13) ? 'th' : ({1:'st',2:'nd',3:'rd'}[d % 10] || 'th');
+const dim = (y, m) => new Date(Date.UTC(y, m + 1, 0)).getUTCDate();
+const dueIn = (y, m) => new Date(Date.UTC(y, m, Math.min(WR.day, dim(y, m))));   // clamped like dueDateIn()
+const addD = (dt, n) => new Date(dt.getTime() + n * 86400000);
+const slash = dt => `${dt.getUTCDate()}/${dt.getUTCMonth() + 1}/${dt.getUTCFullYear()}`;
+const nice = dt => `${WKD[dt.getUTCDay()]}, ${dt.getUTCDate()} ${MON[dt.getUTCMonth()]}`;
+// The next due date that is at least a week away, so the whole cycle is still ahead.
+function wrDue() {
+  const now = new Date(), today = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
+  let y = now.getFullYear(), m = now.getMonth(), due = dueIn(y, m);
+  while (due.getTime() - today < 7 * 86400000) { m++; if (m > 11) { m = 0; y++; } due = dueIn(y, m); }
+  return due;
+}
+function wrEvents() {
+  const due = wrDue(), ev = [], dueTxt = `${WR.day}${sfx(WR.day)}`;
+  const paidDay = WR.scn === 'ontime' ? 0 : WR.scn === 'late' ? 2 : null;
+  const nextDue = dueIn(due.getUTCFullYear() + (due.getUTCMonth() === 11 ? 1 : 0), (due.getUTCMonth() + 1) % 12);
+  if (WR.on) for (const n of [7, 3]) ev.push({ id: 't' + n, d: -n, time: '9:00 AM', to: 't', mk: 'mt', tpl: 'tenant_reminder', p: [WR_T, dueTxt, String(n), WR_RENT],
+    log: `${n} days before the due date. <b>Priya</b> gets a WhatsApp reminder.` });
+  // At 9:00 on the due day the rent is still unpaid in every scenario (payments come in later that day).
+  if (WR.on) ev.push({ id: 'l0', d: 0, time: '9:00 AM', to: 'l', mk: 'ml', tpl: 'landlord_rent_alert', p: [WR_L, WR_T, WR_P, WR_RENT, 'is due today'],
+    log: `Due day, and Priya hasn't paid yet. <b>Rakesh</b> gets an alert.` });
+  if (paidDay !== null) {
+    const pd = addD(due, paidDay);
+    const log = `Rakesh marks Priya's rent as paid in the app. <b>Both</b> get a confirmation on WhatsApp.`;
+    ev.push({ id: 'pt', d: paidDay, time: '11:42 AM', to: 't', mk: 'mp', tpl: 'payment_confirmed', p: [WR_T, WR_RENT, slash(pd), slash(nextDue)], paid: true, log });
+    ev.push({ id: 'pl', d: paidDay, time: '11:42 AM', to: 'l', tpl: 'landlord_payment_received', p: [WR_L, WR_T, WR_P, WR_RENT, slash(pd)], paid: true, log });
+  }
+  if (WR.on) {
+    if (paidDay === null) ev.push({ id: 'l5', d: 5, time: '9:00 AM', to: 'l', mk: 'ml', tpl: 'landlord_rent_alert', p: [WR_L, WR_T, WR_P, WR_RENT, 'is overdue by 5 days'],
+      log: `5 days late and still unpaid. <b>Rakesh</b> gets a second alert.` });
+    else ev.push({ id: 'x5', d: 5, skip: true, mk: 'mx', log: `5 days after the due date. Priya has already paid, so <b>no alert</b> is sent.` });
+  }
+  return { due, ev };
+}
+const wrDays = $('[data-wr-days]'), wrTl = $('[data-wr-tl]'), wrLog = $('[data-wr-log]'), wrPlay = $('[data-wr-play]');
+wrDays.innerHTML = Array.from({ length: 31 }, (_, i) => `<button type="button" data-wd="${i + 1}" aria-pressed="${i + 1 === WR.day}">${i + 1}</button>`).join('');
+function wrSetSide(side) {
+  WR.side = side;
+  $$('[data-wt]').forEach(b => b.setAttribute('aria-pressed', b.dataset.wt === side));
+  $$('[data-wph]').forEach(p => p.classList.toggle('show', p.dataset.wph === side));
+  $(`[data-wbadge="${side}"]`).hidden = true;
+}
+function wrRender(animate) {
+  const { due, ev } = wrEvents();
+  $('[data-wr-dlabel]').textContent = `${WR.day}${sfx(WR.day)} of every month`;
+  $$('[data-wd]').forEach(b => b.setAttribute('aria-pressed', +b.dataset.wd === WR.day));
+  $('[data-wr-on]').setAttribute('aria-pressed', WR.on); $('[data-wr-on-l]').textContent = WR.on ? 'On' : 'Off';
+  $$('[data-ws]').forEach(b => b.setAttribute('aria-pressed', b.dataset.ws === WR.scn));
+  // timeline: 7 days before → 5 days after
+  let tl = '';
+  for (let d = -7; d <= 5; d++) {
+    const dt = addD(due, d), marks = ev.filter(e => e.d === d && e.mk).map(e => `<i class="${e.mk}" title="${e.skip ? 'Skipped' : ''}">${e.mk === 'mt' ? 'T' : e.mk === 'ml' ? 'L' : e.mk === 'mp' ? '✓' : 'L'}</i>`).join('');
+    tl += `<button type="button" class="wr-d ${d === 0 ? 'due' : ''} ${d < WR.cursor ? 'past' : ''} ${d === WR.cursor ? 'now' : ''}" data-wtd="${d}" aria-label="${nice(dt)}${d === 0 ? ', due date' : ''}"><small>${d === 0 ? 'DUE' : WKD[dt.getUTCDay()]}</small><b>${dt.getUTCDate()}</b><span class="mk">${marks}</span></button>`;
+  }
+  wrTl.innerHTML = tl;
+  $$('[data-wtd]').forEach(b => b.addEventListener('click', () => { wrStop(); WR.cursor = +b.dataset.wtd; wrRender(true); }));
+  // chats
+  const fresh = { t: false, l: false };
+  for (const side of ['t', 'l']) {
+    const box = $(`[data-wa="${side}"]`);
+    const list = ev.filter(e => !e.skip && e.to === side && e.d <= WR.cursor);
+    if (!list.length) { box.innerHTML = `<div class="wa-empty">${WR.cursor < -7 ? 'Press Play to start the month.' : 'No messages yet.'}</div>`; continue; }
+    let html = '', lastDay = null;
+    for (const e of list) {
+      if (e.d !== lastDay) { html += `<div class="wa-day">${nice(addD(due, e.d))}</div>`; lastDay = e.d; }
+      const isNew = animate && !WR.shown.has(e.id);
+      if (isNew) fresh[side] = true;
+      html += `<div class="wa-msg ${e.paid ? 'paid' : ''} ${isNew ? 'in' : ''}">${WA_TPL[e.tpl](e.p)}<small>${e.time}</small></div>`;
+    }
+    box.innerHTML = html;
+    box.scrollTop = box.scrollHeight;
+  }
+  WR.shown = new Set(ev.filter(e => e.d <= WR.cursor).map(e => e.id));
+  // narration
+  const today = ev.filter(e => e.d === WR.cursor);
+  const when = WR.cursor >= -7 ? `<b>${nice(addD(due, WR.cursor))}</b> · ` : '';
+  wrLog.innerHTML = WR.cursor < -7
+    ? `Priya's rent is due on the <b>${WR.day}${sfx(WR.day)}</b>. Her next due date is <b>${nice(due)}</b>. Press Play to watch the month.`
+    : today.length ? when + [...new Set(today.map(e => e.log))].join(' ')
+    : when + (WR.on || WR.cursor < 0 ? 'Nothing to send today.' : 'Reminders are off for Priya, so nothing is sent.');
+  // on phones, follow whoever just received a message
+  if (isMobile()) {
+    const got = fresh.l && !fresh.t ? 'l' : fresh.t ? 't' : null;
+    if (got && got !== WR.side) wrSetSide(got);
+    const other = WR.side === 't' ? 'l' : 't';
+    if (fresh[other]) $(`[data-wbadge="${other}"]`).hidden = false;
+  }
+  wrPlay.textContent = WR.playing ? '❚❚ Pause' : WR.cursor >= 5 ? '↺ Play again' : WR.cursor < -7 ? '▶ Play the month' : '▶ Continue';
+}
+function wrStop() { WR.playing = false; }
+function wrStep() {
+  if (!WR.playing) return;
+  if (WR.cursor >= 5) { WR.playing = false; wrRender(false); return; }
+  WR.cursor++; wrRender(true);
+  later(wrStep, RM ? 500 : 1400);
+}
+wrPlay.addEventListener('click', () => {
+  if (WR.playing) { wrStop(); wrRender(false); return; }
+  if (WR.cursor >= 5) { WR.cursor = -8; WR.shown = new Set(); }
+  WR.playing = true; wrRender(false); later(wrStep, 250);
+});
+$('[data-wr-reset]').addEventListener('click', () => { wrStop(); WR.cursor = -8; WR.shown = new Set(); wrRender(false); });
+$$('[data-wd]').forEach(b => b.addEventListener('click', () => { WR.day = +b.dataset.wd; wrRender(false); }));
+$('[data-wr-on]').addEventListener('click', () => { WR.on = !WR.on; wrRender(false); });
+$$('[data-ws]').forEach(b => b.addEventListener('click', () => { WR.scn = b.dataset.ws; wrRender(false); }));
+$$('[data-wt]').forEach(b => b.addEventListener('click', () => wrSetSide(b.dataset.wt)));
+wrRender(false);
+
 /* ---------- pause work that is off screen ---------- */
 const heroSec = root.querySelector('.hero');
 const io = new IntersectionObserver(entries => entries.forEach(e => {

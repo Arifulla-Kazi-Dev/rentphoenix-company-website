@@ -106,6 +106,73 @@
   </div>
 </section>
 
+<!-- ================= WHATSAPP REMINDERS ================= -->
+<section class="sec" id="reminders" aria-labelledby="wr-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="x-eyebrow">WhatsApp rent reminders</span>
+      <h2 id="wr-h">Set the due day once. The reminders go out on their own.</h2>
+      <p>Pick a rent due day and play the month. Every morning at 9:00 AM, RentPhoenix checks each tenant and sends WhatsApp messages on the right days.</p>
+    </div>
+    <div class="wr">
+      <div class="wr-ctl">
+        <div>
+          <span class="lbl">Rent due day <b data-wr-dlabel></b></span>
+          <div class="wr-days" role="group" aria-label="Rent due day" data-wr-days></div>
+        </div>
+        <div class="wr-line">
+          <span class="lbl">WhatsApp reminders for Priya</span>
+          <button type="button" class="wr-sw" data-wr-on aria-pressed="true"><span class="sw"></span><span data-wr-on-l>On</span></button>
+        </div>
+        <div>
+          <span class="lbl">What does Priya do?</span>
+          <div class="smode" role="group" aria-label="Payment outcome">
+            <button type="button" data-ws="ontime" aria-pressed="true">Pays on the due day</button>
+            <button type="button" data-ws="late" aria-pressed="false">Pays 2 days late</button>
+            <button type="button" data-ws="unpaid" aria-pressed="false">Doesn't pay</button>
+          </div>
+        </div>
+        <div class="wr-tl" role="group" aria-label="Days around the due date" data-wr-tl></div>
+        <div class="wr-play">
+          <button type="button" class="x-btn x-btn-p" data-wr-play>▶ Play the month</button>
+          <button type="button" class="x-btn x-btn-g" data-wr-reset>Start over</button>
+        </div>
+        <p class="wr-log" aria-live="polite" data-wr-log></p>
+      </div>
+
+      <div class="wr-side">
+        <div class="wr-tabs" role="group" aria-label="Which phone to show">
+          <button type="button" data-wt="t" aria-pressed="true">Priya · Tenant<span class="badge" hidden data-wbadge="t"></span></button>
+          <button type="button" data-wt="l" aria-pressed="false">Rakesh · Landlord<span class="badge" hidden data-wbadge="l"></span></button>
+        </div>
+        <div class="wr-phones">
+          <div class="wr-ph show" data-wph="t">
+            <div class="side-l"><span class="who t">PS</span>Priya's WhatsApp</div>
+            <div class="phone"><div class="scr"><div class="notch"></div><div class="sbar"><span>9:41</span><span>4G ▮▮▯</span></div>
+              <div class="wa-h"><span class="wa-av">R</span><div><b>RentPhoenix OS</b><small>Business account</small></div></div>
+              <div class="wa-body" data-wa="t"></div>
+            </div></div>
+          </div>
+          <div class="wr-ph" data-wph="l">
+            <div class="side-l"><span class="who l">RK</span>Rakesh's WhatsApp</div>
+            <div class="phone"><div class="scr"><div class="notch"></div><div class="sbar"><span>9:41</span><span>5G ▮▮▮</span></div>
+              <div class="wa-h"><span class="wa-av">R</span><div><b>RentPhoenix OS</b><small>Business account</small></div></div>
+              <div class="wa-body" data-wa="l"></div>
+            </div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="wr-rules">
+      <span><b>9:00 AM</b> every morning, India time</span>
+      <span><b>7 and 3 days before</b> → tenant</span>
+      <span><b>Due day and 5 days late</b> → landlord, only if still unpaid</span>
+      <span><b>Marked paid</b> → confirmation to both</span>
+      <span><b>Off by default</b> · switch on per tenant</span>
+    </div>
+  </div>
+</section>
+
 <!-- ================= SETUP ================= -->
 <section class="sec" id="setup" aria-labelledby="s-h">
   <div class="wrap setup">
