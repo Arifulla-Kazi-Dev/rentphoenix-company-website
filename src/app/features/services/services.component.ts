@@ -1,28 +1,40 @@
-import { Component, OnInit, AfterViewInit, inject, ChangeDetectionStrategy } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, OnInit, AfterViewInit, OnDestroy, inject, ChangeDetectionStrategy } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import {
   LucideAngularModule, ArrowRight, Code2, Globe, Smartphone,
-  Landmark, Zap, BarChart3, CheckCircle2
+  Landmark, Zap, BarChart3, Check
 } from 'lucide-angular';
 import { SeoService } from '../../core/services/seo.service';
+
+interface Service {
+  /** Anchor id, so other pages can link straight to a service. */
+  id: string;
+  icon: typeof Code2;
+  title: string;
+  short: string;
+  desc: string;
+  capabilities: string[];
+  link?: { label: string; path: string };
+}
 
 @Component({
   selector: 'app-services',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule, RouterLink, LucideAngularModule],
+  imports: [RouterLink, LucideAngularModule],
   templateUrl: './services.component.html',
   styleUrl: './services.component.scss'
 })
-export class ServicesComponent implements OnInit, AfterViewInit {
+export class ServicesComponent implements OnInit, AfterViewInit, OnDestroy {
   private seo = inject(SeoService);
+  private observer?: IntersectionObserver;
 
   readonly ArrowRight = ArrowRight;
-  readonly CheckCircle2 = CheckCircle2;
+  readonly Check = Check;
 
-  readonly services = [
+  readonly services: Service[] = [
     {
+      id: 'custom-software',
       icon: Code2,
       title: 'Custom Software Development',
       short: 'Purpose-built systems from scratch.',
@@ -36,6 +48,7 @@ export class ServicesComponent implements OnInit, AfterViewInit {
       ]
     },
     {
+      id: 'web-apps',
       icon: Globe,
       title: 'Web Applications',
       short: 'Fast, focused, production-grade web apps.',
@@ -49,6 +62,7 @@ export class ServicesComponent implements OnInit, AfterViewInit {
       ]
     },
     {
+      id: 'mobile-apps',
       icon: Smartphone,
       title: 'Mobile Applications',
       short: 'Cross-platform apps built to perform.',
@@ -62,6 +76,7 @@ export class ServicesComponent implements OnInit, AfterViewInit {
       ]
     },
     {
+      id: 'automation',
       icon: Zap,
       title: 'Automation & Workflow Tools',
       short: 'Eliminate repetitive work at scale.',
@@ -75,7 +90,9 @@ export class ServicesComponent implements OnInit, AfterViewInit {
       ]
     },
     {
+      id: 'government',
       icon: Landmark,
+      link: { label: 'Government solutions in detail', path: '/government-solutions' },
       title: 'Government Solutions',
       short: 'Secure civic and administrative software.',
       desc: 'Digital platforms for government departments and public service organizations. Focus on compliance, security, and transparency.',
@@ -88,6 +105,7 @@ export class ServicesComponent implements OnInit, AfterViewInit {
       ]
     },
     {
+      id: 'enterprise',
       icon: BarChart3,
       title: 'Enterprise Platforms',
       short: 'Coordination tools for complex organizations.',
@@ -110,19 +128,25 @@ export class ServicesComponent implements OnInit, AfterViewInit {
     { step: '05', title: 'Deliver', desc: 'Deployment, documentation, and transition. No drop-and-run.' },
   ];
 
+  readonly stack = ['Angular', 'React', 'Flutter', 'React Native', 'Firebase'];
+
   ngOnInit(): void {
     this.seo.setMeta({
-      title: 'Services',
+      title: 'Services — Custom Software, Web & Mobile Apps, Automation',
       description: 'Software development services from RentPhoenix Technologies: web apps, mobile, automation, government solutions, and enterprise platforms.',
       keywords: 'software development services India, web application development, mobile app development, automation software'
     });
   }
 
   ngAfterViewInit(): void {
-    const io = new IntersectionObserver(
+    this.observer = new IntersectionObserver(
       entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
       { threshold: 0.06, rootMargin: '0px 0px -24px 0px' }
     );
-    document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => io.observe(el));
+    document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => this.observer!.observe(el));
+  }
+
+  ngOnDestroy(): void {
+    this.observer?.disconnect();
   }
 }

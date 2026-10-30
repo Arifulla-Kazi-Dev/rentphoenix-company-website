@@ -1,10 +1,9 @@
-import { Component, OnInit, AfterViewInit, inject, ChangeDetectionStrategy } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, OnInit, AfterViewInit, OnDestroy, inject, ChangeDetectionStrategy } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import {
-  LucideAngularModule, ArrowRight, ExternalLink, CheckCircle2, Wallet, Receipt,
+  LucideAngularModule, ArrowRight, ArrowUpRight, Check, Wallet, Receipt,
   Banknote, Landmark, TrendingUp, CalendarCheck, Clock3, UsersRound, NotebookPen,
-  ShieldCheck, Lock
+  ShieldCheck, Lock, Gauge, CalendarX, HelpCircle, BarChart3
 } from 'lucide-angular';
 import { SeoService } from '../../core/services/seo.service';
 import { ProductSwitcherComponent } from '../../shared/components/product-switcher/product-switcher.component';
@@ -13,31 +12,32 @@ import { ProductSwitcherComponent } from '../../shared/components/product-switch
   selector: 'app-co-founder',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule, RouterLink, LucideAngularModule, ProductSwitcherComponent],
+  imports: [RouterLink, LucideAngularModule, ProductSwitcherComponent],
   templateUrl: './co-founder.component.html',
   styleUrl: './co-founder.component.scss'
 })
-export class CoFounderComponent implements OnInit, AfterViewInit {
+export class CoFounderComponent implements OnInit, AfterViewInit, OnDestroy {
   private seo = inject(SeoService);
+  private observer?: IntersectionObserver;
 
   readonly ArrowRight = ArrowRight;
-  readonly ExternalLink = ExternalLink;
-  readonly CheckCircle2 = CheckCircle2;
+  readonly ArrowUpRight = ArrowUpRight;
+  readonly Check = Check;
   readonly appUrl = 'https://arifulla-kazi-dev.github.io/Expense-Tracker-for-Founders/';
 
   readonly problems = [
     {
-      icon: '📊',
+      icon: Gauge,
       title: 'No Real-Time Runway View',
       desc: 'Funding in one sheet, expenses in another, salaries tracked from memory. By the time you calculate runway, the number is already out of date.'
     },
     {
-      icon: '📅',
+      icon: CalendarX,
       title: 'Compliance Deadlines Slip Through',
       desc: 'GST filings, ROC renewals, license dates — spread across reminders, emails, and a CA’s WhatsApp message you saw too late.'
     },
     {
-      icon: '🤷',
+      icon: HelpCircle,
       title: 'Spend Decisions Made Blind',
       desc: 'Six months later nobody remembers why a cost was approved, what it was expected to return, or who signed off on it.'
     }
@@ -90,7 +90,7 @@ export class CoFounderComponent implements OnInit, AfterViewInit {
       desc: 'A lightweight decision journal — reason, expected benefit, priority, ROI — attached to the spend it explains.'
     },
     {
-      icon: TrendingUp,
+      icon: BarChart3,
       title: 'Reports & Runway Analytics',
       desc: 'An operating score, quarter burn forecast, and category concentration risk — exportable as JSON, CSV, or PDF.'
     }
@@ -117,7 +117,7 @@ export class CoFounderComponent implements OnInit, AfterViewInit {
         'Category-level burn breakdown, not just a total',
         'Decision log ties spend to the reasoning behind it'
       ],
-      chips: ['Runway below floor ⚠', 'Cash allocation — healthy']
+      chips: ['Runway below floor', 'Cash allocation — healthy']
     },
     {
       num: '03',
@@ -128,8 +128,21 @@ export class CoFounderComponent implements OnInit, AfterViewInit {
         'Per-member permission overrides when a role needs an exception',
         'Shareable invite links, including a one-tap WhatsApp share'
       ],
-      chips: ['Invite sent ✓', 'Role — Finance Manager']
+      chips: ['Invite sent', 'Role — Finance Manager']
     }
+  ];
+
+  readonly heroRows = [
+    { label: 'Burn',        value: '₹4.2L / month' },
+    { label: 'Compliance',  value: 'Up to date', good: true },
+    { label: 'Team',        value: '3 members active' },
+  ];
+
+  readonly specs = [
+    { label: 'Built for',  value: 'Startup founders & their teams' },
+    { label: 'Type',       value: 'Multi-tenant web app' },
+    { label: 'Built with', value: 'Angular · Firebase · Tailwind' },
+    { label: 'Made by',    value: 'RentPhoenix Technologies Pvt. Ltd., Goa' },
   ];
 
   readonly trustPoints = [
@@ -164,10 +177,14 @@ export class CoFounderComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    const io = new IntersectionObserver(
+    this.observer = new IntersectionObserver(
       entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
       { threshold: 0.06, rootMargin: '0px 0px -24px 0px' }
     );
-    document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => io.observe(el));
+    document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => this.observer!.observe(el));
+  }
+
+  ngOnDestroy(): void {
+    this.observer?.disconnect();
   }
 }

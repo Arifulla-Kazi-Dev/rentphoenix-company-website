@@ -1,7 +1,7 @@
 .footer {
-  background: var(--rp-bg-secondary);
+  background: var(--rp-bg);
   border-top: 1px solid var(--rp-border);
-  padding: 60px 0 0;
+  padding: 64px 0 0;
 
   &__top {
     display: grid;
@@ -26,6 +26,8 @@
     width: auto;
     color: var(--rp-text-1);
   }
+
+  &__logo-mark { color: var(--rp-accent); }
 
   &__logo-sub {
     font-size: 0.625rem;
@@ -71,8 +73,10 @@
 
   &__nav {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 32px;
+
+    @media (max-width: 1000px) { grid-template-columns: repeat(2, 1fr); }
 
     @media (max-width: 560px) { grid-template-columns: repeat(2, 1fr); }
   }
@@ -80,16 +84,16 @@
   &__col { display: flex; flex-direction: column; gap: 10px; }
 
   &__col-title {
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
+    font-family: var(--rp-font);
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0;
     color: var(--rp-text-1);
     margin-bottom: 4px;
   }
 
   &__link {
-    font-size: 0.875rem;
+    font-size: 0.9375rem;
     color: var(--rp-text-3);
     transition: color var(--rp-t-fast);
     width: fit-content;

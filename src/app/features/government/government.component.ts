@@ -1,9 +1,8 @@
-import { Component, OnInit, AfterViewInit, inject, ChangeDetectionStrategy } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, OnInit, AfterViewInit, OnDestroy, inject, ChangeDetectionStrategy } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import {
   LucideAngularModule, ArrowRight, Shield, FileText, Users,
-  BarChart3, Lock, Globe, CheckCircle2
+  BarChart3, Lock, Globe, Check
 } from 'lucide-angular';
 import { SeoService } from '../../core/services/seo.service';
 
@@ -11,15 +10,16 @@ import { SeoService } from '../../core/services/seo.service';
   selector: 'app-government',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule, RouterLink, LucideAngularModule],
+  imports: [RouterLink, LucideAngularModule],
   templateUrl: './government.component.html',
   styleUrl: './government.component.scss'
 })
-export class GovernmentComponent implements OnInit, AfterViewInit {
+export class GovernmentComponent implements OnInit, AfterViewInit, OnDestroy {
   private seo = inject(SeoService);
+  private observer?: IntersectionObserver;
 
   readonly ArrowRight = ArrowRight;
-  readonly CheckCircle2 = CheckCircle2;
+  readonly Check = Check;
 
   readonly solutions = [
     {
@@ -64,17 +64,21 @@ export class GovernmentComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.seo.setMeta({
-      title: 'Government Solutions',
+      title: 'Government Solutions — Secure Software for the Public Sector',
       description: 'Digital software solutions for government departments and civic organizations. Secure, compliant, and built for public sector accountability.',
       keywords: 'government software India, civic technology, digital public services, e-governance development'
     });
   }
 
   ngAfterViewInit(): void {
-    const io = new IntersectionObserver(
+    this.observer = new IntersectionObserver(
       entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
       { threshold: 0.06, rootMargin: '0px 0px -24px 0px' }
     );
-    document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => io.observe(el));
+    document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => this.observer!.observe(el));
+  }
+
+  ngOnDestroy(): void {
+    this.observer?.disconnect();
   }
 }

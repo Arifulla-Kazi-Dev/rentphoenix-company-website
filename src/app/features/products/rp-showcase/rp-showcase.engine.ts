@@ -103,7 +103,7 @@ const BTN='{{BTN}}';
 const SCN=[
  {id:'rent',ic:'₹',name:'Rent payment',tab:'money',steps:[
   {actor:'t',btn:'Pay ₹14,000 with UPI',pk:null,
-   cap:'<b>Priya taps Pay.</b> Her own UPI app opens with Rakesh\'s UPI ID and the amount already filled in. The money goes straight to Rakesh.',
+   cap:'<b>Priya taps Pay.</b> She opens her UPI app, or copies Rakesh\'s UPI ID and pays from any app. The money goes to Rakesh, never through RentPhoenix.',
    L:()=>K('hl',`<small>October · received</small><span class="big">₹0</span><small>of ₹14,000 from Flat 2B</small>`)+K('',R('<div><b>Priya · Flat 2B</b><br><small>Due 5 Oct</small></div>',P('p-due','Due'))),
    T:()=>K('hl',`<small>October rent</small><span class="big">₹14,000</span><small>Due 5 Oct · to Rakesh</small>`)+K('',`<small>Pay to</small><b>rakesh@okaxis</b><small>Google Pay · PhonePe · any UPI app</small>`)+BTN},
   {actor:'t',btn:'Send receipt to Rakesh',pk:'Receipt ₹14,000',
@@ -319,7 +319,7 @@ async function doAdvance(label){
     packet.className='packet';
     syncB[from].className='sync'; syncB[from].textContent='Synced';
   } else {
-    if(isMobile()){ mtoast.textContent='UPI app opens…'; mtoast.classList.add('on'); }
+    if(isMobile()){ mtoast.textContent='Pay in your UPI app…'; mtoast.classList.add('on'); }
     await wait(700);
   }
   if(rejected){
@@ -400,7 +400,7 @@ $('[data-pitems]').innerHTML=PRIV.map((x,i)=>`<button type="button" class="pitem
 function showPriv(i){
   $$('[data-pi]').forEach(b=>b.setAttribute('aria-selected',+b.dataset.pi===i));
   const x=PRIV[i];
-  $('[data-pview]').innerHTML=`<h3>${x.ic} ${x.n}</h3><p>${x.d}</p><div class="viewers">${VIEWERS.map((w,j)=>`<div class="vw" style="animation-delay:${j*60}ms"><span class="ic">${w[0]}</span><b>${w[1]}</b><span class="pill ${x.v[j][0]}">${x.v[j][0]==='yes'?'✓ ':x.v[j][0]==='no'?'✕ ':'◐ '}${x.v[j][1]}</span><small>${x.v[j][2]}</small></div>`).join('')}</div><p class="mocknote">Mock: check every answer against the app's security rules before this goes live.</p>`;
+  $('[data-pview]').innerHTML=`<h3>${x.ic} ${x.n}</h3><p>${x.d}</p><div class="viewers">${VIEWERS.map((w,j)=>`<div class="vw" style="animation-delay:${j*60}ms"><span class="ic">${w[0]}</span><b>${w[1]}</b><span class="pill ${x.v[j][0]}">${x.v[j][0]==='yes'?'✓ ':x.v[j][0]==='no'?'✕ ':'◐ '}${x.v[j][1]}</span><small>${x.v[j][2]}</small></div>`).join('')}</div>`;
 }
 $$('[data-pi]').forEach(b=>b.addEventListener('click',()=>showPriv(+b.dataset.pi)));
 showPriv(0);

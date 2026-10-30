@@ -1,163 +1,179 @@
-.page-hero {
-  position: relative; padding: 140px 0 72px; border-bottom: 1px solid var(--rp-border); overflow: hidden;
-  &__grid {
-    position: absolute; inset: 0;
-    background:
-      radial-gradient(600px circle at 62% 30%, var(--rp-purple-muted), transparent 65%),
-      radial-gradient(420px circle at 15% 75%, color-mix(in srgb, var(--rp-warning) 8%, transparent), transparent 65%);
-    pointer-events: none;
-  }
-  .container { position: relative; }
-}
+// ============================================================
+// CAREERS — V3
+// .page-intro, .section-head, .section--alt and .cta live in _components.scss
+// ============================================================
 
-// ── Job Cards ──────────────────────────────────────────────
+:host { display: block; }
 
-.jobs-list {
-  border: 1px solid var(--rp-border);
-  border-radius: var(--rp-r-xl);
-  overflow: hidden;
-}
+// ── Roles ────────────────────────────────────────────────────
 
-.job-card {
+.jobs { display: flex; flex-direction: column; gap: 16px; }
+
+.job {
   background: var(--rp-surface);
-  border-bottom: 1px solid var(--rp-border);
+  border: 1px solid var(--rp-border);
+  border-radius: var(--rp-r-2xl);
+  overflow: hidden;
+  transition: border-color var(--rp-t-base), box-shadow var(--rp-t-base);
 
-  &:last-child { border-bottom: none; }
-
-  &--open {
-    background: var(--rp-bg-secondary);
-  }
+  &--open { border-color: var(--rp-accent-border); box-shadow: var(--rp-shadow-md); }
 
   &__header {
+    width: 100%;
     display: flex;
     align-items: center;
     gap: 20px;
-    padding: 24px 28px;
-    cursor: pointer;
-    transition: background 0.15s ease;
+    padding: 26px 30px;
+    text-align: left;
+    color: inherit;
 
-    &:hover { background: var(--rp-bg-secondary); }
+    &:hover .job__toggle { color: var(--rp-accent); }
 
-    @media (max-width: 640px) { flex-wrap: wrap; gap: 16px; padding: 20px; }
+    @media (max-width: 640px) { flex-wrap: wrap; align-items: flex-start; gap: 14px; padding: 22px; }
   }
 
   &__icon {
-    width: 44px; height: 44px; flex-shrink: 0;
-    display: flex; align-items: center; justify-content: center;
-    background: var(--rp-surface);
-    border: 1px solid var(--rp-border);
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border-radius: var(--rp-r-lg);
-    color: var(--rp-primary);
+    background: var(--rp-accent-muted);
+    color: var(--rp-accent);
   }
 
   &__info {
     flex: 1;
     min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    @media (max-width: 640px) { flex-basis: calc(100% - 62px); }
   }
 
   &__title {
-    font-size: 1rem;
+    font-family: var(--rp-font-display);
     font-weight: 700;
+    font-size: 1.3125rem;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
     color: var(--rp-text-1);
-    margin-bottom: 8px;
   }
 
   &__meta {
     display: flex;
     flex-wrap: wrap;
-    gap: 6px;
+    gap: 4px 14px;
+    font-size: 0.875rem;
+    color: var(--rp-text-3);
+
+    span + span::before { content: '·'; margin-right: 14px; color: var(--rp-text-4); }
   }
 
   &__toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
     flex-shrink: 0;
-    pointer-events: none;
-    @media (max-width: 640px) { display: none; }
+    font-weight: 600;
+    font-size: 0.9375rem;
+    color: var(--rp-text-2);
+    transition: color var(--rp-t-fast);
+
+    // On phones the title gets the full row; the toggle drops below it, under the text
+    @media (max-width: 640px) { flex-basis: 100%; padding-left: 62px; }
   }
 
   &__details {
-    padding: 0 28px 28px;
+    padding: 4px 30px 30px;
     border-top: 1px solid var(--rp-border);
-    @media (max-width: 640px) { padding: 0 20px 24px; }
+
+    @media (max-width: 640px) { padding: 4px 22px 24px; }
   }
 
-  &__apply {
-    margin-top: 24px;
+  &__cols {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 32px;
     padding-top: 24px;
-    border-top: 1px solid var(--rp-border);
+
+    @media (max-width: 860px) { grid-template-columns: 1fr; gap: 24px; }
   }
-}
 
-.job-detail-cols {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
-  padding-top: 28px;
-
-  @media (max-width: 768px) { grid-template-columns: 1fr; gap: 24px; }
-}
-
-.job-detail-section {
-  &__title {
-    font-size: 0.6875rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.09em;
+  &__label {
+    font-family: var(--rp-font);
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0;
     color: var(--rp-text-3);
     margin-bottom: 12px;
   }
-}
 
-.job-detail-list {
-  list-style: none;
-  padding: 0; margin: 0;
-  display: flex; flex-direction: column; gap: 8px;
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 
-  li {
-    font-size: 0.875rem;
-    color: var(--rp-text-2);
-    line-height: 1.55;
-    padding-left: 14px;
-    position: relative;
+    li {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      color: var(--rp-text-2);
+      font-size: 0.9375rem;
+      line-height: 1.5;
+    }
 
-    &::before {
-      content: '';
-      position: absolute;
-      left: 0; top: 8px;
-      width: 4px; height: 4px;
-      border-radius: 50%;
-      background: var(--rp-primary);
+    lucide-icon { color: var(--rp-accent); flex-shrink: 0; margin-top: 2px; }
+  }
+
+  &__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+
+    li {
+      padding: 6px 12px;
+      border-radius: var(--rp-r-full);
+      background: var(--rp-bg-secondary);
+      font-size: 0.875rem;
+      color: var(--rp-text-1);
     }
   }
+
+  &__apply { margin-top: 28px; }
 }
 
-.job-detail-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
+// ── How we work ──────────────────────────────────────────────
+
+.principles {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 56px;
+  border-top: 1px solid var(--rp-border);
+
+  @media (max-width: 760px) { grid-template-columns: 1fr; }
 }
 
-.values-grid {
-  display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px;
-  background: var(--rp-border); border: 1px solid var(--rp-border);
-  border-radius: var(--rp-r-xl); overflow: hidden;
-  @media (max-width: 640px) { grid-template-columns: 1fr; }
-}
+.principle {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr);
+  column-gap: 16px;
+  row-gap: 6px;
+  padding: 26px 0;
+  border-bottom: 1px solid var(--rp-border);
 
-.value-card {
-  background: var(--rp-surface); padding: 28px 28px;
-  &__title { font-size: 0.9375rem; font-weight: 700; color: var(--rp-text-1); margin-bottom: 8px; }
-  &__desc { color: var(--rp-text-3); line-height: 1.65; }
-}
-
-.contact-row {
-  display: flex; align-items: center; justify-content: space-between; gap: 40px;
-  @media (max-width: 640px) { flex-direction: column; align-items: flex-start; gap: 20px; }
+  &__num { grid-row: span 2; font-weight: 600; color: var(--rp-accent); padding-top: 2px; }
+  &__title { font-size: 1.25rem; }
+  &__desc { color: var(--rp-text-2); line-height: 1.65; }
 }
 
 // ── Application Modal ───────────────────────────────────────
 
 .modal-backdrop {
-  position: fixed; inset: 0; z-index: 900;
+  position: fixed; inset: 0; z-index: var(--rp-z-modal); // above the fixed navbar
   background: rgba(0, 0, 0, 0.45);
   backdrop-filter: blur(3px);
   display: flex; align-items: center; justify-content: center;

@@ -20,7 +20,7 @@
         <svg class="navbar__logo-svg" viewBox="0 0 222 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <text x="0" y="26" font-family="Inter,system-ui,sans-serif" font-size="22" font-weight="800" letter-spacing="-1" fill="currentColor">RENT</text>
           <text x="64" y="26" font-family="Inter,system-ui,sans-serif" font-size="22" font-weight="800" letter-spacing="-1" fill="currentColor">PH</text>
-          <g transform="translate(97,0)">
+          <g transform="translate(97,0)" class="navbar__logo-mark">
             <path d="M10 1L21 9V29H-1V9L10 1Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
             <rect x="5.5" y="17" width="9" height="12" rx="1.2" fill="none" stroke="currentColor" stroke-width="1.6"/>
             <circle cx="10" cy="12" r="2.2" fill="currentColor" opacity="0.55"/>
@@ -50,9 +50,11 @@
             />
           </button>
         }
-        <a routerLink="/contact" class="nav-link" routerLinkActive="nav-link--active" (click)="closeAll()">
-          Contact
-        </a>
+        @for (link of pageLinks; track link.path) {
+          <a [routerLink]="link.path" class="nav-link" routerLinkActive="nav-link--active" (click)="closeAll()">
+            {{ link.label }}
+          </a>
+        }
       </nav>
 
       <!-- Right actions -->
@@ -69,7 +71,7 @@
           }
         </button>
         <a routerLink="/contact" class="btn btn-primary btn-sm navbar__cta" (click)="closeAll()">
-          Get Demo
+          Work with us
         </a>
         <button
           class="icon-btn navbar__hamburger"
@@ -104,7 +106,7 @@
         @if (activePanel() === 'products') {
           <div class="panel panel-products">
             <div class="panel-products__featured">
-              <div class="panel-label eyebrow">Flagship Product</div>
+              <div class="panel-label eyebrow">Live · Web &amp; Android</div>
               <div class="panel-products__icon">
                 <lucide-icon [img]="PackageIcon" [size]="22" [strokeWidth]="1.5" />
               </div>
@@ -122,7 +124,7 @@
             <div class="panel-products__divider"></div>
 
             <div class="panel-products__featured">
-              <div class="panel-label eyebrow">Flagship Product</div>
+              <div class="panel-label eyebrow">Live in production</div>
               <div class="panel-products__icon">
                 <lucide-icon [img]="WalletIcon" [size]="22" [strokeWidth]="1.5" />
               </div>
@@ -144,11 +146,11 @@
           <div class="panel panel-services">
             <div class="panel-header">
               <div class="panel-label eyebrow">What We Build</div>
-              <h3 class="panel-header__title">Six practice areas, one standard of quality.</h3>
+              <h3 class="panel-header__title">We build what needs to be built.</h3>
             </div>
             <div class="panel-svc-grid">
               @for (svc of servicesLinks; track svc.label) {
-                <a [routerLink]="svc.path" class="panel-svc-card" (click)="closeAll()">
+                <a [routerLink]="svc.path" [fragment]="svc.fragment" class="panel-svc-card" (click)="closeAll()">
                   <div class="panel-svc-card__icon">
                     <lucide-icon [img]="svc.icon" [size]="17" [strokeWidth]="1.75" />
                   </div>
@@ -165,70 +167,6 @@
                 View all services
                 <lucide-icon [img]="ArrowIcon" [size]="13" [strokeWidth]="2" />
               </a>
-            </div>
-          </div>
-        }
-
-        <!-- SOLUTIONS -->
-        @if (activePanel() === 'solutions') {
-          <div class="panel panel-solutions">
-            <div class="panel-solutions__gov">
-              <div class="panel-label eyebrow">Government Technology</div>
-              <h3>Secure digital infrastructure for public sector organizations.</h3>
-              <ul class="panel-solutions__list">
-                @for (item of govLinks; track item) {
-                  <li class="panel-solutions__item">
-                    <lucide-icon [img]="ArrowIcon" [size]="12" [strokeWidth]="2.5" class="panel-solutions__item-arrow" />
-                    <span class="body-sm">{{ item }}</span>
-                  </li>
-                }
-              </ul>
-              <a routerLink="/government-solutions" class="panel-cta" (click)="closeAll()">
-                Government Solutions
-                <lucide-icon [img]="ArrowIcon" [size]="14" [strokeWidth]="2" />
-              </a>
-            </div>
-
-            <div class="panel-solutions__divider"></div>
-
-            <div class="panel-solutions__industries">
-              <div class="panel-label eyebrow">Industries We Serve</div>
-              <ul class="panel-solutions__list panel-solutions__list--plain">
-                @for (item of industryLinks; track item) {
-                  <li class="panel-solutions__item panel-solutions__item--plain">
-                    <div class="panel-solutions__dot"></div>
-                    <span class="body-sm">{{ item }}</span>
-                  </li>
-                }
-              </ul>
-            </div>
-          </div>
-        }
-
-        <!-- COMPANY -->
-        @if (activePanel() === 'company') {
-          <div class="panel panel-company">
-            <div class="panel-company__links">
-              @for (link of companyLinks; track link.label) {
-                <a [routerLink]="link.path" class="panel-co-card" (click)="closeAll()">
-                  <div class="panel-co-card__icon">
-                    <lucide-icon [img]="link.icon" [size]="17" [strokeWidth]="1.75" />
-                  </div>
-                  <div class="panel-co-card__text">
-                    <div class="panel-co-card__label">{{ link.label }}</div>
-                    <div class="panel-co-card__desc body-xs">{{ link.desc }}</div>
-                  </div>
-                  <lucide-icon [img]="ArrowIcon" [size]="12" [strokeWidth]="2" class="panel-co-card__arrow" />
-                </a>
-              }
-            </div>
-            <div class="panel-company__strip">
-              <span class="body-xs">RentPhoenix Technologies Private Limited</span>
-              <div class="panel-company__badges">
-                <span class="tag">Goa, India</span>
-                <span class="tag">CIBA Incubated</span>
-                <span class="tag">Startup India</span>
-              </div>
             </div>
           </div>
         }
@@ -257,7 +195,7 @@
       <svg class="navbar__logo-svg" viewBox="0 0 222 32" fill="none" xmlns="http://www.w3.org/2000/svg">
         <text x="0" y="26" font-family="Inter,system-ui,sans-serif" font-size="22" font-weight="800" letter-spacing="-1" fill="currentColor">RENT</text>
         <text x="64" y="26" font-family="Inter,system-ui,sans-serif" font-size="22" font-weight="800" letter-spacing="-1" fill="currentColor">PH</text>
-        <g transform="translate(97,0)">
+        <g transform="translate(97,0)" class="navbar__logo-mark">
           <path d="M10 1L21 9V29H-1V9L10 1Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
           <rect x="5.5" y="17" width="9" height="12" rx="1.2" fill="none" stroke="currentColor" stroke-width="1.6"/>
           <circle cx="10" cy="12" r="2.2" fill="currentColor" opacity="0.55"/>
@@ -301,7 +239,7 @@
       @if (mobileExpanded() === 'services') {
         <div class="mobile-submenu">
           @for (svc of servicesLinks; track svc.label) {
-            <a [routerLink]="svc.path" class="mobile-sub-link" (click)="closeAll()">
+            <a [routerLink]="svc.path" [fragment]="svc.fragment" class="mobile-sub-link" (click)="closeAll()">
               <span>{{ svc.label }}</span>
               <span class="body-xs">{{ svc.desc }}</span>
             </a>
@@ -310,40 +248,9 @@
       }
     </div>
 
-    <!-- Solutions -->
-    <div class="mobile-item">
-      <button class="mobile-trigger" (click)="toggleMobileExpand('solutions')">
-        Solutions
-        <lucide-icon [img]="ChevronIcon" [size]="14" [strokeWidth]="2.5" [class.rotated]="mobileExpanded() === 'solutions'" />
-      </button>
-      @if (mobileExpanded() === 'solutions') {
-        <div class="mobile-submenu">
-          <a routerLink="/government-solutions" class="mobile-sub-link" (click)="closeAll()">
-            <span>Government Technology</span>
-            <span class="body-xs">Secure public sector software</span>
-          </a>
-        </div>
-      }
-    </div>
-
-    <!-- Company -->
-    <div class="mobile-item">
-      <button class="mobile-trigger" (click)="toggleMobileExpand('company')">
-        Company
-        <lucide-icon [img]="ChevronIcon" [size]="14" [strokeWidth]="2.5" [class.rotated]="mobileExpanded() === 'company'" />
-      </button>
-      @if (mobileExpanded() === 'company') {
-        <div class="mobile-submenu">
-          @for (link of companyLinks; track link.label) {
-            <a [routerLink]="link.path" class="mobile-sub-link" (click)="closeAll()">
-              <span>{{ link.label }}</span>
-              <span class="body-xs">{{ link.desc }}</span>
-            </a>
-          }
-        </div>
-      }
-    </div>
-
+    @for (link of pageLinks; track link.path) {
+      <a [routerLink]="link.path" class="mobile-link" (click)="closeAll()">{{ link.label }}</a>
+    }
     <a routerLink="/contact" class="mobile-link" (click)="closeAll()">Contact</a>
 
     <div class="mobile-theme">
@@ -360,12 +267,12 @@
   </div>
 
   <div class="mobile-nav__foot">
-    <a routerLink="/contact" class="btn btn-primary" style="width:100%;justify-content:center" (click)="closeAll()">
-      Get a Demo
+    <a routerLink="/contact" class="btn btn-primary mobile-nav__btn" (click)="closeAll()">
+      Work with us
       <lucide-icon [img]="ArrowIcon" [size]="15" [strokeWidth]="2" />
     </a>
-    <a routerLink="/contact" class="btn btn-secondary" style="width:100%;justify-content:center" (click)="closeAll()">
-      Contact Us
+    <a href="mailto:support@rentphoenixos.in" class="btn btn-secondary mobile-nav__btn">
+      support&#64;rentphoenixos.in
     </a>
   </div>
 </div>

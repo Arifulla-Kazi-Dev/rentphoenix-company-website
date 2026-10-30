@@ -1,120 +1,87 @@
-import { Component, OnInit, AfterViewInit, inject, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, AfterViewInit, OnDestroy, inject, ChangeDetectionStrategy } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { CommonModule } from '@angular/common';
 import {
   LucideAngularModule,
-  ArrowRight, Code2, Globe, Smartphone, Zap, BarChart3, Landmark,
-  Building2, Briefcase, TrendingUp, Home as HouseIcon,
-  CheckCircle2, ChevronRight, Play, Apple
+  ArrowRight, ArrowUpRight, Globe, Play, Package, Wallet, MapPin
 } from 'lucide-angular';
 import { SeoService } from '../../core/services/seo.service';
+import { FOUNDER_PHOTO, STORY_STEPS } from '../../core/data/company';
 
 @Component({
   selector: 'app-home',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule, RouterLink, LucideAngularModule],
+  imports: [RouterLink, LucideAngularModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
-export class HomeComponent implements OnInit, AfterViewInit {
+export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   private seo = inject(SeoService);
+  private observer?: IntersectionObserver;
 
   // Icons
   readonly ArrowRight = ArrowRight;
-  readonly CheckCircle2 = CheckCircle2;
-  readonly ChevronRight = ChevronRight;
+  readonly ArrowUpRight = ArrowUpRight;
   readonly Globe = Globe;
   readonly Play = Play;
-  readonly Apple = Apple;
+  readonly Package = Package;
+  readonly Wallet = Wallet;
+  readonly MapPin = MapPin;
 
   readonly webAppUrl = 'https://www.rentphoenixos.in/listing';
   readonly playStoreUrl = 'https://play.google.com/store/apps/details?id=in.rentphoenixos.www.twa&pcampaignid=web_share';
+  readonly email = 'support@rentphoenixos.in';
+
+  readonly founderPhoto = FOUNDER_PHOTO;
+
+  readonly facts = [
+    { value: '2',        label: 'products live in production' },
+    { value: '3',        label: 'recognitions: DPIIT, Startup India, CIBA Goa' },
+    { value: '1–2 days', label: 'to hear back from us' },
+    { value: 'Direct',   label: 'access to the engineers building your software' },
+  ];
+
+  readonly story = STORY_STEPS;
 
   readonly services = [
-    { icon: Code2,      title: 'Custom Software Development', desc: 'Purpose-built systems engineered to your exact requirements — not adapted from templates.' },
-    { icon: Globe,      title: 'Web Applications',            desc: 'Production-grade web apps built for speed, reliability, and long-term maintainability.' },
-    { icon: Smartphone, title: 'Mobile Applications',         desc: 'Cross-platform iOS and Android apps with native-quality performance and user experience.' },
-    { icon: Zap,        title: 'AI & Automation',             desc: 'Intelligent workflow systems that eliminate repetitive work and surface what matters.' },
-    { icon: BarChart3,  title: 'Enterprise Platforms',        desc: 'Multi-user coordinated systems and operational dashboards for complex organizations.' },
-    { icon: Landmark,   title: 'Government Solutions',        desc: 'Secure, compliant digital infrastructure for public sector and government organizations.' },
+    { title: 'Custom software',         desc: 'Built to your exact workflow. No templates, no forced fits.' },
+    { title: 'Web applications',        desc: 'Fast, focused, production-grade web apps.' },
+    { title: 'Mobile applications',     desc: 'Android and iOS from one codebase, with native performance.' },
+    { title: 'Automation & workflows',  desc: 'Tools that eliminate repetitive work at scale.' },
+    { title: 'Enterprise platforms',    desc: 'Coordination tools and dashboards for complex organisations.' },
+    { title: 'Government solutions',    desc: 'Citizen portals, record management, reporting and audit trails.' },
   ];
 
-  readonly industries = [
-    {
-      icon: HouseIcon,
-      title: 'Real Estate & Property',
-      desc: 'Rental management, property coordination, and landlord-tenant systems. RentPhoenix OS was built for this vertical.'
-    },
-    {
-      icon: Building2,
-      title: 'Government & Public Sector',
-      desc: 'Digital infrastructure, citizen service portals, document management, and administrative workflow automation.'
-    },
-    {
-      icon: Briefcase,
-      title: 'Enterprise & Corporate',
-      desc: 'Internal platforms, operational dashboards, and process automation systems for large and mid-size organizations.'
-    },
-    {
-      icon: TrendingUp,
-      title: 'Startups & Growing Businesses',
-      desc: 'MVPs, SaaS products, and scalable platforms for companies that need to move fast without cutting corners.'
-    },
+  readonly values = [
+    { title: 'Clarity over cleverness', desc: 'Code the next engineer can understand immediately.' },
+    { title: 'Built to last',           desc: 'Documentation and clean architecture are part of the deliverable.' },
+    { title: 'Honest communication',    desc: 'No overcommitment, no silent scope creep, no hiding bad news.' },
+    { title: 'Meaningful work',         desc: 'Software that genuinely improves how something works.' },
   ];
 
-  readonly differentiators = [
-    {
-      num: '01',
-      title: 'Technical Depth',
-      desc: 'We design at the architecture level — data models, system boundaries, component contracts — before writing a line of code. The quality shows in maintainability, not just first launch.'
-    },
-    {
-      num: '02',
-      title: 'Focused Team, High Ownership',
-      desc: 'Small team means you work directly with the engineers building your software. No delegation chain, no context loss between specification and implementation.'
-    },
-    {
-      num: '03',
-      title: 'Built to Last',
-      desc: 'We build software the next engineer can understand and extend. Documentation, clean architecture, and code quality are part of the deliverable, not afterthoughts.'
-    },
-    {
-      num: '04',
-      title: 'Transparent Process',
-      desc: 'We commit to what we can deliver. Honest timelines, clear communication, and early escalation when something changes. No surprise scope creep.'
-    },
-  ];
-
-  readonly processSteps = [
-    { num: '01', title: 'Discovery',    desc: 'Understanding the real problem before writing a single line of code.' },
-    { num: '02', title: 'Architecture', desc: 'System design, data models, and technical decisions made upfront.' },
-    { num: '03', title: 'Build',        desc: 'Iterative development with regular working builds and clear communication.' },
-    { num: '04', title: 'Refine',       desc: 'Feedback cycles, quality review, and adjustments before handoff.' },
-    { num: '05', title: 'Deliver',      desc: 'Deployment, documentation, and transition support included.' },
-  ];
-
-  readonly capabilities = [
-    'Custom Software Development',
-    'Web & Mobile Applications',
-    'AI & Automation Platforms',
-    'Government Technology',
-    'Enterprise Solutions',
+  readonly roles = [
+    'Business Development & Market Research Intern',
+    'Quality Assurance (QA) Intern',
+    'Customer Success & Operations Intern',
   ];
 
   ngOnInit(): void {
     this.seo.setMeta({
-      title: 'RentPhoenix Technologies — Enterprise Software Built With Purpose',
-      description: 'Custom digital products, automation platforms, and enterprise solutions designed for businesses and government organizations. Built with technical depth from Goa, India.',
-      keywords: 'enterprise software, custom software development, web applications, mobile apps, government technology, Goa India',
+      title: 'RentPhoenix Technologies — A Young Software Company, Built Properly',
+      description: 'RentPhoenix Technologies is a DPIIT-recognised software company from Goa. We build and run RentPhoenix OS and CO-Founder, and build custom software for businesses and government.',
+      keywords: 'RentPhoenix, software company Goa, rental management software, startup finance software, custom software development, government technology India',
     });
   }
 
   ngAfterViewInit(): void {
-    const observer = new IntersectionObserver(
+    this.observer = new IntersectionObserver(
       entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
       { threshold: 0.08 }
     );
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    document.querySelectorAll('.reveal').forEach(el => this.observer!.observe(el));
+  }
+
+  ngOnDestroy(): void {
+    this.observer?.disconnect();
   }
 }

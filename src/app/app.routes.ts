@@ -26,8 +26,9 @@ export const routes: Routes = [
     loadComponent: () => import('./features/government/government.component').then(m => m.GovernmentComponent)
   },
   {
+    // Portfolio page retired: the company's work is its products
     path: 'portfolio',
-    loadComponent: () => import('./features/portfolio/portfolio.component').then(m => m.PortfolioComponent)
+    redirectTo: 'products'
   },
   {
     path: 'careers',

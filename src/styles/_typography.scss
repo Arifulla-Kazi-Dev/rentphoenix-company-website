@@ -1,7 +1,7 @@
 // ============================================================
 // TYPOGRAPHY — RENTPHOENIX
 // ============================================================
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+// Fonts load from index.html: Inter (body) and Bricolage Grotesque (display)
 
 *,
 *::before,
@@ -21,19 +21,23 @@ body {
 // Heading scale
 h1, h2, h3, h4, h5, h6 {
   color: var(--rp-text-1);
+  font-family: var(--rp-font-display);
   font-weight: 700;
-  line-height: 1.2;
+  line-height: 1.15;
   letter-spacing: -0.025em;
 }
 
-h1 { font-size: clamp(2rem, 5vw, 3.5rem); }
-h2 { font-size: clamp(1.5rem, 3.5vw, 2.25rem); }
+h1, h2 { font-weight: 800; letter-spacing: -0.035em; line-height: 1.05; }
+
+h1 { font-size: clamp(2.25rem, 6vw, 4.25rem); }
+h2 { font-size: clamp(1.75rem, 4vw, 2.875rem); }
 h3 { font-size: clamp(1.125rem, 2.5vw, 1.5rem); }
 h4 { font-size: 1.125rem; }
 h5 { font-size: 1rem; }
 
 // Display text — for hero headlines
 .display {
+  font-family: var(--rp-font-display);
   font-size: clamp(2.5rem, 7vw, 5rem);
   font-weight: 800;
   line-height: 1.05;

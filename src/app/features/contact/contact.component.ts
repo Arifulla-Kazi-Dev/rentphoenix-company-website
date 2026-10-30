@@ -1,8 +1,8 @@
-import { Component, OnInit, AfterViewInit, inject, signal, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, AfterViewInit, OnDestroy, inject, signal, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { LucideAngularModule, Mail, Linkedin, ArrowRight, Send } from 'lucide-angular';
+import { LucideAngularModule, Mail, Linkedin, ArrowRight, Send, Check } from 'lucide-angular';
 import { SeoService } from '../../core/services/seo.service';
 import { BusinessCardComponent } from '../../shared/components/business-card/business-card.component';
 
@@ -14,13 +14,15 @@ import { BusinessCardComponent } from '../../shared/components/business-card/bus
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.scss'
 })
-export class ContactComponent implements OnInit, AfterViewInit {
+export class ContactComponent implements OnInit, AfterViewInit, OnDestroy {
   private seo = inject(SeoService);
   private fb = inject(FormBuilder);
   private http = inject(HttpClient);
+  private observer?: IntersectionObserver;
 
   readonly ArrowRight = ArrowRight;
   readonly Send = Send;
+  readonly Check = Check;
   readonly Mail = Mail;
   readonly Linkedin = Linkedin;
 
@@ -45,6 +47,12 @@ export class ContactComponent implements OnInit, AfterViewInit {
     'General Inquiry'
   ];
 
+  readonly nextSteps = [
+    { title: 'We read it properly.', desc: 'Every message is reviewed by the team, not an auto-responder.' },
+    { title: 'You get an honest reply', desc: 'within 1–2 business days — what we can build, how, and when, or why we are not the right fit.' },
+    { title: 'If it fits, we start with discovery:', desc: 'understanding the real problem before writing any code.' },
+  ];
+
   readonly contactLinks = [
     {
       icon: Mail,
@@ -62,18 +70,22 @@ export class ContactComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.seo.setMeta({
-      title: 'Contact',
+      title: 'Contact — Talk to RentPhoenix Technologies',
       description: 'Get in touch with RentPhoenix Technologies. For project inquiries, product demos, or general questions.',
       keywords: 'contact RentPhoenix, software development inquiry Goa, enterprise software consultation India'
     });
   }
 
   ngAfterViewInit(): void {
-    const io = new IntersectionObserver(
+    this.observer = new IntersectionObserver(
       entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
       { threshold: 0.06, rootMargin: '0px 0px -24px 0px' }
     );
-    document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => io.observe(el));
+    document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => this.observer!.observe(el));
+  }
+
+  ngOnDestroy(): void {
+    this.observer?.disconnect();
   }
 
   onSubmit(): void {

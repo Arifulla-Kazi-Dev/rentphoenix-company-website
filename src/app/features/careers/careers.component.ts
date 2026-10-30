@@ -3,11 +3,12 @@ import {
   ChangeDetectionStrategy, HostListener
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import {
   LucideAngularModule,
-  ArrowRight, Mail, Clock,
+  ArrowRight, Mail, Check,
   TrendingUp, Bug, Users, ChevronDown, ChevronUp,
   X, Link, CheckCircle
 } from 'lucide-angular';
@@ -17,7 +18,7 @@ import { SeoService } from '../../core/services/seo.service';
   selector: 'app-careers',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CommonModule, ReactiveFormsModule, LucideAngularModule],
+  imports: [CommonModule, RouterLink, ReactiveFormsModule, LucideAngularModule],
   templateUrl: './careers.component.html',
   styleUrl: './careers.component.scss'
 })
@@ -28,7 +29,7 @@ export class CareersComponent implements OnInit, AfterViewInit {
 
   readonly ArrowRight = ArrowRight;
   readonly Mail = Mail;
-  readonly Clock = Clock;
+  readonly Check = Check;
   readonly ChevronDown = ChevronDown;
   readonly ChevronUp = ChevronUp;
   readonly X = X;
@@ -192,7 +193,7 @@ export class CareersComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.seo.setMeta({
-      title: 'Careers',
+      title: 'Careers — Internships at RentPhoenix Technologies, Goa',
       description: 'Explore internship opportunities at RentPhoenix Technologies. Work directly with the founder and gain real startup experience from Goa, India.',
       keywords: 'careers RentPhoenix, internship Goa, startup internship India, tech internship'
     });

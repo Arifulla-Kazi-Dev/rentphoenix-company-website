@@ -22,17 +22,23 @@ export class FooterComponent {
     {
       title: 'Company',
       links: [
-        { label: 'About', path: '/about' },
-        { label: 'Portfolio', path: '/portfolio' },
+        { label: 'Our story', path: '/about' },
         { label: 'Careers', path: '/careers' },
+        { label: 'Contact', path: '/contact' },
+      ]
+    },
+    {
+      title: 'Products',
+      links: [
+        { label: 'RentPhoenix OS', path: '/products' },
+        { label: 'CO-Founder', path: '/products/co-founder' },
       ]
     },
     {
       title: 'Solutions',
       links: [
         { label: 'Services', path: '/services' },
-        { label: 'Government Solutions', path: '/government-solutions' },
-        { label: 'Products', path: '/products' },
+        { label: 'Government', path: '/government-solutions' },
       ]
     },
     {
@@ -40,7 +46,6 @@ export class FooterComponent {
       links: [
         { label: 'Privacy Policy', path: '/privacy-policy' },
         { label: 'Terms & Conditions', path: '/terms' },
-        { label: 'Contact', path: '/contact' },
       ]
     }
   ];

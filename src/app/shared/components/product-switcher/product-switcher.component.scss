@@ -47,10 +47,10 @@
   &:hover { color: var(--rp-text-1); }
 
   &--active {
-    background: var(--rp-purple);
-    color: #fff;
+    background: var(--rp-accent-fill);
+    color: var(--rp-on-accent);
 
-    &:hover { color: #fff; }
+    &:hover { color: var(--rp-on-accent); }
   }
 }
 

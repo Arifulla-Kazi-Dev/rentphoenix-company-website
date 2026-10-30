@@ -7,7 +7,7 @@ import {
   LucideAngularModule,
   Menu, X, Sun, Moon, ChevronDown, ArrowRight,
   Code2, Globe, Smartphone, Zap, BarChart3, Shield,
-  Package, Building2, Briefcase, Users, Wallet
+  Package, Wallet
 } from 'lucide-angular';
 import { ThemeService } from '../../../core/services/theme.service';
 
@@ -16,6 +16,8 @@ export interface PanelLink {
   label: string;
   desc: string;
   path: string;
+  /** Section id on the target page, e.g. a service on /services. */
+  fragment?: string;
 }
 
 @Component({
@@ -49,40 +51,22 @@ export class NavbarComponent {
   private closeTimer: ReturnType<typeof setTimeout> | null = null;
 
   readonly navItems = [
-    { id: 'products',  label: 'Products'  },
-    { id: 'services',  label: 'Services'  },
-    { id: 'solutions', label: 'Solutions' },
-    { id: 'company',   label: 'Company'   },
+    { id: 'products', label: 'Products' },
+    { id: 'services', label: 'Services' },
+  ];
+
+  readonly pageLinks = [
+    { label: 'Our story', path: '/about'   },
+    { label: 'Careers',   path: '/careers' },
   ];
 
   readonly servicesLinks: PanelLink[] = [
-    { icon: Code2,      label: 'Custom Software',      desc: 'Purpose-built systems from scratch',     path: '/services' },
-    { icon: Globe,      label: 'Web Applications',     desc: 'Production-grade web apps',              path: '/services' },
-    { icon: Smartphone, label: 'Mobile Applications',  desc: 'Cross-platform iOS & Android',           path: '/services' },
-    { icon: Zap,        label: 'AI & Automation',      desc: 'Intelligent workflow systems',            path: '/services' },
-    { icon: BarChart3,  label: 'Enterprise Platforms', desc: 'Multi-user coordinated systems',         path: '/services' },
-    { icon: Shield,     label: 'Government Solutions', desc: 'Secure public sector software',          path: '/government' },
-  ];
-
-  readonly companyLinks: PanelLink[] = [
-    { icon: Building2, label: 'About Us',  desc: 'Our story, vision & mission',  path: '/about'     },
-    { icon: Briefcase, label: 'Portfolio', desc: 'Real projects, verified only',  path: '/portfolio' },
-    { icon: Users,     label: 'Careers',   desc: 'Join the team',                path: '/careers'   },
-  ];
-
-  readonly govLinks = [
-    'Digital Transformation',
-    'Citizen Service Portals',
-    'Administrative Workflows',
-    'Document & Record Management',
-    'Reporting & Analytics',
-  ];
-
-  readonly industryLinks = [
-    'Real Estate & Property',
-    'Government & Public Sector',
-    'Enterprise & Corporate',
-    'Startups & Growing Businesses',
+    { icon: Code2,      label: 'Custom Software',      desc: 'Purpose-built systems from scratch',     path: '/services', fragment: 'custom-software' },
+    { icon: Globe,      label: 'Web Applications',     desc: 'Production-grade web apps',              path: '/services', fragment: 'web-apps' },
+    { icon: Smartphone, label: 'Mobile Applications',  desc: 'Cross-platform iOS & Android',           path: '/services', fragment: 'mobile-apps' },
+    { icon: Zap,        label: 'Automation',           desc: 'Workflow tools that remove busywork',    path: '/services', fragment: 'automation' },
+    { icon: BarChart3,  label: 'Enterprise Platforms', desc: 'Multi-user coordinated systems',         path: '/services', fragment: 'enterprise' },
+    { icon: Shield,     label: 'Government Solutions', desc: 'Secure public sector software',          path: '/government-solutions' },
   ];
 
   @HostListener('window:scroll')

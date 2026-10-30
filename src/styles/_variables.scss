@@ -1,60 +1,84 @@
 // ============================================================
-// RENTPHOENIX TECHNOLOGIES — BRAND DESIGN SYSTEM V2
-// Warm, Premium, Enterprise-Ready
-// Primary: Deep Purple · Accent: Sky Blue · Base: Warm Cream
+// RENTPHOENIX TECHNOLOGIES — BRAND DESIGN SYSTEM V3
+// Founder-led: honest, warm, grounded
+// Accent: Phoenix Ember · Base: Stone neutrals
 // ============================================================
 
 :root {
-  // === PRIMARY: Deep Royal Purple ===
-  --rp-purple:        #7C3AED;   // Violet-600
-  --rp-purple-dark:   #6D28D9;   // Violet-700 (hover)
-  --rp-purple-light:  #8B5CF6;   // Violet-500
-  --rp-purple-xlight: #A78BFA;   // Violet-400 (decorative)
-  --rp-purple-muted:  rgba(124, 58, 237, 0.07);
-  --rp-purple-border: rgba(124, 58, 237, 0.22);
+  // === ACCENT: Phoenix Ember ===
+  // --rp-accent is the text-safe accent (links, icons, labels).
+  // --rp-accent-fill is for solid backgrounds that carry --rp-on-accent text.
+  --rp-accent:        #C2410C;   // Orange-700 · 5.2:1 on white
+  --rp-accent-strong: #9A3412;   // Orange-800 (hover)
+  --rp-accent-soft:   #FDBA74;   // Orange-300 (decorative)
+  --rp-accent-fill:   #C2410C;
+  --rp-accent-fill-hover: #9A3412;
+  --rp-on-accent:     #FFFFFF;
+  --rp-accent-muted:  rgba(194, 65, 12, 0.08);
+  --rp-accent-border: rgba(194, 65, 12, 0.24);
 
-  // === ACCENT: Sky Blue ===
-  --rp-sky:           #0EA5E9;   // Sky-500
-  --rp-sky-dark:      #0284C7;   // Sky-600
-  --rp-sky-muted:     rgba(14, 165, 233, 0.07);
-  --rp-sky-border:    rgba(14, 165, 233, 0.20);
+  // === Legacy aliases — pages written for the purple/sky system ===
+  --rp-purple:        var(--rp-accent);
+  --rp-purple-dark:   var(--rp-accent-strong);
+  --rp-purple-light:  var(--rp-accent);
+  --rp-purple-xlight: var(--rp-accent-soft);
+  --rp-purple-muted:  var(--rp-accent-muted);
+  --rp-purple-border: var(--rp-accent-border);
+  --rp-primary:       var(--rp-accent);
 
-  // === Backward-compat aliases — all existing --rp-blue refs → purple ===
-  --rp-blue:        var(--rp-purple);
-  --rp-blue-hover:  var(--rp-purple-dark);
-  --rp-blue-muted:  var(--rp-purple-muted);
-  --rp-blue-border: var(--rp-purple-border);
+  --rp-sky:           var(--rp-accent-fill);
+  --rp-sky-dark:      var(--rp-accent-fill-hover);
+  --rp-sky-muted:     var(--rp-accent-muted);
+  --rp-sky-border:    var(--rp-accent-border);
 
-  // === BACKGROUNDS: Warm Cream & Beige ===
-  --rp-bg:             #FDFBF7;  // Warm cream page background
-  --rp-bg-secondary:   #F2EBE0;  // Rich beige section bg
-  --rp-bg-warm:        #EAE0CE;  // Deep beige for contrast sections
+  --rp-blue:        var(--rp-accent);
+  --rp-blue-hover:  var(--rp-accent-strong);
+  --rp-blue-muted:  var(--rp-accent-muted);
+  --rp-blue-border: var(--rp-accent-border);
+
+  // === BACKGROUNDS: Stone ===
+  --rp-bg:             #FFFFFF;  // Page background
+  --rp-bg-secondary:   #F5F3F0;  // Alternate section bg
+  --rp-bg-warm:        #ECE8E3;  // Deeper contrast sections
   --rp-surface:        #FFFFFF;  // Cards and surfaces
-  --rp-surface-raised: #FAFAF7;  // Slightly off-white
+  --rp-surface-raised: #FAF9F7;  // Slightly lifted surface
 
-  // === BORDERS: warm-tinted ===
-  --rp-border:        rgba(120, 90, 46, 0.10);
-  --rp-border-strong: rgba(100, 72, 32, 0.18);
+  // Inverted band (vision/mission, CTA strips) — dark in both themes
+  --rp-ink:        #1C1917;
+  --rp-ink-text:   #D6D3D1;
+  --rp-ink-head:   #FFFFFF;
+  --rp-ink-accent: #FDBA74;
+  --rp-ink-border: rgba(255, 255, 255, 0.10);
 
-  // === TEXT: warm hierarchy ===
-  --rp-text-1: #180E06;   // Near-black, warm
-  --rp-text-2: #453624;   // Dark warm gray
-  --rp-text-3: #9C8B74;   // Medium warm gray
-  --rp-text-4: #C4B49E;   // Light warm gray
+  // === BORDERS ===
+  --rp-border:        #E7E3DE;
+  --rp-border-strong: #C9C2BA;
+
+  // === TEXT ===
+  --rp-text-1: #1C1917;   // Headings, primary copy
+  --rp-text-2: #44403C;   // Body copy
+  --rp-text-3: #6B645D;   // Secondary labels · 5.8:1 on white
+  --rp-text-4: #A8A29E;   // Decorative only
+
+  // Undefined names some pages reference
+  --rp-text-primary:   var(--rp-text-1);
+  --rp-text-secondary: var(--rp-text-2);
 
   // === SYSTEM ===
-  --rp-success: #16A34A;
-  --rp-warning: #D97706;
+  --rp-success: #15803D;
+  --rp-green:   var(--rp-success);
+  --rp-warning: #B45309;
   --rp-danger:  #DC2626;
   --rp-error:   #DC2626;
 
   // === SHADOWS ===
-  --rp-shadow-xs:     0 1px 2px rgba(0, 0, 0, 0.04);
-  --rp-shadow-sm:     0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
-  --rp-shadow-md:     0 4px 16px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.04);
-  --rp-shadow-lg:     0 10px 36px rgba(0, 0, 0, 0.09), 0 4px 10px rgba(0, 0, 0, 0.04);
-  --rp-shadow-purple: 0 8px 28px rgba(124, 58, 237, 0.18);
-  --rp-shadow-inset:  inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  --rp-shadow-xs:     0 1px 2px rgba(28, 25, 23, 0.05);
+  --rp-shadow-sm:     0 1px 3px rgba(28, 25, 23, 0.07), 0 1px 2px rgba(28, 25, 23, 0.04);
+  --rp-shadow-md:     0 4px 16px rgba(28, 25, 23, 0.08), 0 2px 4px rgba(28, 25, 23, 0.04);
+  --rp-shadow-lg:     0 18px 48px rgba(28, 25, 23, 0.10), 0 4px 10px rgba(28, 25, 23, 0.04);
+  --rp-shadow-accent: 0 8px 24px rgba(194, 65, 12, 0.22);
+  --rp-shadow-purple: var(--rp-shadow-accent);
+  --rp-shadow-inset:  inset 0 1px 0 rgba(255, 255, 255, 0.10);
 
   // === RADIUS ===
   --rp-r-xs:   4px;
@@ -81,7 +105,8 @@
   --rp-s16: 128px;
 
   // === TYPOGRAPHY ===
-  --rp-font: 'Inter', system-ui, -apple-system, sans-serif;
+  --rp-font:         'Inter', system-ui, -apple-system, sans-serif;
+  --rp-font-display: 'Bricolage Grotesque', 'Inter', system-ui, sans-serif;
 
   // === TRANSITIONS ===
   --rp-ease:     cubic-bezier(0.4, 0, 0.2, 1);
@@ -94,38 +119,51 @@
   --rp-z-nav:     1000;
   --rp-z-overlay: 1100;
   --rp-z-modal:   2000;
+
+  color-scheme: light;
 }
 
 // ============================================================
-// DARK MODE — Warm Charcoal, not cold black
+// DARK MODE — Warm charcoal, never pure black
 // ============================================================
 [data-theme='dark'] {
-  --rp-bg:             #0C0A08;  // Dark warm near-black
-  --rp-bg-secondary:   #151210;  // Dark warm charcoal
-  --rp-bg-warm:        #1E1A15;  // Deeper dark
-  --rp-surface:        #1E1A16;  // Dark warm surface
-  --rp-surface-raised: #252019;  // Slightly lighter surface
+  --rp-accent:        #FB923C;   // Orange-400 · text-safe on charcoal
+  --rp-accent-strong: #FDBA74;
+  --rp-accent-soft:   #FDBA74;
+  --rp-accent-fill:   #FB923C;
+  --rp-accent-fill-hover: #FDBA74;
+  --rp-on-accent:     #1C1209;
+  --rp-accent-muted:  rgba(251, 146, 60, 0.12);
+  --rp-accent-border: rgba(251, 146, 60, 0.30);
 
-  --rp-border:        rgba(245, 230, 200, 0.08);
-  --rp-border-strong: rgba(245, 230, 200, 0.14);
+  --rp-bg:             #121110;
+  --rp-bg-secondary:   #1A1816;
+  --rp-bg-warm:        #221F1C;
+  --rp-surface:        #1F1C19;
+  --rp-surface-raised: #26221F;
 
-  --rp-text-1: #F0E8D8;  // Warm cream white
-  --rp-text-2: #B4A48C;  // Warm sand
-  --rp-text-3: #685B46;  // Warm dark gray
-  --rp-text-4: #46392B;  // Darker warm gray
+  --rp-ink:        #0A0908;
+  --rp-ink-text:   #B8B0A7;
+  --rp-ink-border: rgba(255, 255, 255, 0.08);
 
-  --rp-shadow-xs:     0 1px 2px rgba(0, 0, 0, 0.20);
-  --rp-shadow-sm:     0 1px 3px rgba(0, 0, 0, 0.30);
-  --rp-shadow-md:     0 4px 16px rgba(0, 0, 0, 0.38);
-  --rp-shadow-lg:     0 10px 36px rgba(0, 0, 0, 0.48);
-  --rp-shadow-purple: 0 8px 28px rgba(124, 58, 237, 0.28);
+  --rp-border:        #2E2A26;
+  --rp-border-strong: #463F39;
 
-  --rp-purple-muted:  rgba(124, 58, 237, 0.13);
-  --rp-purple-border: rgba(139, 92, 246, 0.30);
-  --rp-sky-muted:     rgba(14, 165, 233, 0.10);
-  --rp-sky-border:    rgba(56, 189, 248, 0.26);
+  --rp-text-1: #EDE9E4;
+  --rp-text-2: #CFC8C0;
+  --rp-text-3: #ABA39A;
+  --rp-text-4: #6E665E;
 
-  // Compat aliases (dark)
-  --rp-blue-muted:  var(--rp-purple-muted);
-  --rp-blue-border: var(--rp-purple-border);
+  --rp-success: #86EFAC;
+  --rp-warning: #FBBF24;
+  --rp-danger:  #F87171;  // red-600 is unreadable on charcoal
+  --rp-error:   #F87171;
+
+  --rp-shadow-xs:     0 1px 2px rgba(0, 0, 0, 0.30);
+  --rp-shadow-sm:     0 1px 3px rgba(0, 0, 0, 0.36);
+  --rp-shadow-md:     0 4px 16px rgba(0, 0, 0, 0.42);
+  --rp-shadow-lg:     0 18px 48px rgba(0, 0, 0, 0.50);
+  --rp-shadow-accent: 0 8px 24px rgba(251, 146, 60, 0.18);
+
+  color-scheme: dark;
 }

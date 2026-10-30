@@ -1,44 +1,66 @@
-<!-- PRODUCTS PAGE — RentPhoenix OS -->
+<!-- PRODUCTS PAGE — RentPhoenix OS (V3) -->
 
 <app-product-switcher />
 
-<!-- Interactive product showcase: hero → "Built for how India rents" -->
+<!-- Interactive product showcase: hero → "Made for the way you already work" -->
 <app-rp-showcase [playUrl]="playStoreUrl" [webUrl]="appUrl" />
 
-<!-- PLATFORM -->
-<section class="section" style="border-top: 1px solid var(--rp-border); background: var(--rp-bg-secondary)">
-  <div class="container">
-    <div class="section-intro reveal">
-      <div class="section-label"><span>Everywhere You Work</span></div>
-      <h2>One platform,<br>every device.</h2>
+<!-- WHY WE BUILT IT -->
+<section class="section section--alt">
+  <div class="container why">
+    <div class="why__intro reveal">
+      <span class="eyebrow-accent">Why we built it</span>
+      <h2>We started with a problem we saw first-hand.</h2>
+      <p class="body-lg">
+        Landlords kept records in spreadsheets. Tenants talked over WhatsApp. Agreements
+        lived in physical files. RentPhoenix OS brings all of it into one system both
+        sides can trust.
+      </p>
+      <a routerLink="/about" class="text-link">Read our story <lucide-icon [img]="ArrowRight" [size]="15" [strokeWidth]="2" /></a>
     </div>
 
-    <div class="platform-grid">
+    <ol class="swap reveal">
+      @for (row of beforeAfter; track row.before) {
+        <li class="swap__row">
+          <span class="swap__before">{{ row.before }}</span>
+          <lucide-icon [img]="ArrowRight" [size]="18" [strokeWidth]="2" class="swap__arrow" />
+          <span class="swap__after">{{ row.after }}</span>
+        </li>
+      }
+    </ol>
+  </div>
+</section>
+
+<!-- PLATFORMS -->
+<section class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow-accent">Everywhere you work</span>
+      <h2>One platform, every device.</h2>
+    </div>
+
+    <div class="platforms">
       @for (p of platforms; track p.title; let i = $index) {
-        <div class="platform-card reveal" [style.animation-delay]="(i * 0.08) + 's'">
-          <div class="platform-card__icon">
-            <lucide-icon [img]="p.icon" [size]="22" [strokeWidth]="1.75" />
-          </div>
-          <h3 class="platform-card__title">{{ p.title }}</h3>
-          <p class="platform-card__desc body-sm">{{ p.desc }}</p>
-          @if (p.store) {
-            @if (p.store.href) {
-              <a [href]="p.store.href" target="_blank" rel="noopener" class="store-badge">
-                <lucide-icon [img]="p.store.icon" [size]="20" [strokeWidth]="1.75" class="store-badge__icon" />
-                <span class="store-badge__text">
-                  <span class="store-badge__line1">{{ p.store.line1 }}</span>
-                  <span class="store-badge__line2">{{ p.store.line2 }}</span>
-                </span>
-              </a>
-            } @else {
-              <span class="store-badge store-badge--disabled" aria-disabled="true">
-                <lucide-icon [img]="p.store.icon" [size]="20" [strokeWidth]="1.75" class="store-badge__icon" />
-                <span class="store-badge__text">
-                  <span class="store-badge__line1">{{ p.store.line1 }}</span>
-                  <span class="store-badge__line2">{{ p.store.line2 }}</span>
-                </span>
+        <div class="platform reveal" [style.transition-delay]="(i * 0.06) + 's'">
+          <span class="platform__icon"><lucide-icon [img]="p.icon" [size]="22" [strokeWidth]="1.75" /></span>
+          <h3 class="platform__title">{{ p.title }}</h3>
+          <p class="platform__desc">{{ p.desc }}</p>
+          @if (p.store.href) {
+            <a [href]="p.store.href" target="_blank" rel="noopener" class="store-badge">
+              <lucide-icon [img]="p.store.icon" [size]="20" [strokeWidth]="1.75" />
+              <span class="store-badge__text">
+                <span class="store-badge__line1">{{ p.store.line1 }}</span>
+                <span class="store-badge__line2">{{ p.store.line2 }}</span>
               </span>
-            }
+            </a>
+          } @else {
+            <span class="store-badge store-badge--soon">
+              <lucide-icon [img]="p.store.icon" [size]="20" [strokeWidth]="1.75" />
+              <span class="store-badge__text">
+                <span class="store-badge__line1">{{ p.store.line1 }}</span>
+                <span class="store-badge__line2">{{ p.store.line2 }}</span>
+              </span>
+            </span>
           }
         </div>
       }
@@ -47,23 +69,19 @@
 </section>
 
 <!-- TRUST -->
-<section class="section" style="border-top: 1px solid var(--rp-border)">
-  <div class="container">
-    <div class="section-intro reveal">
-      <div class="section-label"><span>Built for Trust</span></div>
-      <h2>Secure, private,<br>and reliable by default.</h2>
+<section class="page-trust">
+  <div class="container page-trust__inner">
+    <div class="page-trust__intro reveal">
+      <span class="page-trust__label">Built for trust</span>
+      <h2>Secure, private and reliable — by default.</h2>
+      <p>Your rent records and documents are protected by rules enforced at the database, not just hidden in the app.</p>
     </div>
-
-    <div class="trust-grid">
+    <div class="page-trust__grid">
       @for (t of trustPoints; track t.title; let i = $index) {
-        <div class="trust-item reveal" [style.animation-delay]="(i * 0.06) + 's'">
-          <div class="trust-item__icon">
-            <lucide-icon [img]="t.icon" [size]="18" [strokeWidth]="1.75" />
-          </div>
-          <div>
-            <h3 class="trust-item__title">{{ t.title }}</h3>
-            <p class="trust-item__desc body-sm">{{ t.desc }}</p>
-          </div>
+        <div class="page-trust__item reveal" [style.transition-delay]="(i * 0.05) + 's'">
+          <lucide-icon [img]="t.icon" [size]="20" [strokeWidth]="1.75" class="page-trust__icon" />
+          <h3 class="page-trust__title">{{ t.title }}</h3>
+          <p class="page-trust__desc">{{ t.desc }}</p>
         </div>
       }
     </div>
@@ -71,76 +89,55 @@
 </section>
 
 <!-- STATUS -->
-<section class="section" style="border-top: 1px solid var(--rp-border); background: var(--rp-bg-secondary)">
-  <div class="container">
-    <div class="status-grid reveal">
-      <div>
-        <div class="section-label"><span>Product Status</span></div>
-        <h2>Live, and built<br>on real usage.</h2>
-        <p class="body-md" style="margin-top:16px;max-width:480px">
-          RentPhoenix OS is live in production today, with automated WhatsApp rent
-          reminders already running for real landlords and tenants. We're actively
-          expanding the platform — if you want to see it on your own portfolio, reach out.
-        </p>
-        <div style="display:flex;gap:10px;margin-top:28px;flex-wrap:wrap">
-          <a [href]="appUrl" target="_blank" rel="noopener" class="btn btn-primary">
-            Try RentPhoenix OS
-            <lucide-icon [img]="ExternalLink" [size]="14" [strokeWidth]="2" />
-          </a>
-          <a routerLink="/contact" class="btn btn-secondary">Talk to Us</a>
-        </div>
-      </div>
-      <div class="status-card">
-        <div class="status-card__row">
-          <span class="status-card__label body-xs">Product</span>
-          <span class="status-card__val">RentPhoenix OS</span>
-        </div>
-        <div class="status-card__row">
-          <span class="status-card__label body-xs">Stack</span>
-          <span class="status-card__val">Angular · Flutter · Firebase</span>
-        </div>
-        <div class="status-card__row">
-          <span class="status-card__label body-xs">Type</span>
-          <span class="status-card__val">Web App · Android App</span>
-        </div>
-        <div class="status-card__row">
-          <span class="status-card__label body-xs">Status</span>
-          <div style="display:flex;align-items:center;gap:8px">
-            <div class="status-dot status-dot--live"></div>
-            <span class="status-card__val">Live — In Production</span>
-          </div>
-        </div>
-        <div class="status-card__row">
-          <span class="status-card__label body-xs">Target</span>
-          <span class="status-card__val">Landlords · Property Managers</span>
-        </div>
-        <div class="status-card__row">
-          <span class="status-card__label body-xs">Try It</span>
-          <a [href]="appUrl" target="_blank" rel="noopener" class="status-card__val status-card__link">
-            rentphoenixos.in
-            <lucide-icon [img]="ExternalLink" [size]="12" [strokeWidth]="2" />
-          </a>
-        </div>
+<section class="section">
+  <div class="container page-status">
+    <div class="page-status__text reveal">
+      <span class="live-pill"><span class="live-pill__dot"></span>Live in production</span>
+      <h2>Live, and built on real usage.</h2>
+      <p class="body-lg">
+        RentPhoenix OS is running today, with automated WhatsApp rent reminders already
+        going out to real landlords and tenants. We're actively expanding it — if you want
+        to see it on your own properties, reach out.
+      </p>
+      <div class="page-status__actions">
+        <a [href]="appUrl" target="_blank" rel="noopener" class="btn btn-primary">
+          Try RentPhoenix OS
+          <lucide-icon [img]="ArrowUpRight" [size]="15" [strokeWidth]="2" />
+        </a>
+        <a routerLink="/contact" class="btn btn-secondary">Talk to us</a>
       </div>
     </div>
+
+    <dl class="specs reveal">
+      @for (s of specs; track s.label) {
+        <div class="specs__row">
+          <dt>{{ s.label }}</dt>
+          <dd>{{ s.value }}</dd>
+        </div>
+      }
+      <div class="specs__row">
+        <dt>Try it</dt>
+        <dd><a [href]="appUrl" target="_blank" rel="noopener" class="text-link">rentphoenixos.in <lucide-icon [img]="ArrowUpRight" [size]="14" [strokeWidth]="2" /></a></dd>
+      </div>
+    </dl>
   </div>
 </section>
 
-<!-- CLOSING CTA -->
-<section class="cta-section section" style="border-top: 1px solid var(--rp-border)">
-  <div class="container cta-section__inner reveal">
-    <div class="section-label"><span>See It In Action</span></div>
-    <h2>Ready to try the<br>platform yourself?</h2>
-    <p class="body-lg" style="margin:16px 0 32px;max-width:480px">
-      Explore RentPhoenix OS directly, or talk to us about bringing it to your
-      properties.
-    </p>
-    <div style="display:flex;gap:12px;flex-wrap:wrap">
-      <a [href]="appUrl" target="_blank" rel="noopener" class="btn btn-primary btn-lg">
-        Try RentPhoenix OS
-        <lucide-icon [img]="ExternalLink" [size]="16" [strokeWidth]="2" />
-      </a>
-      <a routerLink="/contact" class="btn btn-secondary btn-lg">Talk to Us</a>
+<!-- CTA -->
+<section class="cta">
+  <div class="container">
+    <div class="cta__panel reveal">
+      <div class="cta__text">
+        <h2>See it on your own properties.</h2>
+        <p>Open the web app in your browser, or talk to us about bringing your landlords and tenants on board.</p>
+      </div>
+      <div class="cta__actions">
+        <a [href]="webAppUrl" target="_blank" rel="noopener" class="cta__btn">
+          Open the web app
+          <lucide-icon [img]="ArrowUpRight" [size]="16" [strokeWidth]="2" />
+        </a>
+        <a routerLink="/contact" class="cta__link">or talk to us</a>
+      </div>
     </div>
   </div>
 </section>

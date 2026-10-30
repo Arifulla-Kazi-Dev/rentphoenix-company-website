@@ -1,130 +1,141 @@
-<!-- CAREERS PAGE -->
+<!-- CAREERS PAGE (V3) -->
 
-<section class="page-hero">
-  <div class="page-hero__grid"></div>
-  <div class="container">
-    <div class="page-hero__content anim-fade-up">
-      <div class="section-label"><span>Careers</span></div>
-      <h1>Join us in building<br>something real.</h1>
-      <p class="body-lg" style="max-width:520px;margin-top:16px">
-        Work directly with the founder. Gain hands-on startup experience.
-        Contribute to solving problems that matter.
+<section class="page-intro">
+  <div class="container page-intro__inner">
+    <div class="page-intro__text anim-fade-up">
+      <span class="eyebrow-accent">Careers</span>
+      <h1 class="page-intro__headline">Grow with us from the start.</h1>
+      <p class="page-intro__lead">
+        Work directly with the founder, get hands-on startup experience, and help solve
+        problems that matter — for landlords, founders and the organisations we build for.
       </p>
+      <div class="page-intro__actions">
+        <a routerLink="/careers" fragment="roles" class="btn btn-primary btn-lg">
+          See open roles
+          <lucide-icon [img]="ArrowRight" [size]="16" [strokeWidth]="2" />
+        </a>
+      </div>
+    </div>
+    <div class="page-intro__aside anim-fade-up" style="animation-delay:0.1s">
+      <strong>{{ roles.length }} internship roles open now.</strong>
+      <span>Mapusa, Goa or remote · 2–3 months · freshers welcome. No CV needed to start a conversation.</span>
     </div>
   </div>
 </section>
 
 <!-- OPEN ROLES -->
-<section class="section">
+<section class="section section--alt" id="roles">
   <div class="container">
-    <div class="section-label reveal"><span>Open Positions</span></div>
-    <h2 class="reveal" style="margin-bottom:8px;max-width:480px">3 open internship roles.</h2>
-    <p class="body-lg reveal" style="color:var(--rp-text-2);margin-bottom:40px;max-width:560px">
-      Early-stage startup experience. Directly mentored by the founder.
-      Real work, real learning, real impact.
-    </p>
+    <div class="section-head reveal">
+      <span class="eyebrow-accent">Open positions</span>
+      <h2>Real work, real learning, real impact.</h2>
+      <p class="body-lg">Every role is mentored directly by the founder. We're upfront: these internships are currently unpaid, with paid opportunities possible later.</p>
+    </div>
 
-    <div class="jobs-list">
+    <div class="jobs">
       @for (role of roles; track role.title; let i = $index) {
-        <div class="job-card reveal" [class.job-card--open]="expandedRole() === i"
-             [style.animation-delay]="(i * 0.07) + 's'">
+        <article class="job reveal" [class.job--open]="expandedRole() === i" [style.transition-delay]="(i * 0.05) + 's'">
 
-          <!-- Header -->
-          <div class="job-card__header" (click)="toggleRole(i)">
-            <div class="job-card__icon">
-              <lucide-icon [img]="role.icon" [size]="20" [strokeWidth]="1.75" />
-            </div>
-            <div class="job-card__info">
-              <h3 class="job-card__title">{{ role.title }}</h3>
-              <div class="job-card__meta">
-                <span class="tag">{{ role.location }}</span>
-                <span class="tag">{{ role.duration }}</span>
-                <span class="tag">{{ role.type }}</span>
-                <span class="tag">{{ role.experience }}</span>
-              </div>
-            </div>
-            <button class="btn btn-secondary job-card__toggle" type="button">
-              {{ expandedRole() === i ? 'Hide Details' : 'View Details' }}
-              <lucide-icon [img]="expandedRole() === i ? ChevronUp : ChevronDown" [size]="14" [strokeWidth]="2" />
-            </button>
-          </div>
+          <button
+            type="button"
+            class="job__header"
+            (click)="toggleRole(i)"
+            [attr.aria-expanded]="expandedRole() === i"
+            [attr.aria-controls]="'role-' + i"
+          >
+            <span class="job__icon"><lucide-icon [img]="role.icon" [size]="20" [strokeWidth]="1.75" /></span>
+            <span class="job__info">
+              <span class="job__title">{{ role.title }}</span>
+              <span class="job__meta">
+                <span>{{ role.location }}</span>
+                <span>{{ role.duration }}</span>
+                <span>{{ role.type }}</span>
+                <span>{{ role.experience }}</span>
+              </span>
+            </span>
+            <span class="job__toggle">
+              {{ expandedRole() === i ? 'Hide details' : 'View details' }}
+              <lucide-icon [img]="expandedRole() === i ? ChevronUp : ChevronDown" [size]="16" [strokeWidth]="2" />
+            </span>
+          </button>
 
-          <!-- Expanded details -->
           @if (expandedRole() === i) {
-            <div class="job-card__details">
-              <div class="job-detail-cols">
-
-                <div class="job-detail-section">
-                  <h4 class="job-detail-section__title">What You'll Do</h4>
-                  <ul class="job-detail-list">
+            <div class="job__details" [id]="'role-' + i">
+              <div class="job__cols">
+                <div>
+                  <h3 class="job__label">What you'll do</h3>
+                  <ul class="job__list">
                     @for (item of role.whatYoullDo; track item) {
-                      <li>{{ item }}</li>
+                      <li><lucide-icon [img]="Check" [size]="16" [strokeWidth]="2.25" />{{ item }}</li>
                     }
                   </ul>
                 </div>
-
-                <div class="job-detail-section">
-                  <h4 class="job-detail-section__title">What You'll Learn</h4>
-                  <div class="job-detail-tags">
+                <div>
+                  <h3 class="job__label">What you'll learn</h3>
+                  <ul class="job__chips">
                     @for (skill of role.whatYoullLearn; track skill) {
-                      <span class="tag">{{ skill }}</span>
-                    }
-                  </div>
-                </div>
-
-                <div class="job-detail-section">
-                  <h4 class="job-detail-section__title">Benefits</h4>
-                  <ul class="job-detail-list">
-                    @for (benefit of role.benefits; track benefit) {
-                      <li>{{ benefit }}</li>
+                      <li>{{ skill }}</li>
                     }
                   </ul>
                 </div>
-
+                <div>
+                  <h3 class="job__label">What you get</h3>
+                  <ul class="job__list">
+                    @for (benefit of role.benefits; track benefit) {
+                      <li><lucide-icon [img]="Check" [size]="16" [strokeWidth]="2.25" />{{ benefit }}</li>
+                    }
+                  </ul>
+                </div>
               </div>
-              <div class="job-card__apply">
+              <div class="job__apply">
                 <button class="btn btn-primary" type="button" (click)="openApplication($event, role.title)">
-                  Apply Now
-                  <lucide-icon [img]="ArrowRight" [size]="14" [strokeWidth]="2" />
+                  Apply for this role
+                  <lucide-icon [img]="ArrowRight" [size]="15" [strokeWidth]="2" />
                 </button>
               </div>
             </div>
           }
 
-        </div>
+        </article>
       }
     </div>
   </div>
 </section>
 
-<!-- VALUES -->
-<section class="section" style="border-top:1px solid var(--rp-border);background:var(--rp-bg-secondary)">
+<!-- HOW WE WORK -->
+<section class="section">
   <div class="container">
-    <div class="section-label reveal"><span>How We Work</span></div>
-    <h2 class="reveal" style="margin-bottom:40px;max-width:400px">The principles behind every hiring decision we make.</h2>
-    <div class="values-grid">
+    <div class="section-head reveal">
+      <span class="eyebrow-accent">How we work</span>
+      <h2>The principles behind every hiring decision we make.</h2>
+    </div>
+    <div class="principles">
       @for (val of values; track val.title; let i = $index) {
-        <div class="value-card reveal" [style.animation-delay]="(i * 0.07) + 's'">
-          <h3 class="value-card__title">{{ val.title }}</h3>
-          <p class="value-card__desc body-sm">{{ val.desc }}</p>
+        <div class="principle reveal" [style.transition-delay]="(i * 0.05) + 's'">
+          <span class="principle__num">{{ '0' + (i + 1) }}</span>
+          <h3 class="principle__title">{{ val.title }}</h3>
+          <p class="principle__desc">{{ val.desc }}</p>
         </div>
       }
     </div>
   </div>
 </section>
 
-<!-- CONTACT CTA -->
-<section class="section-sm" style="border-top:1px solid var(--rp-border)">
+<!-- CTA -->
+<section class="cta">
   <div class="container">
-    <div class="contact-row reveal">
-      <div>
-        <h3>Questions about working with us?</h3>
-        <p class="body-sm" style="color:var(--rp-text-3);margin-top:6px">Send a brief email. No CV required to start a conversation.</p>
+    <div class="cta__panel reveal">
+      <div class="cta__text">
+        <h2>Questions about working with us?</h2>
+        <p>Send a short email about yourself and what you'd like to work on. No CV required to start a conversation.</p>
       </div>
-      <a href="mailto:support&#64;rentphoenixos.in" class="btn btn-primary">
-        <lucide-icon [img]="Mail" [size]="15" [strokeWidth]="2" />
-        support&#64;rentphoenixos.in
-      </a>
+      <div class="cta__actions">
+        <a href="mailto:support&#64;rentphoenixos.in" class="cta__btn">
+          <lucide-icon [img]="Mail" [size]="16" [strokeWidth]="2" />
+          Email us
+        </a>
+        <a href="mailto:support&#64;rentphoenixos.in" class="cta__link">support&#64;rentphoenixos.in</a>
+      </div>
     </div>
   </div>
 </section>
@@ -132,7 +143,7 @@
 <!-- ── APPLICATION MODAL ── -->
 @if (applyingFor() !== null) {
   <div class="modal-backdrop" (click)="closeApplication()">
-    <div class="modal" (click)="$event.stopPropagation()" role="dialog" aria-modal="true">
+    <div class="modal" (click)="$event.stopPropagation()" role="dialog" aria-modal="true" aria-labelledby="apply-title">
 
       <!-- Close -->
       <button class="modal__close" type="button" (click)="closeApplication()" aria-label="Close">
@@ -144,7 +155,7 @@
         <div class="modal__header">
           <div>
             <p class="body-xs" style="color:var(--rp-text-3);margin-bottom:6px">Applying for</p>
-            <h3 class="modal__title">{{ applyingFor() }}</h3>
+            <h3 class="modal__title" id="apply-title">{{ applyingFor() }}</h3>
             <span class="tag" style="margin-top:8px;display:inline-block">Mapusa, Goa / Remote · Internship</span>
           </div>
         </div>
@@ -187,7 +198,7 @@
             </div>
             <p class="body-xs" style="color:var(--rp-text-3);margin-top:4px">
               No link? Email your resume to
-              <a href="mailto:support&#64;rentphoenixos.in" style="color:var(--rp-primary)">support&#64;rentphoenixos.in</a>
+              <a href="mailto:support&#64;rentphoenixos.in" class="text-link">support&#64;rentphoenixos.in</a>
               after submitting.
             </p>
           </div>
