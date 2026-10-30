@@ -1,0 +1,234 @@
+<!-- TEAM PAGE -->
+
+<section class="page-intro">
+  <div class="container page-intro__inner">
+    <div class="page-intro__text anim-fade-up">
+      <span class="eyebrow-accent">Our team</span>
+      <h1 class="page-intro__headline">The people behind RentPhoenix.</h1>
+      <p class="page-intro__lead">
+        A small team, on purpose. The people who run the company are the people who build
+        and test the software — so you always know who you're working with.
+      </p>
+    </div>
+    <dl class="stats anim-fade-up" style="animation-delay:0.1s">
+      @for (s of stats(); track s.label) {
+        <div class="stats__item">
+          <dt class="stats__label">{{ s.label }}</dt>
+          <dd class="stats__value">{{ s.shown }}</dd>
+        </div>
+      }
+    </dl>
+  </div>
+</section>
+
+<section class="section section--alt team-section">
+  <div class="container">
+
+    <!-- Toolbar: filter + view -->
+    <div class="toolbar reveal">
+      <div class="seg seg--filter" role="group" aria-label="Filter team" [style.--n]="filters.length" [style.--i]="filterIndex()">
+        <span class="seg__thumb" aria-hidden="true"></span>
+        @for (f of filters; track f.id) {
+          <button type="button" class="seg__btn" [class.is-active]="filter() === f.id" [attr.aria-pressed]="filter() === f.id" (click)="setFilter(f.id)">
+            {{ f.label }} <span class="seg__count">{{ f.count }}</span>
+          </button>
+        }
+      </div>
+
+      <div class="seg seg--view" role="group" aria-label="Choose view" [style.--n]="2" [style.--i]="view() === 'badges' ? 0 : 1">
+        <span class="seg__thumb" aria-hidden="true"></span>
+        <button type="button" class="seg__btn" [class.is-active]="view() === 'badges'" [attr.aria-pressed]="view() === 'badges'" (click)="setView('badges')">
+          <lucide-icon [img]="LayoutGrid" [size]="16" [strokeWidth]="2" /> Badges
+        </button>
+        <button type="button" class="seg__btn" [class.is-active]="view() === 'structure'" [attr.aria-pressed]="view() === 'structure'" (click)="setView('structure')">
+          <lucide-icon [img]="Network" [size]="16" [strokeWidth]="2" /> Structure
+        </button>
+      </div>
+    </div>
+
+    @if (view() === 'badges') {
+      <!-- BADGES -->
+      <p class="hint">Hover a badge to tilt it. Click it, or press "More about", to flip it over.</p>
+
+      <div class="badges" #badgeGrid>
+        @for (m of visible(); track m.id; let i = $index) {
+          <article
+            [id]="'badge-' + m.id"
+            [class]="'badge badge--' + m.tone"
+            [class.is-flipped]="isFlipped(m.id)"
+            [class.is-former]="m.former"
+            [class.is-spotlit]="spotlight() === m.id"
+            [style.--i]="i"
+            [attr.aria-label]="m.name + ', ' + m.role"
+          >
+            <div class="badge__swing">
+            <span class="badge__strap" aria-hidden="true"><span class="badge__clip"></span></span>
+
+            <div class="badge__tilt">
+              <div class="badge__card" (click)="onBadgeClick($event, m.id)">
+
+                <!-- FRONT -->
+                <div class="badge__face badge__front" [attr.aria-hidden]="isFlipped(m.id)" [attr.inert]="isFlipped(m.id) ? '' : null">
+                  <div class="badge__band">
+                    <span class="badge__slot" aria-hidden="true"></span>
+                    <span class="badge__brand">RENTPHOENIX</span>
+                    <span class="badge__group">{{ m.former ? 'Alumni' : m.group === 'leadership' ? 'Leadership' : 'Team' }}</span>
+                  </div>
+
+                  <div class="badge__avatar">
+                    @if (m.photo) {
+                      <img [src]="m.photo" [alt]="m.name" width="112" height="112" />
+                    } @else {
+                      <span aria-hidden="true">{{ m.initials }}</span>
+                    }
+                  </div>
+
+                  <h2 class="badge__name">{{ m.name }}</h2>
+                  <p class="badge__role">{{ m.role }}</p>
+                  <p class="badge__blurb">{{ m.summary }}</p>
+
+                  <dl class="badge__meta">
+                    <div><dt>{{ m.former ? 'Served' : 'With us' }}</dt><dd>{{ m.period }}</dd></div>
+                    @if (m.badgeId) {
+                      <div><dt>ID</dt><dd class="badge__id">{{ m.badgeId }}</dd></div>
+                    }
+                  </dl>
+
+                  <div class="badge__foot">
+                    <span class="badge__barcode" aria-hidden="true"></span>
+                    <button type="button" class="badge__flip" (click)="toggleFlip(m.id)">
+                      More about {{ firstName(m) }}
+                      <lucide-icon [img]="RotateCw" [size]="14" [strokeWidth]="2.25" />
+                    </button>
+                  </div>
+                </div>
+
+                <!-- BACK -->
+                <div class="badge__face badge__back" [attr.aria-hidden]="!isFlipped(m.id)" [attr.inert]="isFlipped(m.id) ? null : ''">
+                  <span class="badge__back-label">{{ m.group === 'team' ? 'Contributions' : 'Role' }}</span>
+                  <p class="badge__summary">{{ m.name }}</p>
+                  <ul class="badge__highlights">
+                    @for (h of m.highlights; track h) { <li>{{ h }}</li> }
+                  </ul>
+                  @if (m.facts) {
+                    <dl class="badge__facts">
+                      @for (f of m.facts; track f.label) {
+                        <div><dt>{{ f.label }}</dt><dd>{{ f.value }}</dd></div>
+                      }
+                    </dl>
+                  }
+                  <div class="badge__back-foot">
+                    @if (m.link) {
+                      <a [href]="m.link.href" target="_blank" rel="noopener" class="text-link">{{ m.link.label }} <lucide-icon [img]="ArrowUpRight" [size]="14" [strokeWidth]="2" /></a>
+                    }
+                    <button type="button" class="badge__flip" (click)="toggleFlip(m.id)">
+                      Back
+                      <lucide-icon [img]="RotateCw" [size]="14" [strokeWidth]="2.25" />
+                    </button>
+                  </div>
+                </div>
+
+                <span class="badge__glare" aria-hidden="true"></span>
+              </div>
+            </div>
+            </div>
+          </article>
+        }
+
+        <!-- Open seat -->
+        @if (filter() === 'all' || filter() === 'team') {
+          <a routerLink="/careers" class="badge badge--open" [style.--i]="visible().length">
+            <span class="badge__swing">
+            <span class="badge__strap" aria-hidden="true"><span class="badge__clip"></span></span>
+            <span class="badge__tilt">
+              <span class="badge__card badge__card--open">
+                <span class="badge__plus"><lucide-icon [img]="Plus" [size]="28" [strokeWidth]="2" /></span>
+                <span class="badge__open-title">Your badge could be next.</span>
+                <span class="badge__open-text">Internships open in Mapusa, Goa or remote.</span>
+                <span class="text-link">See open roles <lucide-icon [img]="ArrowRight" [size]="15" [strokeWidth]="2" /></span>
+              </span>
+            </span>
+            </span>
+          </a>
+        }
+      </div>
+    } @else {
+      <!-- STRUCTURE -->
+      <p class="hint">Pick anyone to jump to their badge.</p>
+
+      <div class="org">
+        <div class="org__root org__pop">
+          <span class="org__root-name">RentPhoenix Technologies Pvt. Ltd.</span>
+          <span class="org__root-meta">Founded Dec 2025 · Mapusa, Goa</span>
+        </div>
+
+        <span class="org__stem" style="--d: 0.15s" aria-hidden="true"></span>
+
+        <div class="org__tier">
+          <span class="org__tier-label org__pop" style="--d: 0.3s">Board of directors</span>
+          <div class="org__row" style="--d: 0.4s">
+            @for (m of leadership; track m.id; let i = $index) {
+              <button type="button" [class]="'org__node org__pop org__node--' + m.tone" [style.--d]="(0.5 + i * 0.1) + 's'" (click)="showMember(m)">
+                <span class="org__avatar">{{ m.initials }}</span>
+                <span class="org__text"><strong>{{ m.name }}</strong><span>{{ m.role }}</span></span>
+              </button>
+            }
+          </div>
+        </div>
+
+        <span class="org__stem" style="--d: 0.75s" aria-hidden="true"></span>
+
+        <div class="org__tier">
+          <span class="org__tier-label org__pop" style="--d: 0.9s">Team</span>
+          <div class="org__row" style="--d: 1s">
+            @for (m of members; track m.id; let i = $index) {
+              <button type="button" [class]="'org__node org__pop org__node--' + m.tone" [style.--d]="(1.1 + i * 0.1) + 's'" (click)="showMember(m)">
+                <span class="org__avatar">{{ m.initials }}</span>
+                <span class="org__text"><strong>{{ m.name }}</strong><span>{{ m.role }}</span></span>
+              </button>
+            }
+            <a routerLink="/careers" class="org__node org__node--open org__pop" [style.--d]="(1.1 + members.length * 0.1) + 's'">
+              <span class="org__avatar"><lucide-icon [img]="Plus" [size]="18" [strokeWidth]="2.25" /></span>
+              <span class="org__text"><strong>Open roles</strong><span>Internships</span></span>
+            </a>
+          </div>
+        </div>
+
+        @if (alumni.length) {
+          <span class="org__stem org__stem--dashed" style="--d: 1.35s" aria-hidden="true"></span>
+
+          <div class="org__tier">
+            <span class="org__tier-label org__pop" style="--d: 1.5s">Alumni</span>
+            <div class="org__row" style="--d: 1.6s">
+              @for (m of alumni; track m.id; let i = $index) {
+                <button type="button" [class]="'org__node org__node--former org__pop org__node--' + m.tone" [style.--d]="(1.7 + i * 0.1) + 's'" (click)="showMember(m)">
+                  <span class="org__avatar">{{ m.initials }}</span>
+                  <span class="org__text"><strong>{{ m.name }}</strong><span>{{ m.role }} · {{ m.period }}</span></span>
+                </button>
+              }
+            </div>
+          </div>
+        }
+      </div>
+    }
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta cta--spaced">
+  <div class="container">
+    <div class="cta__panel reveal">
+      <div class="cta__text">
+        <h2>Work with the people you just met.</h2>
+        <p>Tell us about your project — the team on this page is the team that builds it.</p>
+      </div>
+      <div class="cta__actions">
+        <a routerLink="/contact" class="cta__btn">
+          Start the conversation
+          <lucide-icon [img]="ArrowRight" [size]="16" [strokeWidth]="2" />
+        </a>
+        <a routerLink="/careers" class="cta__link">or join the team</a>
+      </div>
+    </div>
+  </div>
+</section>

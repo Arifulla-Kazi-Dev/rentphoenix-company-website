@@ -10,12 +10,10 @@ export interface StoryStep {
 /** Drop a photo in /public and set e.g. 'founder.webp' to replace the "AK" monogram everywhere. */
 export const FOUNDER_PHOTO: string | null = null;
 
+/** Company milestones only — personal history belongs in the founder section. */
 export const STORY_STEPS: StoryStep[] = [
-  { when: '2019–2023', text: 'BE in Electronics & Communication Engineering, Agnel Institute of Technology & Design, Goa' },
-  { text: 'Network Engineer at United Telecoms Limited' },
-  { title: 'Founded RentPhoenix Technologies Private Limited', text: 'to close the coordination gap in rental property management' },
-  { text: 'Incubated at CIBA Goa · Recognised by DPIIT under Startup India' },
-  { title: 'RentPhoenix OS goes live', text: 'on web and Android, with WhatsApp rent reminders for real landlords and tenants' },
-  { title: 'CO-Founder goes live', text: 'a finance OS for startup founders' },
+  { when: 'Dec 2025', title: 'Founded RentPhoenix Technologies Private Limited', text: 'to close the coordination gap in rental property management' },
+  { when: 'Jan 2026', text: 'Incubated at CIBA Goa' },
+  { when: 'Apr 2026', title: 'RentPhoenix OS goes live', text: 'on web and Android' },
   { when: 'Next', text: 'RentPhoenix OS for iPhone, and more client projects' },
 ];

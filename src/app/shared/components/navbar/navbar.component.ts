@@ -57,6 +57,7 @@ export class NavbarComponent {
 
   readonly pageLinks = [
     { label: 'Our story', path: '/about'   },
+    { label: 'Team',      path: '/team'    },
     { label: 'Careers',   path: '/careers' },
   ];
 

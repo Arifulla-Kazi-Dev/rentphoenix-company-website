@@ -23,6 +23,7 @@ export class FooterComponent {
       title: 'Company',
       links: [
         { label: 'Our story', path: '/about' },
+        { label: 'Team', path: '/team' },
         { label: 'Careers', path: '/careers' },
         { label: 'Contact', path: '/contact' },
       ]
