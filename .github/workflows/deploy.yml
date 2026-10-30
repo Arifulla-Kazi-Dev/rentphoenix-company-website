@@ -1,12 +1,21 @@
-name: Deploy to GitHub Pages
+name: Deploy to Firebase Hosting
+
+# Pushes to main go live on rentphoenixtech.in.
+# Pull requests get a temporary preview URL, posted as a comment on the PR.
+#
+# One-time setup: add a GitHub secret named FIREBASE_SERVICE_ACCOUNT_RENTPHOENIXTECH_3D489
+# holding a service-account JSON key for the rentphoenixtech-3d489 Firebase project.
 
 on:
   push:
     branches: [main]
+  pull_request:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
+  checks: write
+  pull-requests: write
 
 jobs:
   deploy:
@@ -26,13 +35,24 @@ jobs:
         run: npm ci
 
       - name: Build
-        run: npx ng build --base-href="/rentphoenix-company-website/"
+        run: npx ng build
 
-      - name: Fix Angular routing
-        run: cp dist/rentphoenix-company-website/browser/index.html dist/rentphoenix-company-website/browser/404.html
-
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
+      # Live site: main branch only
+      - name: Deploy to rentphoenixtech.in
+        if: github.event_name != 'pull_request'
+        uses: FirebaseExtended/action-hosting-deploy@v0
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist/rentphoenix-company-website/browser
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_RENTPHOENIXTECH_3D489 }}
+          projectId: rentphoenixtech-3d489
+          channelId: live
+
+      # Preview: a throwaway URL for each pull request, kept for 7 days
+      - name: Deploy pull request preview
+        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_RENTPHOENIXTECH_3D489 }}
+          projectId: rentphoenixtech-3d489
+          expires: 7d
